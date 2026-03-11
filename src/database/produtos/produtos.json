@@ -1,0 +1,3860 @@
+[
+  {
+    "referencia": "1113043",
+    "categoria": "SHORT",
+    "descricao": "LONG TP ENTRE LINHA PEITO",
+    "unidade": "UN",
+    "imagem": "avatar.png",
+    "variantes": [
+      {
+        "cor_codigo_nome": "0009-BRANCO",
+        "grade": {
+          "PP": 0,
+          "P": 22,
+          "M": 36,
+          "G": 7,
+          "GG": 0,
+          "U": 0
+        },
+        "quantidade_total": 65,
+        "valor_unitario": 40.0,
+        "valor_total": 2600.0
+      }
+    ]
+  },
+  {
+    "referencia": "1113093",
+    "categoria": "SHORT",
+    "descricao": "LONG SO QUEM SE ARRISCA MERECE",
+    "unidade": "UN",
+    "imagem": "avatar.png",
+    "variantes": [
+      {
+        "cor_codigo_nome": "0030-VERDE",
+        "grade": {
+          "PP": 0,
+          "P": 1,
+          "M": 0,
+          "G": 0,
+          "GG": 0,
+          "U": 0
+        },
+        "quantidade_total": 1,
+        "valor_unitario": 40.0,
+        "valor_total": 40.0
+      }
+    ]
+  },
+  {
+    "referencia": "1114020",
+    "categoria": "SHORT",
+    "descricao": "LONG POSTURADO E CALMO 7",
+    "unidade": "UN",
+    "imagem": "avatar.png",
+    "variantes": [
+      {
+        "cor_codigo_nome": "0007-PRETO",
+        "grade": {
+          "PP": 0,
+          "P": 22,
+          "M": 33,
+          "G": 11,
+          "GG": 0,
+          "U": 0
+        },
+        "quantidade_total": 66,
+        "valor_unitario": 40.0,
+        "valor_total": 2640.0
+      }
+    ]
+  },
+  {
+    "referencia": "1114046",
+    "categoria": "SHORT",
+    "descricao": "LONG ANJO ARCO FLECHA ABENCOADO",
+    "unidade": "UN",
+    "imagem": "avatar.png",
+    "variantes": [
+      {
+        "cor_codigo_nome": "0007-PRETO",
+        "grade": {
+          "PP": 0,
+          "P": 0,
+          "M": 7,
+          "G": 0,
+          "GG": 0,
+          "U": 0
+        },
+        "quantidade_total": 7,
+        "valor_unitario": 40.0,
+        "valor_total": 280.0
+      },
+      {
+        "cor_codigo_nome": "0022-AZUL",
+        "grade": {
+          "PP": 0,
+          "P": 0,
+          "M": 4,
+          "G": 0,
+          "GG": 0,
+          "U": 0
+        },
+        "quantidade_total": 4,
+        "valor_unitario": 40.0,
+        "valor_total": 160.0
+      }
+    ]
+  },
+  {
+    "referencia": "1114047",
+    "categoria": "SHORT",
+    "descricao": "LONG TUDO PASSA SEPARADO TP URSO",
+    "unidade": "UN",
+    "imagem": "avatar.png",
+    "variantes": [
+      {
+        "cor_codigo_nome": "0022-AZUL",
+        "grade": {
+          "PP": 0,
+          "P": 0,
+          "M": 1,
+          "G": 0,
+          "GG": 0,
+          "U": 0
+        },
+        "quantidade_total": 1,
+        "valor_unitario": 40.0,
+        "valor_total": 40.0
+      }
+    ]
+  },
+  {
+    "referencia": "1114057",
+    "categoria": "SHORT",
+    "descricao": "LONG DEUS E BOM O TEMPO TODO",
+    "unidade": "UN",
+    "imagem": "avatar.png",
+    "variantes": [
+      {
+        "cor_codigo_nome": "0030-VERDE",
+        "grade": {
+          "PP": 0,
+          "P": 33,
+          "M": 22,
+          "G": 11,
+          "GG": 0,
+          "U": 0
+        },
+        "quantidade_total": 66,
+        "valor_unitario": 40.0,
+        "valor_total": 2640.0
+      }
+    ]
+  },
+  {
+    "referencia": "1114058",
+    "categoria": "SHORT",
+    "descricao": "LONG TUDO FONTE GREGO PEITO ESQ",
+    "unidade": "UN",
+    "imagem": "avatar.png",
+    "variantes": [
+      {
+        "cor_codigo_nome": "0022-AZUL",
+        "grade": {
+          "PP": 0,
+          "P": 16,
+          "M": 0,
+          "G": 2,
+          "GG": 0,
+          "U": 0
+        },
+        "quantidade_total": 18,
+        "valor_unitario": 40.0,
+        "valor_total": 720.0
+      }
+    ]
+  },
+  {
+    "referencia": "1114076",
+    "categoria": "SHORT",
+    "descricao": "LONG TP GRANDE 001-TUDO PASSA MATRIZ",
+    "unidade": "UN",
+    "imagem": "avatar.png",
+    "variantes": [
+      {
+        "cor_codigo_nome": "0038-MARINHO",
+        "grade": {
+          "PP": 0,
+          "P": 1,
+          "M": 0,
+          "G": 0,
+          "GG": 0,
+          "U": 0
+        },
+        "quantidade_total": 1,
+        "valor_unitario": 40.0,
+        "valor_total": 40.0
+      }
+    ]
+  },
+  {
+    "referencia": "1114079",
+    "categoria": "SHORT",
+    "descricao": "LONG TUDO PASSA VARIAS FLORES",
+    "unidade": "UN",
+    "imagem": "avatar.png",
+    "variantes": [
+      {
+        "cor_codigo_nome": "0009-BRANCO",
+        "grade": {
+          "PP": 0,
+          "P": 0,
+          "M": 4,
+          "G": 0,
+          "GG": 0,
+          "U": 0
+        },
+        "quantidade_total": 4,
+        "valor_unitario": 40.0,
+        "valor_total": 160.0
+      }
+    ]
+  },
+  {
+    "referencia": "1114080",
+    "categoria": "SHORT",
+    "descricao": "LONG TUDO PASSA PERTO MANGA",
+    "unidade": "UN",
+    "imagem": "avatar.png",
+    "variantes": [
+      {
+        "cor_codigo_nome": "0032-OFF",
+        "grade": {
+          "PP": 0,
+          "P": 0,
+          "M": 1,
+          "G": 0,
+          "GG": 0,
+          "U": 0
+        },
+        "quantidade_total": 1,
+        "valor_unitario": 40.0,
+        "valor_total": 40.0
+      }
+    ]
+  },
+  {
+    "referencia": "1114081",
+    "categoria": "SHORT",
+    "descricao": "LONG TP PERTO MANGA TUDO PASSA",
+    "unidade": "UN",
+    "imagem": "avatar.png",
+    "variantes": []
+  },
+  {
+    "referencia": "1114081",
+    "categoria": "SHORT",
+    "descricao": "LONG TP PERTO MANGA TUDO PASSA",
+    "unidade": "UN",
+    "imagem": "avatar.png",
+    "variantes": [
+      {
+        "cor_codigo_nome": "0007-PRETO",
+        "grade": {
+          "PP": 0,
+          "P": 19,
+          "M": 35,
+          "G": 4,
+          "GG": 0,
+          "U": 0
+        },
+        "quantidade_total": 58,
+        "valor_unitario": 40.0,
+        "valor_total": 2320.0
+      },
+      {
+        "cor_codigo_nome": "0022-AZUL",
+        "grade": {
+          "PP": 0,
+          "P": 1,
+          "M": 0,
+          "G": 0,
+          "GG": 0,
+          "U": 0
+        },
+        "quantidade_total": 1,
+        "valor_unitario": 40.0,
+        "valor_total": 40.0
+      }
+    ]
+  },
+  {
+    "referencia": "1114083",
+    "categoria": "SHORT",
+    "descricao": "LONG TUDO PASSA FAIXA MANGA",
+    "unidade": "UN",
+    "imagem": "avatar.png",
+    "variantes": [
+      {
+        "cor_codigo_nome": "0007-PRETO",
+        "grade": {
+          "PP": 0,
+          "P": 11,
+          "M": 8,
+          "G": 6,
+          "GG": 0,
+          "U": 0
+        },
+        "quantidade_total": 25,
+        "valor_unitario": 40.0,
+        "valor_total": 1000.0
+      },
+      {
+        "cor_codigo_nome": "0009-BRANCO",
+        "grade": {
+          "PP": 0,
+          "P": 3,
+          "M": 14,
+          "G": 0,
+          "GG": 0,
+          "U": 0
+        },
+        "quantidade_total": 17,
+        "valor_unitario": 40.0,
+        "valor_total": 680.0
+      }
+    ]
+  },
+  {
+    "referencia": "1114084",
+    "categoria": "SHORT",
+    "descricao": "LONG A FASE BOA VAI VIR",
+    "unidade": "UN",
+    "imagem": "avatar.png",
+    "variantes": [
+      {
+        "cor_codigo_nome": "0007-PRETO",
+        "grade": {
+          "PP": 0,
+          "P": 2,
+          "M": 0,
+          "G": 1,
+          "GG": 0,
+          "U": 0
+        },
+        "quantidade_total": 3,
+        "valor_unitario": 40.0,
+        "valor_total": 120.0
+      }
+    ]
+  },
+  {
+    "referencia": "1114086",
+    "categoria": "SHORT",
+    "descricao": "LONG TUDO PASSA GOLA ATE MANGA",
+    "unidade": "UN",
+    "imagem": "avatar.png",
+    "variantes": [
+      {
+        "cor_codigo_nome": "0007-PRETO",
+        "grade": {
+          "PP": 0,
+          "P": 15,
+          "M": 16,
+          "G": 7,
+          "GG": 0,
+          "U": 0
+        },
+        "quantidade_total": 38,
+        "valor_unitario": 40.0,
+        "valor_total": 1520.0
+      }
+    ]
+  },
+  {
+    "referencia": "1114087",
+    "categoria": "SHORT",
+    "descricao": "LONG CRUZ ANJO URSO TP",
+    "unidade": "UN",
+    "imagem": "avatar.png",
+    "variantes": [
+      {
+        "cor_codigo_nome": "0007-PRETO",
+        "grade": {
+          "PP": 0,
+          "P": 1,
+          "M": 1,
+          "G": 0,
+          "GG": 0,
+          "U": 0
+        },
+        "quantidade_total": 2,
+        "valor_unitario": 40.0,
+        "valor_total": 80.0
+      }
+    ]
+  },
+  {
+    "referencia": "1114090",
+    "categoria": "SHORT",
+    "descricao": "LONG DEUS E BOM O TEMPO TODO",
+    "unidade": "UN",
+    "imagem": "avatar.png",
+    "variantes": [
+      {
+        "cor_codigo_nome": "0007-PRETO",
+        "grade": {
+          "PP": 0,
+          "P": 0,
+          "M": 0,
+          "G": 1,
+          "GG": 0,
+          "U": 0
+        },
+        "quantidade_total": 1,
+        "valor_unitario": 40.0,
+        "valor_total": 40.0
+      }
+    ]
+  },
+  {
+    "referencia": "1114091",
+    "categoria": "SHORT",
+    "descricao": "LONG 1988 ENTRE ESPINHOS COM UMA",
+    "unidade": "UN",
+    "imagem": "avatar.png",
+    "variantes": [
+      {
+        "cor_codigo_nome": "0009-BRANCO",
+        "grade": {
+          "PP": 0,
+          "P": 0,
+          "M": 13,
+          "G": 2,
+          "GG": 0,
+          "U": 0
+        },
+        "quantidade_total": 15,
+        "valor_unitario": 40.0,
+        "valor_total": 600.0
+      }
+    ]
+  },
+  {
+    "referencia": "1114092",
+    "categoria": "SHORT",
+    "descricao": "LONG ANJO ARMADO WINNERS FOCUS ON",
+    "unidade": "UN",
+    "imagem": "avatar.png",
+    "variantes": [
+      {
+        "cor_codigo_nome": "0007-PRETO",
+        "grade": {
+          "PP": 0,
+          "P": 24,
+          "M": 36,
+          "G": 13,
+          "GG": 0,
+          "U": 0
+        },
+        "quantidade_total": 73,
+        "valor_unitario": 40.0,
+        "valor_total": 2920.0
+      }
+    ]
+  },
+  {
+    "referencia": "1114094",
+    "categoria": "SHORT",
+    "descricao": "LONG TUDO PASSA 96",
+    "unidade": "UN",
+    "imagem": "avatar.png",
+    "variantes": [
+      {
+        "cor_codigo_nome": "0007-PRETO",
+        "grade": {
+          "PP": 0,
+          "P": 0,
+          "M": 6,
+          "G": 3,
+          "GG": 0,
+          "U": 0
+        },
+        "quantidade_total": 9,
+        "valor_unitario": 40.0,
+        "valor_total": 360.0
+      }
+    ]
+  },
+  {
+    "referencia": "1114095",
+    "categoria": "SHORT",
+    "descricao": "LONG ANJO SADNESS",
+    "unidade": "UN",
+    "imagem": "avatar.png",
+    "variantes": [
+      {
+        "cor_codigo_nome": "0007-PRETO",
+        "grade": {
+          "PP": 0,
+          "P": 24,
+          "M": 34,
+          "G": 12,
+          "GG": 0,
+          "U": 0
+        },
+        "quantidade_total": 70,
+        "valor_unitario": 40.0,
+        "valor_total": 2800.0
+      }
+    ]
+  },
+  {
+    "referencia": "1114098",
+    "categoria": "SHORT",
+    "descricao": "LONG URSO SENTADO EM UM",
+    "unidade": "UN",
+    "imagem": "avatar.png",
+    "variantes": []
+  },
+  {
+    "referencia": "1114098",
+    "categoria": "SHORT",
+    "descricao": "LONG URSO SENTADO EM UM",
+    "unidade": "UN",
+    "imagem": "avatar.png",
+    "variantes": [
+      {
+        "cor_codigo_nome": "0030-VERDE",
+        "grade": {
+          "PP": 0,
+          "P": 30,
+          "M": 44,
+          "G": 13,
+          "GG": 0,
+          "U": 0
+        },
+        "quantidade_total": 87,
+        "valor_unitario": 40.0,
+        "valor_total": 3480.0
+      }
+    ]
+  },
+  {
+    "referencia": "1115001",
+    "categoria": "SHORT",
+    "descricao": "LONG URSO SEGURANDO FLEXA",
+    "unidade": "UN",
+    "imagem": "avatar.png",
+    "variantes": [
+      {
+        "cor_codigo_nome": "0011-CINZA REVOLUTION",
+        "grade": {
+          "PP": 0,
+          "P": 20,
+          "M": 32,
+          "G": 11,
+          "GG": 0,
+          "U": 0
+        },
+        "quantidade_total": 63,
+        "valor_unitario": 40.0,
+        "valor_total": 2520.0
+      }
+    ]
+  },
+  {
+    "referencia": "1115003",
+    "categoria": "SHORT",
+    "descricao": "LONG TUDO PASSA ILUMINADO CURVADO",
+    "unidade": "UN",
+    "imagem": "avatar.png",
+    "variantes": [
+      {
+        "cor_codigo_nome": "0002-ROSA",
+        "grade": {
+          "PP": 0,
+          "P": 1,
+          "M": 3,
+          "G": 0,
+          "GG": 0,
+          "U": 0
+        },
+        "quantidade_total": 4,
+        "valor_unitario": 40.0,
+        "valor_total": 160.0
+      }
+    ]
+  },
+  {
+    "referencia": "1115004",
+    "categoria": "SHORT",
+    "descricao": "LONG TUDO PASSA TP E URSO",
+    "unidade": "UN",
+    "imagem": "avatar.png",
+    "variantes": [
+      {
+        "cor_codigo_nome": "0002-ROSA",
+        "grade": {
+          "PP": 0,
+          "P": 5,
+          "M": 20,
+          "G": 2,
+          "GG": 0,
+          "U": 0
+        },
+        "quantidade_total": 27,
+        "valor_unitario": 40.0,
+        "valor_total": 1080.0
+      }
+    ]
+  },
+  {
+    "referencia": "1115006",
+    "categoria": "SHORT",
+    "descricao": "LONG ANJO ARMADO TP GRANDE",
+    "unidade": "UN",
+    "imagem": "avatar.png",
+    "variantes": [
+      {
+        "cor_codigo_nome": "0007-PRETO",
+        "grade": {
+          "PP": 0,
+          "P": 1,
+          "M": 1,
+          "G": 0,
+          "GG": 0,
+          "U": 0
+        },
+        "quantidade_total": 2,
+        "valor_unitario": 40.0,
+        "valor_total": 80.0
+      }
+    ]
+  },
+  {
+    "referencia": "1115007",
+    "categoria": "SHORT",
+    "descricao": "LONG URSO ZERO HUG GIVEN",
+    "unidade": "UN",
+    "imagem": "avatar.png",
+    "variantes": [
+      {
+        "cor_codigo_nome": "0009-BRANCO",
+        "grade": {
+          "PP": 0,
+          "P": 0,
+          "M": 2,
+          "G": 0,
+          "GG": 0,
+          "U": 0
+        },
+        "quantidade_total": 2,
+        "valor_unitario": 40.0,
+        "valor_total": 80.0
+      }
+    ]
+  },
+  {
+    "referencia": "1115008",
+    "categoria": "SHORT",
+    "descricao": "LONG PROTEGIDO POR DEUS 22",
+    "unidade": "UN",
+    "imagem": "avatar.png",
+    "variantes": [
+      {
+        "cor_codigo_nome": "0030-VERDE",
+        "grade": {
+          "PP": 0,
+          "P": 0,
+          "M": 4,
+          "G": 0,
+          "GG": 0,
+          "U": 0
+        },
+        "quantidade_total": 4,
+        "valor_unitario": 40.0,
+        "valor_total": 160.0
+      }
+    ]
+  },
+  {
+    "referencia": "1115009",
+    "categoria": "SHORT",
+    "descricao": "LONG DEUS E FIEL 7 001-TUDO PASSA MATRIZ",
+    "unidade": "UN",
+    "imagem": "avatar.png",
+    "variantes": [
+      {
+        "cor_codigo_nome": "0007-PRETO",
+        "grade": {
+          "PP": 0,
+          "P": 0,
+          "M": 1,
+          "G": 0,
+          "GG": 0,
+          "U": 0
+        },
+        "quantidade_total": 1,
+        "valor_unitario": 40.0,
+        "valor_total": 40.0
+      }
+    ]
+  },
+  {
+    "referencia": "1115010",
+    "categoria": "SHORT",
+    "descricao": "LONG PORQUE VIVEMOS POR FE",
+    "unidade": "UN",
+    "imagem": "avatar.png",
+    "variantes": [
+      {
+        "cor_codigo_nome": "0007-PRETO",
+        "grade": {
+          "PP": 0,
+          "P": 0,
+          "M": 1,
+          "G": 0,
+          "GG": 0,
+          "U": 0
+        },
+        "quantidade_total": 1,
+        "valor_unitario": 40.0,
+        "valor_total": 40.0
+      },
+      {
+        "cor_codigo_nome": "0009-BRANCO",
+        "grade": {
+          "PP": 0,
+          "P": 0,
+          "M": 1,
+          "G": 1,
+          "GG": 0,
+          "U": 0
+        },
+        "quantidade_total": 2,
+        "valor_unitario": 40.0,
+        "valor_total": 80.0
+      }
+    ]
+  },
+  {
+    "referencia": "1115011",
+    "categoria": "SHORT",
+    "descricao": "LONG VARIOS TP MANGA",
+    "unidade": "UN",
+    "imagem": "avatar.png",
+    "variantes": [
+      {
+        "cor_codigo_nome": "0002-ROSA",
+        "grade": {
+          "PP": 0,
+          "P": 1,
+          "M": 1,
+          "G": 0,
+          "GG": 0,
+          "U": 0
+        },
+        "quantidade_total": 2,
+        "valor_unitario": 40.0,
+        "valor_total": 80.0
+      }
+    ]
+  },
+  {
+    "referencia": "1115012",
+    "categoria": "SHORT",
+    "descricao": "LONG TUDO PASSA 32 OUTSTANDING",
+    "unidade": "UN",
+    "imagem": "avatar.png",
+    "variantes": []
+  },
+  {
+    "referencia": "1115012",
+    "categoria": "SHORT",
+    "descricao": "LONG TUDO PASSA 32 OUTSTANDING",
+    "unidade": "UN",
+    "imagem": "avatar.png",
+    "variantes": [
+      {
+        "cor_codigo_nome": "0007-PRETO",
+        "grade": {
+          "PP": 0,
+          "P": 3,
+          "M": 8,
+          "G": 0,
+          "GG": 0,
+          "U": 0
+        },
+        "quantidade_total": 11,
+        "valor_unitario": 40.0,
+        "valor_total": 440.0
+      }
+    ]
+  },
+  {
+    "referencia": "1115014",
+    "categoria": "SHORT",
+    "descricao": "LONG TUDO PASSA 777 DESIGN",
+    "unidade": "UN",
+    "imagem": "avatar.png",
+    "variantes": [
+      {
+        "cor_codigo_nome": "0028-CINZA",
+        "grade": {
+          "PP": 0,
+          "P": 1,
+          "M": 6,
+          "G": 0,
+          "GG": 0,
+          "U": 0
+        },
+        "quantidade_total": 7,
+        "valor_unitario": 40.0,
+        "valor_total": 280.0
+      }
+    ]
+  },
+  {
+    "referencia": "1115015",
+    "categoria": "SHORT",
+    "descricao": "LONG VARIAS LISTRAS TUDO",
+    "unidade": "UN",
+    "imagem": "avatar.png",
+    "variantes": [
+      {
+        "cor_codigo_nome": "0007-PRETO",
+        "grade": {
+          "PP": 0,
+          "P": 1,
+          "M": 1,
+          "G": 0,
+          "GG": 0,
+          "U": 0
+        },
+        "quantidade_total": 2,
+        "valor_unitario": 40.0,
+        "valor_total": 80.0
+      }
+    ]
+  },
+  {
+    "referencia": "1115016",
+    "categoria": "SHORT",
+    "descricao": "LONG ENQUANTO ELES DUVIDAM EU",
+    "unidade": "UN",
+    "imagem": "avatar.png",
+    "variantes": [
+      {
+        "cor_codigo_nome": "0007-PRETO",
+        "grade": {
+          "PP": 0,
+          "P": 1,
+          "M": 0,
+          "G": 0,
+          "GG": 0,
+          "U": 0
+        },
+        "quantidade_total": 1,
+        "valor_unitario": 40.0,
+        "valor_total": 40.0
+      }
+    ]
+  },
+  {
+    "referencia": "1115017",
+    "categoria": "SHORT",
+    "descricao": "LONG TUDO PASSA FONTE GREGO",
+    "unidade": "UN",
+    "imagem": "avatar.png",
+    "variantes": [
+      {
+        "cor_codigo_nome": "0009-BRANCO",
+        "grade": {
+          "PP": 0,
+          "P": 7,
+          "M": 23,
+          "G": 3,
+          "GG": 0,
+          "U": 0
+        },
+        "quantidade_total": 33,
+        "valor_unitario": 40.0,
+        "valor_total": 1320.0
+      }
+    ]
+  },
+  {
+    "referencia": "1115018",
+    "categoria": "SHORT",
+    "descricao": "LONG TP GRANDE TUDO PASSA BRAND",
+    "unidade": "UN",
+    "imagem": "avatar.png",
+    "variantes": [
+      {
+        "cor_codigo_nome": "0036-MACADAMIA",
+        "grade": {
+          "PP": 0,
+          "P": 0,
+          "M": 10,
+          "G": 0,
+          "GG": 0,
+          "U": 0
+        },
+        "quantidade_total": 10,
+        "valor_unitario": 40.0,
+        "valor_total": 400.0
+      }
+    ]
+  },
+  {
+    "referencia": "1115019",
+    "categoria": "SHORT",
+    "descricao": "LONG URSO SENTADO",
+    "unidade": "UN",
+    "imagem": "avatar.png",
+    "variantes": [
+      {
+        "cor_codigo_nome": "0007-PRETO",
+        "grade": {
+          "PP": 0,
+          "P": 5,
+          "M": 23,
+          "G": 6,
+          "GG": 0,
+          "U": 0
+        },
+        "quantidade_total": 34,
+        "valor_unitario": 40.0,
+        "valor_total": 1360.0
+      }
+    ]
+  },
+  {
+    "referencia": "1115022",
+    "categoria": "SHORT",
+    "descricao": "LONG URSO CAPACETE ESPACIAL",
+    "unidade": "UN",
+    "imagem": "avatar.png",
+    "variantes": [
+      {
+        "cor_codigo_nome": "0032-OFF",
+        "grade": {
+          "PP": 0,
+          "P": 1,
+          "M": 0,
+          "G": 0,
+          "GG": 0,
+          "U": 0
+        },
+        "quantidade_total": 1,
+        "valor_unitario": 40.0,
+        "valor_total": 40.0
+      }
+    ]
+  },
+  {
+    "referencia": "1115023",
+    "categoria": "SHORT",
+    "descricao": "LONG URSO DEITADO COM CHAPEU BEST",
+    "unidade": "UN",
+    "imagem": "avatar.png",
+    "variantes": [
+      {
+        "cor_codigo_nome": "0036-MACADAMIA",
+        "grade": {
+          "PP": 0,
+          "P": 0,
+          "M": 9,
+          "G": 5,
+          "GG": 0,
+          "U": 0
+        },
+        "quantidade_total": 14,
+        "valor_unitario": 40.0,
+        "valor_total": 560.0
+      }
+    ]
+  },
+  {
+    "referencia": "1115025",
+    "categoria": "SHORT",
+    "descricao": "LONG PATO SINCE 2022 BRAND",
+    "unidade": "UN",
+    "imagem": "avatar.png",
+    "variantes": [
+      {
+        "cor_codigo_nome": "0007-PRETO",
+        "grade": {
+          "PP": 0,
+          "P": 6,
+          "M": 23,
+          "G": 11,
+          "GG": 0,
+          "U": 0
+        },
+        "quantidade_total": 40,
+        "valor_unitario": 40.0,
+        "valor_total": 1600.0
+      }
+    ]
+  },
+  {
+    "referencia": "1115026",
+    "categoria": "SHORT",
+    "descricao": "LONG MONEY IS OUR MOTIVE",
+    "unidade": "UN",
+    "imagem": "avatar.png",
+    "variantes": []
+  },
+  {
+    "referencia": "1115026",
+    "categoria": "SHORT",
+    "descricao": "LONG MONEY IS OUR MOTIVE",
+    "unidade": "UN",
+    "imagem": "avatar.png",
+    "variantes": [
+      {
+        "cor_codigo_nome": "0032-OFF",
+        "grade": {
+          "PP": 0,
+          "P": 24,
+          "M": 36,
+          "G": 12,
+          "GG": 0,
+          "U": 0
+        },
+        "quantidade_total": 72,
+        "valor_unitario": 40.0,
+        "valor_total": 2880.0
+      }
+    ]
+  },
+  {
+    "referencia": "1115027",
+    "categoria": "SHORT",
+    "descricao": "LONG LISTRADA TUDO PASSA",
+    "unidade": "UN",
+    "imagem": "avatar.png",
+    "variantes": [
+      {
+        "cor_codigo_nome": "0032-OFF",
+        "grade": {
+          "PP": 0,
+          "P": 1,
+          "M": 1,
+          "G": 0,
+          "GG": 0,
+          "U": 0
+        },
+        "quantidade_total": 2,
+        "valor_unitario": 40.0,
+        "valor_total": 80.0
+      }
+    ]
+  },
+  {
+    "referencia": "1115029",
+    "categoria": "SHORT",
+    "descricao": "LONG URSO SENTADO SILENCE IS",
+    "unidade": "UN",
+    "imagem": "avatar.png",
+    "variantes": [
+      {
+        "cor_codigo_nome": "0032-OFF",
+        "grade": {
+          "PP": 0,
+          "P": 22,
+          "M": 32,
+          "G": 11,
+          "GG": 0,
+          "U": 0
+        },
+        "quantidade_total": 65,
+        "valor_unitario": 40.0,
+        "valor_total": 2600.0
+      }
+    ]
+  },
+  {
+    "referencia": "1115031",
+    "categoria": "SHORT",
+    "descricao": "LONG TUDO PASSA PEQ PERTO GOLA 2",
+    "unidade": "UN",
+    "imagem": "avatar.png",
+    "variantes": [
+      {
+        "cor_codigo_nome": "0036-MACADAMIA",
+        "grade": {
+          "PP": 0,
+          "P": 30,
+          "M": 19,
+          "G": 8,
+          "GG": 0,
+          "U": 0
+        },
+        "quantidade_total": 57,
+        "valor_unitario": 40.0,
+        "valor_total": 2280.0
+      }
+    ]
+  },
+  {
+    "referencia": "1115032",
+    "categoria": "SHORT",
+    "descricao": "LONG TP GRANDE 001-TUDO PASSA MATRIZ",
+    "unidade": "UN",
+    "imagem": "avatar.png",
+    "variantes": [
+      {
+        "cor_codigo_nome": "0002-ROSA",
+        "grade": {
+          "PP": 0,
+          "P": 20,
+          "M": 30,
+          "G": 9,
+          "GG": 0,
+          "U": 0
+        },
+        "quantidade_total": 59,
+        "valor_unitario": 40.0,
+        "valor_total": 2360.0
+      }
+    ]
+  },
+  {
+    "referencia": "1115033",
+    "categoria": "SHORT",
+    "descricao": "LONG ILUMINADO PELA FE",
+    "unidade": "UN",
+    "imagem": "avatar.png",
+    "variantes": [
+      {
+        "cor_codigo_nome": "0032-OFF",
+        "grade": {
+          "PP": 0,
+          "P": 22,
+          "M": 29,
+          "G": 11,
+          "GG": 0,
+          "U": 0
+        },
+        "quantidade_total": 62,
+        "valor_unitario": 40.0,
+        "valor_total": 2480.0
+      }
+    ]
+  },
+  {
+    "referencia": "1115034",
+    "categoria": "SHORT",
+    "descricao": "LONG TUDO PASSA ESTRELA BARRA ATE",
+    "unidade": "UN",
+    "imagem": "avatar.png",
+    "variantes": [
+      {
+        "cor_codigo_nome": "0022-AZUL",
+        "grade": {
+          "PP": 0,
+          "P": 33,
+          "M": 22,
+          "G": 11,
+          "GG": 0,
+          "U": 0
+        },
+        "quantidade_total": 66,
+        "valor_unitario": 40.0,
+        "valor_total": 2640.0
+      },
+      {
+        "cor_codigo_nome": "0032-OFF",
+        "grade": {
+          "PP": 0,
+          "P": 3,
+          "M": 25,
+          "G": 2,
+          "GG": 0,
+          "U": 0
+        },
+        "quantidade_total": 30,
+        "valor_unitario": 40.0,
+        "valor_total": 1200.0
+      }
+    ]
+  },
+  {
+    "referencia": "1115035",
+    "categoria": "SHORT",
+    "descricao": "LONG URSO CORDAO ESPINHO O CAMINHO",
+    "unidade": "UN",
+    "imagem": "avatar.png",
+    "variantes": [
+      {
+        "cor_codigo_nome": "0009-BRANCO",
+        "grade": {
+          "PP": 0,
+          "P": 31,
+          "M": 22,
+          "G": 11,
+          "GG": 0,
+          "U": 0
+        },
+        "quantidade_total": 64,
+        "valor_unitario": 40.0,
+        "valor_total": 2560.0
+      }
+    ]
+  },
+  {
+    "referencia": "1115036",
+    "categoria": "SHORT",
+    "descricao": "LONG URSO X EMOJI SORRINDO X OLHO",
+    "unidade": "UN",
+    "imagem": "avatar.png",
+    "variantes": [
+      {
+        "cor_codigo_nome": "0030-VERDE",
+        "grade": {
+          "PP": 0,
+          "P": 0,
+          "M": 10,
+          "G": 0,
+          "GG": 0,
+          "U": 0
+        },
+        "quantidade_total": 10,
+        "valor_unitario": 40.0,
+        "valor_total": 400.0
+      }
+    ]
+  },
+  {
+    "referencia": "1115037",
+    "categoria": "SHORT",
+    "descricao": "LONG JOGO DA VELHA",
+    "unidade": "UN",
+    "imagem": "avatar.png",
+    "variantes": [
+      {
+        "cor_codigo_nome": "0009-BRANCO",
+        "grade": {
+          "PP": 0,
+          "P": 1,
+          "M": 20,
+          "G": 7,
+          "GG": 0,
+          "U": 0
+        },
+        "quantidade_total": 28,
+        "valor_unitario": 40.0,
+        "valor_total": 1120.0
+      }
+    ]
+  },
+  {
+    "referencia": "1115038",
+    "categoria": "SHORT",
+    "descricao": "LONG FE EM DEUS QUE ELE E JUSTO",
+    "unidade": "UN",
+    "imagem": "avatar.png",
+    "variantes": []
+  },
+  {
+    "referencia": "1115038",
+    "categoria": "SHORT",
+    "descricao": "LONG FE EM DEUS QUE ELE E JUSTO",
+    "unidade": "UN",
+    "imagem": "avatar.png",
+    "variantes": [
+      {
+        "cor_codigo_nome": "0007-PRETO",
+        "grade": {
+          "PP": 0,
+          "P": 0,
+          "M": 3,
+          "G": 2,
+          "GG": 0,
+          "U": 0
+        },
+        "quantidade_total": 5,
+        "valor_unitario": 40.0,
+        "valor_total": 200.0
+      }
+    ]
+  },
+  {
+    "referencia": "1115041",
+    "categoria": "SHORT",
+    "descricao": "LONG VARIOS TUDO PASSA BARRA E",
+    "unidade": "UN",
+    "imagem": "avatar.png",
+    "variantes": [
+      {
+        "cor_codigo_nome": "0007-PRETO",
+        "grade": {
+          "PP": 0,
+          "P": 5,
+          "M": 15,
+          "G": 3,
+          "GG": 0,
+          "U": 0
+        },
+        "quantidade_total": 23,
+        "valor_unitario": 40.0,
+        "valor_total": 920.0
+      }
+    ]
+  },
+  {
+    "referencia": "1115042",
+    "categoria": "SHORT",
+    "descricao": "LONG MENTALIDADE DE CAMPEAO",
+    "unidade": "UN",
+    "imagem": "avatar.png",
+    "variantes": [
+      {
+        "cor_codigo_nome": "0007-PRETO",
+        "grade": {
+          "PP": 0,
+          "P": 7,
+          "M": 0,
+          "G": 3,
+          "GG": 0,
+          "U": 0
+        },
+        "quantidade_total": 10,
+        "valor_unitario": 40.0,
+        "valor_total": 400.0
+      }
+    ]
+  },
+  {
+    "referencia": "1115043",
+    "categoria": "SHORT",
+    "descricao": "LONG URSO BROKEN BUT STILL FEITO NA",
+    "unidade": "UN",
+    "imagem": "avatar.png",
+    "variantes": [
+      {
+        "cor_codigo_nome": "0007-PRETO",
+        "grade": {
+          "PP": 0,
+          "P": 13,
+          "M": 4,
+          "G": 5,
+          "GG": 0,
+          "U": 0
+        },
+        "quantidade_total": 22,
+        "valor_unitario": 40.0,
+        "valor_total": 880.0
+      }
+    ]
+  },
+  {
+    "referencia": "1115044",
+    "categoria": "SHORT",
+    "descricao": "LONG ANJO REZANDO TP",
+    "unidade": "UN",
+    "imagem": "avatar.png",
+    "variantes": [
+      {
+        "cor_codigo_nome": "0007-PRETO",
+        "grade": {
+          "PP": 0,
+          "P": 32,
+          "M": 14,
+          "G": 11,
+          "GG": 0,
+          "U": 0
+        },
+        "quantidade_total": 57,
+        "valor_unitario": 40.0,
+        "valor_total": 2280.0
+      },
+      {
+        "cor_codigo_nome": "0022-AZUL",
+        "grade": {
+          "PP": 0,
+          "P": 29,
+          "M": 12,
+          "G": 8,
+          "GG": 0,
+          "U": 0
+        },
+        "quantidade_total": 49,
+        "valor_unitario": 40.0,
+        "valor_total": 1960.0
+      }
+    ]
+  },
+  {
+    "referencia": "1115045",
+    "categoria": "SHORT",
+    "descricao": "LONG URSO COM RAIVA O M",
+    "unidade": "UN",
+    "imagem": "avatar.png",
+    "variantes": [
+      {
+        "cor_codigo_nome": "0008-VERMELHO",
+        "grade": {
+          "PP": 0,
+          "P": 23,
+          "M": 30,
+          "G": 8,
+          "GG": 0,
+          "U": 0
+        },
+        "quantidade_total": 61,
+        "valor_unitario": 40.0,
+        "valor_total": 2440.0
+      }
+    ]
+  },
+  {
+    "referencia": "1115046",
+    "categoria": "SHORT",
+    "descricao": "LONG URSO O M",
+    "unidade": "UN",
+    "imagem": "avatar.png",
+    "variantes": [
+      {
+        "cor_codigo_nome": "0002-ROSA",
+        "grade": {
+          "PP": 0,
+          "P": 23,
+          "M": 36,
+          "G": 10,
+          "GG": 0,
+          "U": 0
+        },
+        "quantidade_total": 69,
+        "valor_unitario": 40.0,
+        "valor_total": 2760.0
+      }
+    ]
+  },
+  {
+    "referencia": "1115047",
+    "categoria": "SHORT",
+    "descricao": "LONG ANJO SEGURANDO PLACA",
+    "unidade": "UN",
+    "imagem": "avatar.png",
+    "variantes": [
+      {
+        "cor_codigo_nome": "0007-PRETO",
+        "grade": {
+          "PP": 0,
+          "P": 30,
+          "M": 20,
+          "G": 10,
+          "GG": 0,
+          "U": 0
+        },
+        "quantidade_total": 60,
+        "valor_unitario": 40.0,
+        "valor_total": 2400.0
+      }
+    ]
+  },
+  {
+    "referencia": "1115048",
+    "categoria": "SHORT",
+    "descricao": "LONG ANJO REZANDO SACO DE",
+    "unidade": "UN",
+    "imagem": "avatar.png",
+    "variantes": [
+      {
+        "cor_codigo_nome": "0009-BRANCO",
+        "grade": {
+          "PP": 0,
+          "P": 33,
+          "M": 22,
+          "G": 11,
+          "GG": 0,
+          "U": 0
+        },
+        "quantidade_total": 66,
+        "valor_unitario": 40.0,
+        "valor_total": 2640.0
+      }
+    ]
+  },
+  {
+    "referencia": "1115050",
+    "categoria": "SHORT",
+    "descricao": "LONG URSO SENTADO NO",
+    "unidade": "UN",
+    "imagem": "avatar.png",
+    "variantes": [
+      {
+        "cor_codigo_nome": "0047-VINHO",
+        "grade": {
+          "PP": 0,
+          "P": 39,
+          "M": 23,
+          "G": 12,
+          "GG": 0,
+          "U": 0
+        },
+        "quantidade_total": 74,
+        "valor_unitario": 40.0,
+        "valor_total": 2960.0
+      }
+    ]
+  },
+  {
+    "referencia": "1115052",
+    "categoria": "SHORT",
+    "descricao": "LONG BLESSED ASA TP",
+    "unidade": "UN",
+    "imagem": "avatar.png",
+    "variantes": []
+  },
+  {
+    "referencia": "1115052",
+    "categoria": "SHORT",
+    "descricao": "LONG BLESSED ASA TP",
+    "unidade": "UN",
+    "imagem": "avatar.png",
+    "variantes": [
+      {
+        "cor_codigo_nome": "0015-AMARELO",
+        "grade": {
+          "PP": 0,
+          "P": 25,
+          "M": 39,
+          "G": 12,
+          "GG": 0,
+          "U": 0
+        },
+        "quantidade_total": 76,
+        "valor_unitario": 40.0,
+        "valor_total": 3040.0
+      }
+    ]
+  },
+  {
+    "referencia": "1190078",
+    "categoria": "SHORT",
+    "descricao": "LONG ANJO EMOTIONAL",
+    "unidade": "UN",
+    "imagem": "avatar.png",
+    "variantes": [
+      {
+        "cor_codigo_nome": "0027-BEGE",
+        "grade": {
+          "PP": 0,
+          "P": 0,
+          "M": 1,
+          "G": 0,
+          "GG": 0,
+          "U": 0
+        },
+        "quantidade_total": 1,
+        "valor_unitario": 40.0,
+        "valor_total": 40.0
+      }
+    ]
+  },
+  {
+    "referencia": "1285001",
+    "categoria": "SHORT",
+    "descricao": "CANELADO FONTE ALTO RELEVO",
+    "unidade": "UN",
+    "imagem": "avatar.png",
+    "variantes": [
+      {
+        "cor_codigo_nome": "0017-ROXA",
+        "grade": {
+          "PP": 0,
+          "P": 1,
+          "M": 12,
+          "G": 0,
+          "GG": 0,
+          "U": 0
+        },
+        "quantidade_total": 13,
+        "valor_unitario": 40.0,
+        "valor_total": 520.0
+      }
+    ]
+  },
+  {
+    "referencia": "1312006",
+    "categoria": "SHORT",
+    "descricao": "M LONGA JESUS CAMINH0 VERDADE E",
+    "unidade": "UN",
+    "imagem": "avatar.png",
+    "variantes": [
+      {
+        "cor_codigo_nome": "0022-AZUL",
+        "grade": {
+          "PP": 0,
+          "P": 0,
+          "M": 0,
+          "G": 1,
+          "GG": 0,
+          "U": 0
+        },
+        "quantidade_total": 1,
+        "valor_unitario": 50.0,
+        "valor_total": 50.0
+      }
+    ]
+  },
+  {
+    "referencia": "1312012",
+    "categoria": "SHORT",
+    "descricao": "M LONGA DADOS PENDURADO",
+    "unidade": "UN",
+    "imagem": "avatar.png",
+    "variantes": [
+      {
+        "cor_codigo_nome": "0007-PRETO",
+        "grade": {
+          "PP": 0,
+          "P": 0,
+          "M": 1,
+          "G": 1,
+          "GG": 0,
+          "U": 0
+        },
+        "quantidade_total": 2,
+        "valor_unitario": 50.0,
+        "valor_total": 100.0
+      }
+    ]
+  },
+  {
+    "referencia": "1320004",
+    "categoria": "SHORT",
+    "descricao": "M LONGA TORNE SE 1 MELHOR",
+    "unidade": "UN",
+    "imagem": "avatar.png",
+    "variantes": [
+      {
+        "cor_codigo_nome": "0002-ROSA",
+        "grade": {
+          "PP": 0,
+          "P": 1,
+          "M": 0,
+          "G": 0,
+          "GG": 0,
+          "U": 0
+        },
+        "quantidade_total": 1,
+        "valor_unitario": 47.0,
+        "valor_total": 47.0
+      }
+    ]
+  },
+  {
+    "referencia": "1340004",
+    "categoria": "SHORT",
+    "descricao": "M LONGA NINGUEM CONSEGUE",
+    "unidade": "UN",
+    "imagem": "avatar.png",
+    "variantes": [
+      {
+        "cor_codigo_nome": "0006-LARANJA",
+        "grade": {
+          "PP": 0,
+          "P": 1,
+          "M": 0,
+          "G": 1,
+          "GG": 0,
+          "U": 0
+        },
+        "quantidade_total": 2,
+        "valor_unitario": 47.0,
+        "valor_total": 94.0
+      }
+    ]
+  },
+  {
+    "referencia": "1377001",
+    "categoria": "SHORT",
+    "descricao": "GOLA POLO TUDO PASSA",
+    "unidade": "UN",
+    "imagem": "avatar.png",
+    "variantes": [
+      {
+        "cor_codigo_nome": "0007-PRETO",
+        "grade": {
+          "PP": 0,
+          "P": 0,
+          "M": 0,
+          "G": 1,
+          "GG": 0,
+          "U": 0
+        },
+        "quantidade_total": 1,
+        "valor_unitario": 55.0,
+        "valor_total": 55.0
+      },
+      {
+        "cor_codigo_nome": "0009-BRANCO",
+        "grade": {
+          "PP": 0,
+          "P": 0,
+          "M": 1,
+          "G": 0,
+          "GG": 0,
+          "U": 0
+        },
+        "quantidade_total": 1,
+        "valor_unitario": 55.0,
+        "valor_total": 55.0
+      },
+      {
+        "cor_codigo_nome": "0026-MARROM",
+        "grade": {
+          "PP": 0,
+          "P": 9,
+          "M": 3,
+          "G": 0,
+          "GG": 0,
+          "U": 0
+        },
+        "quantidade_total": 12,
+        "valor_unitario": 55.0,
+        "valor_total": 660.0
+      }
+    ]
+  },
+  {
+    "referencia": "1414004",
+    "categoria": "SHORT",
+    "descricao": "OVER JESUS BLESSED",
+    "unidade": "UN",
+    "imagem": "avatar.png",
+    "variantes": [
+      {
+        "cor_codigo_nome": "0032-OFF",
+        "grade": {
+          "PP": 0,
+          "P": 1,
+          "M": 0,
+          "G": 0,
+          "GG": 0,
+          "U": 0
+        },
+        "quantidade_total": 1,
+        "valor_unitario": 50.0,
+        "valor_total": 50.0
+      }
+    ]
+  },
+  {
+    "referencia": "1414006",
+    "categoria": "SHORT",
+    "descricao": "OVER ANJO JOGANDO FUTEBOL",
+    "unidade": "UN",
+    "imagem": "avatar.png",
+    "variantes": [
+      {
+        "cor_codigo_nome": "0009-BRANCO",
+        "grade": {
+          "PP": 0,
+          "P": 13,
+          "M": 9,
+          "G": 1,
+          "GG": 0,
+          "U": 0
+        },
+        "quantidade_total": 23,
+        "valor_unitario": 55.0,
+        "valor_total": 1265.0
+      }
+    ]
+  },
+  {
+    "referencia": "1414008",
+    "categoria": "SHORT",
+    "descricao": "OVER FAVELA CRISTO REDENTOR",
+    "unidade": "UN",
+    "imagem": "avatar.png",
+    "variantes": []
+  },
+  {
+    "referencia": "1414008",
+    "categoria": "SHORT",
+    "descricao": "OVER FAVELA CRISTO REDENTOR",
+    "unidade": "UN",
+    "imagem": "avatar.png",
+    "variantes": [
+      {
+        "cor_codigo_nome": "0032-OFF",
+        "grade": {
+          "PP": 0,
+          "P": 0,
+          "M": 1,
+          "G": 0,
+          "GG": 0,
+          "U": 0
+        },
+        "quantidade_total": 1,
+        "valor_unitario": 55.0,
+        "valor_total": 55.0
+      }
+    ]
+  },
+  {
+    "referencia": "1415001",
+    "categoria": "SHORT",
+    "descricao": "OVER SE NAO SABE AONDE QUERO",
+    "unidade": "UN",
+    "imagem": "avatar.png",
+    "variantes": [
+      {
+        "cor_codigo_nome": "0007-PRETO",
+        "grade": {
+          "PP": 0,
+          "P": 8,
+          "M": 3,
+          "G": 5,
+          "GG": 0,
+          "U": 0
+        },
+        "quantidade_total": 16,
+        "valor_unitario": 55.0,
+        "valor_total": 880.0
+      }
+    ]
+  },
+  {
+    "referencia": "1415002",
+    "categoria": "SHORT",
+    "descricao": "LONG URSO SENTADO CORTADO",
+    "unidade": "UN",
+    "imagem": "avatar.png",
+    "variantes": [
+      {
+        "cor_codigo_nome": "0036-MACADAMIA",
+        "grade": {
+          "PP": 0,
+          "P": 21,
+          "M": 22,
+          "G": 10,
+          "GG": 0,
+          "U": 0
+        },
+        "quantidade_total": 53,
+        "valor_unitario": 55.0,
+        "valor_total": 2915.0
+      }
+    ]
+  },
+  {
+    "referencia": "1415003",
+    "categoria": "SHORT",
+    "descricao": "OVER MONEY IS OUR MOTIVE",
+    "unidade": "UN",
+    "imagem": "avatar.png",
+    "variantes": [
+      {
+        "cor_codigo_nome": "0022-AZUL",
+        "grade": {
+          "PP": 0,
+          "P": 11,
+          "M": 11,
+          "G": 8,
+          "GG": 0,
+          "U": 0
+        },
+        "quantidade_total": 30,
+        "valor_unitario": 40.0,
+        "valor_total": 1200.0
+      }
+    ]
+  },
+  {
+    "referencia": "1415005",
+    "categoria": "SHORT",
+    "descricao": "OVER URSO SENTADO",
+    "unidade": "UN",
+    "imagem": "avatar.png",
+    "variantes": [
+      {
+        "cor_codigo_nome": "0027-BEGE",
+        "grade": {
+          "PP": 0,
+          "P": 21,
+          "M": 21,
+          "G": 9,
+          "GG": 0,
+          "U": 0
+        },
+        "quantidade_total": 51,
+        "valor_unitario": 55.0,
+        "valor_total": 2805.0
+      }
+    ]
+  },
+  {
+    "referencia": "1501501",
+    "categoria": "SHORT",
+    "descricao": "B BASICA TUDO PASSA VARIAS",
+    "unidade": "UN",
+    "imagem": "avatar.png",
+    "variantes": [
+      {
+        "cor_codigo_nome": "0007-PRETO",
+        "grade": {
+          "PP": 0,
+          "P": 0,
+          "M": 1,
+          "G": 0,
+          "GG": 0,
+          "U": 0
+        },
+        "quantidade_total": 1,
+        "valor_unitario": 40.0,
+        "valor_total": 40.0
+      }
+    ]
+  },
+  {
+    "referencia": "1501502",
+    "categoria": "SHORT",
+    "descricao": "B BASICA URSO COSTA",
+    "unidade": "UN",
+    "imagem": "avatar.png",
+    "variantes": [
+      {
+        "cor_codigo_nome": "0036-MACADAMIA",
+        "grade": {
+          "PP": 0,
+          "P": 38,
+          "M": 39,
+          "G": 19,
+          "GG": 0,
+          "U": 0
+        },
+        "quantidade_total": 96,
+        "valor_unitario": 40.0,
+        "valor_total": 3840.0
+      }
+    ]
+  },
+  {
+    "referencia": "1501503",
+    "categoria": "SHORT",
+    "descricao": "B BASICA TUDO PASSA FONTE LAPIS",
+    "unidade": "UN",
+    "imagem": "avatar.png",
+    "variantes": [
+      {
+        "cor_codigo_nome": "0007-PRETO",
+        "grade": {
+          "PP": 0,
+          "P": 9,
+          "M": 1,
+          "G": 3,
+          "GG": 0,
+          "U": 0
+        },
+        "quantidade_total": 13,
+        "valor_unitario": 40.0,
+        "valor_total": 520.0
+      },
+      {
+        "cor_codigo_nome": "0036-MACADAMIA",
+        "grade": {
+          "PP": 0,
+          "P": 15,
+          "M": 17,
+          "G": 9,
+          "GG": 0,
+          "U": 0
+        },
+        "quantidade_total": 41,
+        "valor_unitario": 40.0,
+        "valor_total": 1640.0
+      }
+    ]
+  },
+  {
+    "referencia": "1514001",
+    "categoria": "SHORT",
+    "descricao": "REGATA MARCHAO URSO 6 ESTRELA",
+    "unidade": "UN",
+    "imagem": "avatar.png",
+    "variantes": [
+      {
+        "cor_codigo_nome": "0026-MARROM",
+        "grade": {
+          "PP": 0,
+          "P": 3,
+          "M": 0,
+          "G": 0,
+          "GG": 0,
+          "U": 0
+        },
+        "quantidade_total": 3,
+        "valor_unitario": 39.0,
+        "valor_total": 117.0
+      }
+    ]
+  },
+  {
+    "referencia": "1514007",
+    "categoria": "SHORT",
+    "descricao": "REGATA MARCHAO TUDO PASSA",
+    "unidade": "UN",
+    "imagem": "avatar.png",
+    "variantes": [
+      {
+        "cor_codigo_nome": "0038-MARINHO",
+        "grade": {
+          "PP": 0,
+          "P": 1,
+          "M": 0,
+          "G": 0,
+          "GG": 0,
+          "U": 0
+        },
+        "quantidade_total": 1,
+        "valor_unitario": 39.0,
+        "valor_total": 39.0
+      }
+    ]
+  },
+  {
+    "referencia": "1514008",
+    "categoria": "SHORT",
+    "descricao": "REGATA TUDO PASSA NA LATERAL",
+    "unidade": "UN",
+    "imagem": "avatar.png",
+    "variantes": []
+  },
+  {
+    "referencia": "1514008",
+    "categoria": "SHORT",
+    "descricao": "REGATA TUDO PASSA NA LATERAL",
+    "unidade": "UN",
+    "imagem": "avatar.png",
+    "variantes": [
+      {
+        "cor_codigo_nome": "0030-VERDE",
+        "grade": {
+          "PP": 0,
+          "P": 4,
+          "M": 0,
+          "G": 0,
+          "GG": 0,
+          "U": 0
+        },
+        "quantidade_total": 4,
+        "valor_unitario": 39.0,
+        "valor_total": 156.0
+      }
+    ]
+  },
+  {
+    "referencia": "1514014",
+    "categoria": "SHORT",
+    "descricao": "REGATA TP LATERAL E TP PEITO",
+    "unidade": "UN",
+    "imagem": "avatar.png",
+    "variantes": [
+      {
+        "cor_codigo_nome": "0002-ROSA",
+        "grade": {
+          "PP": 0,
+          "P": 0,
+          "M": 1,
+          "G": 0,
+          "GG": 0,
+          "U": 0
+        },
+        "quantidade_total": 1,
+        "valor_unitario": 39.0,
+        "valor_total": 39.0
+      }
+    ]
+  },
+  {
+    "referencia": "1514016",
+    "categoria": "SHORT",
+    "descricao": "REGATA TUDO PASSA LATERAL E TP",
+    "unidade": "UN",
+    "imagem": "avatar.png",
+    "variantes": [
+      {
+        "cor_codigo_nome": "0022-AZUL",
+        "grade": {
+          "PP": 0,
+          "P": 12,
+          "M": 1,
+          "G": 0,
+          "GG": 0,
+          "U": 0
+        },
+        "quantidade_total": 13,
+        "valor_unitario": 39.0,
+        "valor_total": 507.0
+      }
+    ]
+  },
+  {
+    "referencia": "1514021",
+    "categoria": "SHORT",
+    "descricao": "REGATA URSO PREDESTINADO",
+    "unidade": "UN",
+    "imagem": "avatar.png",
+    "variantes": [
+      {
+        "cor_codigo_nome": "0036-MACADAMIA",
+        "grade": {
+          "PP": 0,
+          "P": 0,
+          "M": 1,
+          "G": 0,
+          "GG": 0,
+          "U": 0
+        },
+        "quantidade_total": 1,
+        "valor_unitario": 40.0,
+        "valor_total": 40.0
+      }
+    ]
+  },
+  {
+    "referencia": "1514024",
+    "categoria": "SHORT",
+    "descricao": "REGATA TUDO PASSA TP GREGO 2",
+    "unidade": "UN",
+    "imagem": "avatar.png",
+    "variantes": [
+      {
+        "cor_codigo_nome": "0007-PRETO",
+        "grade": {
+          "PP": 0,
+          "P": 0,
+          "M": 2,
+          "G": 0,
+          "GG": 0,
+          "U": 0
+        },
+        "quantidade_total": 2,
+        "valor_unitario": 40.0,
+        "valor_total": 80.0
+      }
+    ]
+  },
+  {
+    "referencia": "1514025",
+    "categoria": "SHORT",
+    "descricao": "REGATA 3 TUDO PASSA LATERAL",
+    "unidade": "UN",
+    "imagem": "avatar.png",
+    "variantes": [
+      {
+        "cor_codigo_nome": "0022-AZUL",
+        "grade": {
+          "PP": 0,
+          "P": 1,
+          "M": 0,
+          "G": 0,
+          "GG": 0,
+          "U": 0
+        },
+        "quantidade_total": 1,
+        "valor_unitario": 39.0,
+        "valor_total": 39.0
+      }
+    ]
+  },
+  {
+    "referencia": "1514026",
+    "categoria": "SHORT",
+    "descricao": "REGATA NAO E SORTE SOMOS",
+    "unidade": "UN",
+    "imagem": "avatar.png",
+    "variantes": [
+      {
+        "cor_codigo_nome": "0008-VERMELHO",
+        "grade": {
+          "PP": 0,
+          "P": 1,
+          "M": 0,
+          "G": 0,
+          "GG": 0,
+          "U": 0
+        },
+        "quantidade_total": 1,
+        "valor_unitario": 39.0,
+        "valor_total": 39.0
+      }
+    ]
+  },
+  {
+    "referencia": "1514027",
+    "categoria": "SHORT",
+    "descricao": "REGATA URSO COM CHAPEU XX OLHO",
+    "unidade": "UN",
+    "imagem": "avatar.png",
+    "variantes": [
+      {
+        "cor_codigo_nome": "0009-BRANCO",
+        "grade": {
+          "PP": 0,
+          "P": 1,
+          "M": 0,
+          "G": 0,
+          "GG": 0,
+          "U": 0
+        },
+        "quantidade_total": 1,
+        "valor_unitario": 39.0,
+        "valor_total": 39.0
+      }
+    ]
+  },
+  {
+    "referencia": "1514028",
+    "categoria": "SHORT",
+    "descricao": "REGATA VOCÊ VALE O QUE TEM",
+    "unidade": "UN",
+    "imagem": "avatar.png",
+    "variantes": [
+      {
+        "cor_codigo_nome": "0002-ROSA",
+        "grade": {
+          "PP": 0,
+          "P": 25,
+          "M": 0,
+          "G": 4,
+          "GG": 0,
+          "U": 0
+        },
+        "quantidade_total": 29,
+        "valor_unitario": 39.0,
+        "valor_total": 1131.0
+      }
+    ]
+  },
+  {
+    "referencia": "1514029",
+    "categoria": "SHORT",
+    "descricao": "REGATA TUDO FRENTE PASSA",
+    "unidade": "UN",
+    "imagem": "avatar.png",
+    "variantes": [
+      {
+        "cor_codigo_nome": "0002-ROSA",
+        "grade": {
+          "PP": 0,
+          "P": 31,
+          "M": 8,
+          "G": 2,
+          "GG": 0,
+          "U": 0
+        },
+        "quantidade_total": 41,
+        "valor_unitario": 39.0,
+        "valor_total": 1599.0
+      }
+    ]
+  },
+  {
+    "referencia": "1514031",
+    "categoria": "SHORT",
+    "descricao": "REGATA TUDO PASSA GREGO",
+    "unidade": "UN",
+    "imagem": "avatar.png",
+    "variantes": []
+  },
+  {
+    "referencia": "1514031",
+    "categoria": "SHORT",
+    "descricao": "REGATA TUDO PASSA GREGO",
+    "unidade": "UN",
+    "imagem": "avatar.png",
+    "variantes": [
+      {
+        "cor_codigo_nome": "0007-PRETO",
+        "grade": {
+          "PP": 0,
+          "P": 2,
+          "M": 0,
+          "G": 0,
+          "GG": 0,
+          "U": 0
+        },
+        "quantidade_total": 2,
+        "valor_unitario": 39.0,
+        "valor_total": 78.0
+      }
+    ]
+  },
+  {
+    "referencia": "1514032",
+    "categoria": "SHORT",
+    "descricao": "REGATA 5 TP LATERAL",
+    "unidade": "UN",
+    "imagem": "avatar.png",
+    "variantes": [
+      {
+        "cor_codigo_nome": "0036-MACADAMIA",
+        "grade": {
+          "PP": 0,
+          "P": 17,
+          "M": 0,
+          "G": 1,
+          "GG": 0,
+          "U": 0
+        },
+        "quantidade_total": 18,
+        "valor_unitario": 39.0,
+        "valor_total": 702.0
+      }
+    ]
+  },
+  {
+    "referencia": "1520005",
+    "categoria": "SHORT",
+    "descricao": "REGATA LIVRAIME DOS BICO COSTA",
+    "unidade": "UN",
+    "imagem": "avatar.png",
+    "variantes": [
+      {
+        "cor_codigo_nome": "0030-VERDE",
+        "grade": {
+          "PP": 0,
+          "P": 0,
+          "M": 1,
+          "G": 0,
+          "GG": 0,
+          "U": 0
+        },
+        "quantidade_total": 1,
+        "valor_unitario": 37.0,
+        "valor_total": 37.0
+      }
+    ]
+  },
+  {
+    "referencia": "1715001",
+    "categoria": "SHORT",
+    "descricao": "RAGLAN TUDO PASSA GRANDE THE",
+    "unidade": "UN",
+    "imagem": "avatar.png",
+    "variantes": [
+      {
+        "cor_codigo_nome": "0022-AZUL",
+        "grade": {
+          "PP": 0,
+          "P": 24,
+          "M": 35,
+          "G": 12,
+          "GG": 0,
+          "U": 0
+        },
+        "quantidade_total": 71,
+        "valor_unitario": 40.0,
+        "valor_total": 2840.0
+      }
+    ]
+  },
+  {
+    "referencia": "1715002",
+    "categoria": "SHORT",
+    "descricao": "RAGLAN ANJO SENTADO SAPATO",
+    "unidade": "UN",
+    "imagem": "avatar.png",
+    "variantes": [
+      {
+        "cor_codigo_nome": "0030-VERDE",
+        "grade": {
+          "PP": 0,
+          "P": 23,
+          "M": 37,
+          "G": 13,
+          "GG": 0,
+          "U": 0
+        },
+        "quantidade_total": 73,
+        "valor_unitario": 40.0,
+        "valor_total": 2920.0
+      }
+    ]
+  },
+  {
+    "referencia": "1715003",
+    "categoria": "SHORT",
+    "descricao": "RAGLAN TUDO PASSA SEPARANDO",
+    "unidade": "UN",
+    "imagem": "avatar.png",
+    "variantes": [
+      {
+        "cor_codigo_nome": "0006-LARANJA",
+        "grade": {
+          "PP": 0,
+          "P": 15,
+          "M": 28,
+          "G": 8,
+          "GG": 0,
+          "U": 0
+        },
+        "quantidade_total": 51,
+        "valor_unitario": 40.0,
+        "valor_total": 2040.0
+      }
+    ]
+  },
+  {
+    "referencia": "1715004",
+    "categoria": "SHORT",
+    "descricao": "RAGLAN URSO SEGURANDO TACO",
+    "unidade": "UN",
+    "imagem": "avatar.png",
+    "variantes": [
+      {
+        "cor_codigo_nome": "0009-BRANCO",
+        "grade": {
+          "PP": 0,
+          "P": 45,
+          "M": 29,
+          "G": 15,
+          "GG": 0,
+          "U": 0
+        },
+        "quantidade_total": 89,
+        "valor_unitario": 40.0,
+        "valor_total": 3560.0
+      },
+      {
+        "cor_codigo_nome": "0036-MACADAMIA",
+        "grade": {
+          "PP": 0,
+          "P": 24,
+          "M": 36,
+          "G": 12,
+          "GG": 0,
+          "U": 0
+        },
+        "quantidade_total": 72,
+        "valor_unitario": 40.0,
+        "valor_total": 2880.0
+      }
+    ]
+  },
+  {
+    "referencia": "1715005",
+    "categoria": "SHORT",
+    "descricao": "RAGLAN FALE MUITO DE DEUS POUCO DE",
+    "unidade": "UN",
+    "imagem": "avatar.png",
+    "variantes": [
+      {
+        "cor_codigo_nome": "0027-BEGE",
+        "grade": {
+          "PP": 0,
+          "P": 26,
+          "M": 33,
+          "G": 13,
+          "GG": 0,
+          "U": 0
+        },
+        "quantidade_total": 72,
+        "valor_unitario": 40.0,
+        "valor_total": 2880.0
+      }
+    ]
+  },
+  {
+    "referencia": "1715006",
+    "categoria": "SHORT",
+    "descricao": "RAGLAN TUDO EM CHAMAS CREATED",
+    "unidade": "UN",
+    "imagem": "avatar.png",
+    "variantes": [
+      {
+        "cor_codigo_nome": "0009-BRANCO",
+        "grade": {
+          "PP": 0,
+          "P": 23,
+          "M": 36,
+          "G": 11,
+          "GG": 0,
+          "U": 0
+        },
+        "quantidade_total": 70,
+        "valor_unitario": 40.0,
+        "valor_total": 2800.0
+      }
+    ]
+  },
+  {
+    "referencia": "1715007",
+    "categoria": "SHORT",
+    "descricao": "RAGLAN BASICA RECORTE MANGA",
+    "unidade": "UN",
+    "imagem": "avatar.png",
+    "variantes": [
+      {
+        "cor_codigo_nome": "0007-PRETO",
+        "grade": {
+          "PP": 0,
+          "P": 10,
+          "M": 23,
+          "G": 8,
+          "GG": 0,
+          "U": 0
+        },
+        "quantidade_total": 41,
+        "valor_unitario": 40.0,
+        "valor_total": 1640.0
+      },
+      {
+        "cor_codigo_nome": "0009-BRANCO",
+        "grade": {
+          "PP": 0,
+          "P": 39,
+          "M": 26,
+          "G": 13,
+          "GG": 0,
+          "U": 0
+        },
+        "quantidade_total": 78,
+        "valor_unitario": 40.0,
+        "valor_total": 3120.0
+      }
+    ]
+  },
+  {
+    "referencia": "1715008",
+    "categoria": "SHORT",
+    "descricao": "RAGLAN TUDO PASSA TP ENTRE",
+    "unidade": "UN",
+    "imagem": "avatar.png",
+    "variantes": []
+  },
+  {
+    "referencia": "1715008",
+    "categoria": "SHORT",
+    "descricao": "RAGLAN TUDO PASSA TP ENTRE",
+    "unidade": "UN",
+    "imagem": "avatar.png",
+    "variantes": [
+      {
+        "cor_codigo_nome": "0007-PRETO",
+        "grade": {
+          "PP": 0,
+          "P": 24,
+          "M": 36,
+          "G": 11,
+          "GG": 0,
+          "U": 0
+        },
+        "quantidade_total": 71,
+        "valor_unitario": 40.0,
+        "valor_total": 2840.0
+      }
+    ]
+  },
+  {
+    "referencia": "1715009",
+    "categoria": "SHORT",
+    "descricao": "RAGLAN 6 TP MANGA TUDO PASSA GREGO",
+    "unidade": "UN",
+    "imagem": "avatar.png",
+    "variantes": [
+      {
+        "cor_codigo_nome": "0007-PRETO",
+        "grade": {
+          "PP": 0,
+          "P": 23,
+          "M": 30,
+          "G": 10,
+          "GG": 0,
+          "U": 0
+        },
+        "quantidade_total": 63,
+        "valor_unitario": 40.0,
+        "valor_total": 2520.0
+      }
+    ]
+  },
+  {
+    "referencia": "1715010",
+    "categoria": "SHORT",
+    "descricao": "RAGLAN ANJO DE JOELHO ASAS",
+    "unidade": "UN",
+    "imagem": "avatar.png",
+    "variantes": [
+      {
+        "cor_codigo_nome": "0026-MARROM",
+        "grade": {
+          "PP": 0,
+          "P": 23,
+          "M": 36,
+          "G": 11,
+          "GG": 0,
+          "U": 0
+        },
+        "quantidade_total": 70,
+        "valor_unitario": 40.0,
+        "valor_total": 2800.0
+      }
+    ]
+  },
+  {
+    "referencia": "1715011",
+    "categoria": "SHORT",
+    "descricao": "RAGLAN TUDO PASSA TP TUDO",
+    "unidade": "UN",
+    "imagem": "avatar.png",
+    "variantes": [
+      {
+        "cor_codigo_nome": "0007-PRETO",
+        "grade": {
+          "PP": 0,
+          "P": 30,
+          "M": 15,
+          "G": 9,
+          "GG": 0,
+          "U": 0
+        },
+        "quantidade_total": 54,
+        "valor_unitario": 40.0,
+        "valor_total": 2160.0
+      },
+      {
+        "cor_codigo_nome": "0009-BRANCO",
+        "grade": {
+          "PP": 0,
+          "P": 25,
+          "M": 30,
+          "G": 13,
+          "GG": 0,
+          "U": 0
+        },
+        "quantidade_total": 68,
+        "valor_unitario": 40.0,
+        "valor_total": 2720.0
+      }
+    ]
+  },
+  {
+    "referencia": "1715012",
+    "categoria": "SHORT",
+    "descricao": "RAGLAN TP 4 ESTRELA",
+    "unidade": "UN",
+    "imagem": "avatar.png",
+    "variantes": [
+      {
+        "cor_codigo_nome": "0008-VERMELHO",
+        "grade": {
+          "PP": 0,
+          "P": 24,
+          "M": 36,
+          "G": 12,
+          "GG": 0,
+          "U": 0
+        },
+        "quantidade_total": 72,
+        "valor_unitario": 40.0,
+        "valor_total": 2880.0
+      }
+    ]
+  },
+  {
+    "referencia": "1715013",
+    "categoria": "SHORT",
+    "descricao": "LONG ANJO SEGURANDO",
+    "unidade": "UN",
+    "imagem": "avatar.png",
+    "variantes": [
+      {
+        "cor_codigo_nome": "0009-BRANCO",
+        "grade": {
+          "PP": 0,
+          "P": 18,
+          "M": 29,
+          "G": 19,
+          "GG": 0,
+          "U": 0
+        },
+        "quantidade_total": 66,
+        "valor_unitario": 40.0,
+        "valor_total": 2640.0
+      }
+    ]
+  },
+  {
+    "referencia": "1715014",
+    "categoria": "SHORT",
+    "descricao": "RAGLAN A MENTE E FERTIL PRA SONHAR",
+    "unidade": "UN",
+    "imagem": "avatar.png",
+    "variantes": [
+      {
+        "cor_codigo_nome": "0009-BRANCO",
+        "grade": {
+          "PP": 0,
+          "P": 19,
+          "M": 25,
+          "G": 9,
+          "GG": 0,
+          "U": 0
+        },
+        "quantidade_total": 53,
+        "valor_unitario": 40.0,
+        "valor_total": 2120.0
+      },
+      {
+        "cor_codigo_nome": "0030-VERDE",
+        "grade": {
+          "PP": 0,
+          "P": 6,
+          "M": 0,
+          "G": 0,
+          "GG": 0,
+          "U": 0
+        },
+        "quantidade_total": 6,
+        "valor_unitario": 40.0,
+        "valor_total": 240.0
+      }
+    ]
+  },
+  {
+    "referencia": "1715015",
+    "categoria": "SHORT",
+    "descricao": "RAGLAN PREDESTINADO",
+    "unidade": "UN",
+    "imagem": "avatar.png",
+    "variantes": [
+      {
+        "cor_codigo_nome": "0027-BEGE",
+        "grade": {
+          "PP": 0,
+          "P": 39,
+          "M": 25,
+          "G": 13,
+          "GG": 0,
+          "U": 0
+        },
+        "quantidade_total": 77,
+        "valor_unitario": 40.0,
+        "valor_total": 3080.0
+      }
+    ]
+  },
+  {
+    "referencia": "1715016",
+    "categoria": "SHORT",
+    "descricao": "RAGLAN 3 CRUZ 001-TUDO PASSA MATRIZ",
+    "unidade": "UN",
+    "imagem": "avatar.png",
+    "variantes": [
+      {
+        "cor_codigo_nome": "0008-VERMELHO",
+        "grade": {
+          "PP": 0,
+          "P": 17,
+          "M": 8,
+          "G": 6,
+          "GG": 0,
+          "U": 0
+        },
+        "quantidade_total": 31,
+        "valor_unitario": 40.0,
+        "valor_total": 1240.0
+      }
+    ]
+  },
+  {
+    "referencia": "1715017",
+    "categoria": "SHORT",
+    "descricao": "RAGLAN BLESSED BARRA FONTE",
+    "unidade": "UN",
+    "imagem": "avatar.png",
+    "variantes": [
+      {
+        "cor_codigo_nome": "0007-PRETO",
+        "grade": {
+          "PP": 0,
+          "P": 0,
+          "M": 1,
+          "G": 0,
+          "GG": 0,
+          "U": 0
+        },
+        "quantidade_total": 1,
+        "valor_unitario": 40.0,
+        "valor_total": 40.0
+      }
+    ]
+  },
+  {
+    "referencia": "1715018",
+    "categoria": "SHORT",
+    "descricao": "RAGLAN URSO 3 PONTO BARRA",
+    "unidade": "UN",
+    "imagem": "avatar.png",
+    "variantes": []
+  },
+  {
+    "referencia": "1715018",
+    "categoria": "SHORT",
+    "descricao": "RAGLAN URSO 3 PONTO BARRA",
+    "unidade": "UN",
+    "imagem": "avatar.png",
+    "variantes": [
+      {
+        "cor_codigo_nome": "0008-VERMELHO",
+        "grade": {
+          "PP": 0,
+          "P": 39,
+          "M": 26,
+          "G": 13,
+          "GG": 0,
+          "U": 0
+        },
+        "quantidade_total": 78,
+        "valor_unitario": 40.0,
+        "valor_total": 3120.0
+      }
+    ]
+  },
+  {
+    "referencia": "1715019",
+    "categoria": "SHORT",
+    "descricao": "RAGLAN TUDO PASSA ENTRE",
+    "unidade": "UN",
+    "imagem": "avatar.png",
+    "variantes": [
+      {
+        "cor_codigo_nome": "0007-PRETO",
+        "grade": {
+          "PP": 0,
+          "P": 18,
+          "M": 27,
+          "G": 18,
+          "GG": 0,
+          "U": 0
+        },
+        "quantidade_total": 63,
+        "valor_unitario": 40.0,
+        "valor_total": 2520.0
+      },
+      {
+        "cor_codigo_nome": "0022-AZUL",
+        "grade": {
+          "PP": 0,
+          "P": 36,
+          "M": 24,
+          "G": 12,
+          "GG": 0,
+          "U": 0
+        },
+        "quantidade_total": 72,
+        "valor_unitario": 40.0,
+        "valor_total": 2880.0
+      }
+    ]
+  },
+  {
+    "referencia": "1715021",
+    "categoria": "SHORT",
+    "descricao": "RAGLAN ANJO TATUADO SACO DE",
+    "unidade": "UN",
+    "imagem": "avatar.png",
+    "variantes": [
+      {
+        "cor_codigo_nome": "0002-ROSA",
+        "grade": {
+          "PP": 0,
+          "P": 22,
+          "M": 32,
+          "G": 11,
+          "GG": 0,
+          "U": 0
+        },
+        "quantidade_total": 65,
+        "valor_unitario": 40.0,
+        "valor_total": 2600.0
+      }
+    ]
+  },
+  {
+    "referencia": "1715022",
+    "categoria": "SHORT",
+    "descricao": "RAGLAN URSO COSTURADO",
+    "unidade": "UN",
+    "imagem": "avatar.png",
+    "variantes": [
+      {
+        "cor_codigo_nome": "0002-ROSA",
+        "grade": {
+          "PP": 0,
+          "P": 24,
+          "M": 39,
+          "G": 13,
+          "GG": 0,
+          "U": 0
+        },
+        "quantidade_total": 76,
+        "valor_unitario": 40.0,
+        "valor_total": 3040.0
+      }
+    ]
+  },
+  {
+    "referencia": "1715023",
+    "categoria": "SHORT",
+    "descricao": "RAGLAN X FOGO 001-TUDO PASSA MATRIZ",
+    "unidade": "UN",
+    "imagem": "avatar.png",
+    "variantes": [
+      {
+        "cor_codigo_nome": "0002-ROSA",
+        "grade": {
+          "PP": 0,
+          "P": 27,
+          "M": 42,
+          "G": 14,
+          "GG": 0,
+          "U": 0
+        },
+        "quantidade_total": 83,
+        "valor_unitario": 40.0,
+        "valor_total": 3320.0
+      }
+    ]
+  },
+  {
+    "referencia": "1715025",
+    "categoria": "SHORT",
+    "descricao": "RAGLAN TUDO X PASSA EST 2022",
+    "unidade": "UN",
+    "imagem": "avatar.png",
+    "variantes": [
+      {
+        "cor_codigo_nome": "0028-CINZA",
+        "grade": {
+          "PP": 0,
+          "P": 28,
+          "M": 42,
+          "G": 14,
+          "GG": 0,
+          "U": 0
+        },
+        "quantidade_total": 84,
+        "valor_unitario": 40.0,
+        "valor_total": 3360.0
+      }
+    ]
+  },
+  {
+    "referencia": "1715028",
+    "categoria": "SHORT",
+    "descricao": "RAGLAN NUNCA DESISTA",
+    "unidade": "PC",
+    "imagem": "avatar.png",
+    "variantes": [
+      {
+        "cor_codigo_nome": "0015-AMARELO",
+        "grade": {
+          "PP": 0,
+          "P": 22,
+          "M": 34,
+          "G": 11,
+          "GG": 0,
+          "U": 0
+        },
+        "quantidade_total": 67,
+        "valor_unitario": 40.0,
+        "valor_total": 2680.0
+      }
+    ]
+  },
+  {
+    "referencia": "1989001",
+    "categoria": "SHORT",
+    "descricao": "CAMISA GOLA PADRE LINHO",
+    "unidade": "UN",
+    "imagem": "avatar.png",
+    "variantes": [
+      {
+        "cor_codigo_nome": "0006-LARANJA",
+        "grade": {
+          "PP": 0,
+          "P": 2,
+          "M": 0,
+          "G": 0,
+          "GG": 0,
+          "U": 0
+        },
+        "quantidade_total": 2,
+        "valor_unitario": 50.0,
+        "valor_total": 100.0
+      },
+      {
+        "cor_codigo_nome": "0038-MARINHO",
+        "grade": {
+          "PP": 0,
+          "P": 0,
+          "M": 0,
+          "G": 0,
+          "GG": 0,
+          "U": 2
+        },
+        "quantidade_total": 2,
+        "valor_unitario": 50.0,
+        "valor_total": 100.0
+      }
+    ]
+  },
+  {
+    "referencia": "2244001",
+    "categoria": "SHORT",
+    "descricao": "SHORT JEANS 001-TUDO PASSA MATRIZ",
+    "unidade": "UN",
+    "imagem": "avatar.png",
+    "variantes": []
+  },
+  {
+    "referencia": "2250001",
+    "categoria": "SHORT",
+    "descricao": "SHORT LINHO 001-TUDO PASSA MATRIZ",
+    "unidade": "UN",
+    "imagem": "avatar.png",
+    "variantes": [
+      {
+        "cor_codigo_nome": "0002-ROSA",
+        "grade": {
+          "PP": 0,
+          "P": 0,
+          "M": 0,
+          "G": 0,
+          "GG": 0,
+          "U": 7
+        },
+        "quantidade_total": 7,
+        "valor_unitario": 39.0,
+        "valor_total": 273.0
+      },
+      {
+        "cor_codigo_nome": "0007-PRETO",
+        "grade": {
+          "PP": 0,
+          "P": 0,
+          "M": 0,
+          "G": 0,
+          "GG": 0,
+          "U": 7
+        },
+        "quantidade_total": 7,
+        "valor_unitario": 39.0,
+        "valor_total": 273.0
+      }
+    ]
+  },
+  {
+    "referencia": "2250001",
+    "categoria": "SHORT",
+    "descricao": "SHORT LINHO 001-TUDO PASSA MATRIZ",
+    "unidade": "UN",
+    "imagem": "avatar.png",
+    "variantes": [
+      {
+        "cor_codigo_nome": "0030-VERDE",
+        "grade": {
+          "PP": 0,
+          "P": 0,
+          "M": 0,
+          "G": 0,
+          "GG": 0,
+          "U": 1
+        },
+        "quantidade_total": 1,
+        "valor_unitario": 39.0,
+        "valor_total": 39.0
+      },
+      {
+        "cor_codigo_nome": "0032-OFF",
+        "grade": {
+          "PP": 0,
+          "P": 0,
+          "M": 0,
+          "G": 0,
+          "GG": 0,
+          "U": 3
+        },
+        "quantidade_total": 3,
+        "valor_unitario": 39.0,
+        "valor_total": 117.0
+      }
+    ]
+  },
+  {
+    "referencia": "2254001",
+    "categoria": "SHORT",
+    "descricao": "JEANS MARMORIZADO",
+    "unidade": "UN",
+    "imagem": "avatar.png",
+    "variantes": []
+  },
+  {
+    "referencia": "2301401",
+    "categoria": "SHORT",
+    "descricao": "SHORT MAURICINHO BASIC 100%",
+    "unidade": "UN",
+    "imagem": "avatar.png",
+    "variantes": [
+      {
+        "cor_codigo_nome": "0056-CAQUI",
+        "grade": {
+          "PP": 0,
+          "P": 0,
+          "M": 0,
+          "G": 0,
+          "GG": 0,
+          "U": 7
+        },
+        "quantidade_total": 7,
+        "valor_unitario": 50.0,
+        "valor_total": 350.0
+      },
+      {
+        "cor_codigo_nome": "0057-CARAMELO",
+        "grade": {
+          "PP": 0,
+          "P": 0,
+          "M": 0,
+          "G": 0,
+          "GG": 0,
+          "U": 4
+        },
+        "quantidade_total": 4,
+        "valor_unitario": 50.0,
+        "valor_total": 200.0
+      },
+      {
+        "cor_codigo_nome": "0058-TELHA",
+        "grade": {
+          "PP": 0,
+          "P": 0,
+          "M": 0,
+          "G": 0,
+          "GG": 0,
+          "U": 1
+        },
+        "quantidade_total": 1,
+        "valor_unitario": 50.0,
+        "valor_total": 50.0
+      }
+    ]
+  },
+  {
+    "referencia": "2301402",
+    "categoria": "SHORT",
+    "descricao": "SHORT MAURICINHO BASIC 100%ALGODAO",
+    "unidade": "UN",
+    "imagem": "avatar.png",
+    "variantes": [
+      {
+        "cor_codigo_nome": "0038-MARINHO",
+        "grade": {
+          "PP": 0,
+          "P": 0,
+          "M": 0,
+          "G": 0,
+          "GG": 0,
+          "U": 13
+        },
+        "quantidade_total": 13,
+        "valor_unitario": 50.0,
+        "valor_total": 650.0
+      },
+      {
+        "cor_codigo_nome": "0057-CARAMELO",
+        "grade": {
+          "PP": 0,
+          "P": 0,
+          "M": 0,
+          "G": 0,
+          "GG": 0,
+          "U": 11
+        },
+        "quantidade_total": 11,
+        "valor_unitario": 50.0,
+        "valor_total": 550.0
+      },
+      {
+        "cor_codigo_nome": "0059-ARCIA",
+        "grade": {
+          "PP": 0,
+          "P": 0,
+          "M": 0,
+          "G": 0,
+          "GG": 0,
+          "U": 6
+        },
+        "quantidade_total": 6,
+        "valor_unitario": 50.0,
+        "valor_total": 300.0
+      }
+    ]
+  },
+  {
+    "referencia": "2411101",
+    "categoria": "SHORT",
+    "descricao": "SHORT CARGO MOLETOM",
+    "unidade": "UN",
+    "imagem": "avatar.png",
+    "variantes": [
+      {
+        "cor_codigo_nome": "0027-BEGE",
+        "grade": {
+          "PP": 0,
+          "P": 1,
+          "M": 0,
+          "G": 0,
+          "GG": 0,
+          "U": 0
+        },
+        "quantidade_total": 1,
+        "valor_unitario": 50.0,
+        "valor_total": 50.0
+      }
+    ]
+  },
+  {
+    "referencia": "2411202",
+    "categoria": "SHORT",
+    "descricao": "SHORT MOLETOM SOLTO",
+    "unidade": "UN",
+    "imagem": "avatar.png",
+    "variantes": [
+      {
+        "cor_codigo_nome": "0007-PRETO",
+        "grade": {
+          "PP": 0,
+          "P": 0,
+          "M": 0,
+          "G": 1,
+          "GG": 0,
+          "U": 0
+        },
+        "quantidade_total": 1,
+        "valor_unitario": 50.0,
+        "valor_total": 50.0
+      },
+      {
+        "cor_codigo_nome": "0022-AZUL",
+        "grade": {
+          "PP": 0,
+          "P": 5,
+          "M": 0,
+          "G": 0,
+          "GG": 0,
+          "U": 0
+        },
+        "quantidade_total": 5,
+        "valor_unitario": 50.0,
+        "valor_total": 250.0
+      }
+    ]
+  },
+  {
+    "referencia": "2511501",
+    "categoria": "SHORT",
+    "descricao": "SHORT BRIM BOLSO LATERAL",
+    "unidade": "UN",
+    "imagem": "avatar.png",
+    "variantes": [
+      {
+        "cor_codigo_nome": "0007-PRETO",
+        "grade": {
+          "PP": 0,
+          "P": 0,
+          "M": 0,
+          "G": 0,
+          "GG": 0,
+          "U": 125
+        },
+        "quantidade_total": 125,
+        "valor_unitario": 40.0,
+        "valor_total": 5000.0
+      },
+      {
+        "cor_codigo_nome": "0009-BRANCO",
+        "grade": {
+          "PP": 0,
+          "P": 0,
+          "M": 0,
+          "G": 0,
+          "GG": 0,
+          "U": 97
+        },
+        "quantidade_total": 97,
+        "valor_unitario": 40.0,
+        "valor_total": 3880.0
+      },
+      {
+        "cor_codigo_nome": "0015-AMARELO",
+        "grade": {
+          "PP": 0,
+          "P": 0,
+          "M": 0,
+          "G": 0,
+          "GG": 0,
+          "U": 108
+        },
+        "quantidade_total": 108,
+        "valor_unitario": 40.0,
+        "valor_total": 4320.0
+      }
+    ]
+  },
+  {
+    "referencia": "2571501",
+    "categoria": "SHORT",
+    "descricao": "SHORT TACTEL BOLSO LATERAL",
+    "unidade": "UN",
+    "imagem": "avatar.png",
+    "variantes": [
+      {
+        "cor_codigo_nome": "0007-PRETO",
+        "grade": {
+          "PP": 0,
+          "P": 0,
+          "M": 0,
+          "G": 0,
+          "GG": 0,
+          "U": 1
+        },
+        "quantidade_total": 1,
+        "valor_unitario": 40.0,
+        "valor_total": 40.0
+      },
+      {
+        "cor_codigo_nome": "0027-BEGE",
+        "grade": {
+          "PP": 0,
+          "P": 0,
+          "M": 0,
+          "G": 0,
+          "GG": 0,
+          "U": 143
+        },
+        "quantidade_total": 143,
+        "valor_unitario": 40.0,
+        "valor_total": 5720.0
+      }
+    ]
+  },
+  {
+    "referencia": "2614001",
+    "categoria": "SHORT",
+    "descricao": "SHORT CARGO 2 BOLSO",
+    "unidade": "UN",
+    "imagem": "avatar.png",
+    "variantes": []
+  },
+  {
+    "referencia": "2614001",
+    "categoria": "SHORT",
+    "descricao": "SHORT CARGO 2 BOLSO",
+    "unidade": "UN",
+    "imagem": "avatar.png",
+    "variantes": [
+      {
+        "cor_codigo_nome": "0007-PRETO",
+        "grade": {
+          "PP": 0,
+          "P": 38,
+          "M": 21,
+          "G": 35,
+          "GG": 0,
+          "U": 29
+        },
+        "quantidade_total": 123,
+        "valor_unitario": 60.0,
+        "valor_total": 7380.0
+      },
+      {
+        "cor_codigo_nome": "0009-BRANCO",
+        "grade": {
+          "PP": 0,
+          "P": 0,
+          "M": 0,
+          "G": 0,
+          "GG": 0,
+          "U": 1
+        },
+        "quantidade_total": 1,
+        "valor_unitario": 60.0,
+        "valor_total": 60.0
+      },
+      {
+        "cor_codigo_nome": "0027-BEGE",
+        "grade": {
+          "PP": 0,
+          "P": 43,
+          "M": 31,
+          "G": 43,
+          "GG": 0,
+          "U": 0
+        },
+        "quantidade_total": 117,
+        "valor_unitario": 60.0,
+        "valor_total": 7020.0
+      }
+    ]
+  },
+  {
+    "referencia": "2614002",
+    "categoria": "SHORT",
+    "descricao": "SHORT MAURICINHO JEANS BASIC",
+    "unidade": "UN",
+    "imagem": "avatar.png",
+    "variantes": [
+      {
+        "cor_codigo_nome": "0022-AZUL",
+        "grade": {
+          "PP": 0,
+          "P": 0,
+          "M": 0,
+          "G": 0,
+          "GG": 0,
+          "U": 4
+        },
+        "quantidade_total": 4,
+        "valor_unitario": 50.0,
+        "valor_total": 200.0
+      }
+    ]
+  },
+  {
+    "referencia": "2614003",
+    "categoria": "SHORT",
+    "descricao": "BERMUDA CARGO 2 BOLSO FRENTE",
+    "unidade": "UN",
+    "imagem": "avatar.png",
+    "variantes": [
+      {
+        "cor_codigo_nome": "0007-PRETO",
+        "grade": {
+          "PP": 0,
+          "P": 0,
+          "M": 0,
+          "G": 0,
+          "GG": 0,
+          "U": 1
+        },
+        "quantidade_total": 1,
+        "valor_unitario": 50.0,
+        "valor_total": 50.0
+      },
+      {
+        "cor_codigo_nome": "0027-BEGE",
+        "grade": {
+          "PP": 0,
+          "P": 0,
+          "M": 0,
+          "G": 0,
+          "GG": 0,
+          "U": 1
+        },
+        "quantidade_total": 1,
+        "valor_unitario": 50.0,
+        "valor_total": 50.0
+      }
+    ]
+  },
+  {
+    "referencia": "2615001",
+    "categoria": "SHORT",
+    "descricao": "SHORT CARGO BOLSO ZIPER",
+    "unidade": "UN",
+    "imagem": "avatar.png",
+    "variantes": [
+      {
+        "cor_codigo_nome": "0007-PRETO",
+        "grade": {
+          "PP": 0,
+          "P": 0,
+          "M": 0,
+          "G": 0,
+          "GG": 0,
+          "U": 59
+        },
+        "quantidade_total": 59,
+        "valor_unitario": 60.0,
+        "valor_total": 3540.0
+      },
+      {
+        "cor_codigo_nome": "0027-BEGE",
+        "grade": {
+          "PP": 0,
+          "P": 0,
+          "M": 0,
+          "G": 0,
+          "GG": 0,
+          "U": 41
+        },
+        "quantidade_total": 41,
+        "valor_unitario": 60.0,
+        "valor_total": 2460.0
+      },
+      {
+        "cor_codigo_nome": "0028-CINZA",
+        "grade": {
+          "PP": 0,
+          "P": 0,
+          "M": 0,
+          "G": 0,
+          "GG": 0,
+          "U": 64
+        },
+        "quantidade_total": 64,
+        "valor_unitario": 60.0,
+        "valor_total": 3840.0
+      },
+      {
+        "cor_codigo_nome": "0030-VERDE",
+        "grade": {
+          "PP": 0,
+          "P": 0,
+          "M": 0,
+          "G": 0,
+          "GG": 0,
+          "U": 44
+        },
+        "quantidade_total": 44,
+        "valor_unitario": 60.0,
+        "valor_total": 2640.0
+      }
+    ]
+  },
+  {
+    "referencia": "2620002",
+    "categoria": "SHORT",
+    "descricao": "SHORT CARGO 2 BOLSO 2 LAPELA",
+    "unidade": "UN",
+    "imagem": "avatar.png",
+    "variantes": [
+      {
+        "cor_codigo_nome": "0007-PRETO",
+        "grade": {
+          "PP": 0,
+          "P": 0,
+          "M": 1,
+          "G": 0,
+          "GG": 0,
+          "U": 0
+        },
+        "quantidade_total": 1,
+        "valor_unitario": 60.0,
+        "valor_total": 60.0
+      }
+    ]
+  },
+  {
+    "referencia": "2620004",
+    "categoria": "SHORT",
+    "descricao": "CARGO 2 BOLSO 2 ZIPER FRENTE",
+    "unidade": "UN",
+    "imagem": "avatar.png",
+    "variantes": [
+      {
+        "cor_codigo_nome": "0007-PRETO",
+        "grade": {
+          "PP": 0,
+          "P": 0,
+          "M": 0,
+          "G": 0,
+          "GG": 0,
+          "U": 128
+        },
+        "quantidade_total": 128,
+        "valor_unitario": 60.0,
+        "valor_total": 7680.0
+      },
+      {
+        "cor_codigo_nome": "0028-CINZA",
+        "grade": {
+          "PP": 0,
+          "P": 0,
+          "M": 0,
+          "G": 0,
+          "GG": 0,
+          "U": 136
+        },
+        "quantidade_total": 136,
+        "valor_unitario": 60.0,
+        "valor_total": 8160.0
+      }
+    ]
+  },
+  {
+    "referencia": "2620006",
+    "categoria": "SHORT",
+    "descricao": "CARGO BOLSO MOCHILA",
+    "unidade": "UN",
+    "imagem": "avatar.png",
+    "variantes": [
+      {
+        "cor_codigo_nome": "0027-BEGE",
+        "grade": {
+          "PP": 0,
+          "P": 0,
+          "M": 0,
+          "G": 1,
+          "GG": 0,
+          "U": 0
+        },
+        "quantidade_total": 1,
+        "valor_unitario": 60.0,
+        "valor_total": 60.0
+      }
+    ]
+  },
+  {
+    "referencia": "2820001",
+    "categoria": "SHORT",
+    "descricao": "BRIM 001-TUDO PASSA MATRIZ",
+    "unidade": "UN",
+    "imagem": "avatar.png",
+    "variantes": [
+      {
+        "cor_codigo_nome": "0007-PRETO",
+        "grade": {
+          "PP": 0,
+          "P": 0,
+          "M": 0,
+          "G": 0,
+          "GG": 0,
+          "U": 4
+        },
+        "quantidade_total": 4,
+        "valor_unitario": 39.0,
+        "valor_total": 156.0
+      },
+      {
+        "cor_codigo_nome": "0009-BRANCO",
+        "grade": {
+          "PP": 0,
+          "P": 0,
+          "M": 0,
+          "G": 0,
+          "GG": 0,
+          "U": 1
+        },
+        "quantidade_total": 1,
+        "valor_unitario": 39.0,
+        "valor_total": 39.0
+      },
+      {
+        "cor_codigo_nome": "0027-BEGE",
+        "grade": {
+          "PP": 0,
+          "P": 0,
+          "M": 0,
+          "G": 0,
+          "GG": 0,
+          "U": 14
+        },
+        "quantidade_total": 14,
+        "valor_unitario": 39.0,
+        "valor_total": 546.0
+      },
+      {
+        "cor_codigo_nome": "0038-MARINHO",
+        "grade": {
+          "PP": 0,
+          "P": 0,
+          "M": 0,
+          "G": 0,
+          "GG": 0,
+          "U": 6
+        },
+        "quantidade_total": 6,
+        "valor_unitario": 39.0,
+        "valor_total": 234.0
+      },
+      {
+        "cor_codigo_nome": "0057-CARAMELO",
+        "grade": {
+          "PP": 0,
+          "P": 4,
+          "M": 5,
+          "G": 3,
+          "GG": 0,
+          "U": 9
+        },
+        "quantidade_total": 21,
+        "valor_unitario": 39.0,
+        "valor_total": 819.0
+      }
+    ]
+  },
+  {
+    "referencia": "3173001",
+    "categoria": "SHORT",
+    "descricao": "PULSEIRA",
+    "unidade": "UN",
+    "imagem": "avatar.png",
+    "variantes": []
+  },
+  {
+    "referencia": "3173001",
+    "categoria": "SHORT",
+    "descricao": "PULSEIRA 001-TUDO PASSA MATRIZ",
+    "unidade": "UN",
+    "imagem": "avatar.png",
+    "variantes": [
+      {
+        "cor_codigo_nome": "0053-PRATA",
+        "grade": {
+          "PP": 0,
+          "P": 1,
+          "M": 0,
+          "G": 0,
+          "GG": 0,
+          "U": 41
+        },
+        "quantidade_total": 42,
+        "valor_unitario": 15.0,
+        "valor_total": 630.0
+      }
+    ]
+  },
+  {
+    "referencia": "3173002",
+    "categoria": "SHORT",
+    "descricao": "BRINCO MICKEY 001-TUDO PASSA MATRIZ",
+    "unidade": "UN",
+    "imagem": "avatar.png",
+    "variantes": [
+      {
+        "cor_codigo_nome": "0053-PRATA",
+        "grade": {
+          "PP": 0,
+          "P": 1,
+          "M": 0,
+          "G": 0,
+          "GG": 0,
+          "U": 0
+        },
+        "quantidade_total": 1,
+        "valor_unitario": 15.0,
+        "valor_total": 15.0
+      }
+    ]
+  },
+  {
+    "referencia": "3173003",
+    "categoria": "SHORT",
+    "descricao": "BRINCO JORDAN 001-TUDO PASSA MATRIZ",
+    "unidade": "UN",
+    "imagem": "avatar.png",
+    "variantes": [
+      {
+        "cor_codigo_nome": "0053-PRATA",
+        "grade": {
+          "PP": 0,
+          "P": 2,
+          "M": 0,
+          "G": 0,
+          "GG": 0,
+          "U": 0
+        },
+        "quantidade_total": 2,
+        "valor_unitario": 15.0,
+        "valor_total": 30.0
+      }
+    ]
+  },
+  {
+    "referencia": "3173005",
+    "categoria": "SHORT",
+    "descricao": "BRINCO MICKEY 001-TUDO PASSA MATRIZ",
+    "unidade": "UN",
+    "imagem": "avatar.png",
+    "variantes": [
+      {
+        "cor_codigo_nome": "0007-PRETO",
+        "grade": {
+          "PP": 0,
+          "P": 36,
+          "M": 0,
+          "G": 0,
+          "GG": 0,
+          "U": 0
+        },
+        "quantidade_total": 36,
+        "valor_unitario": 15.0,
+        "valor_total": 540.0
+      }
+    ]
+  },
+  {
+    "referencia": "3920010",
+    "categoria": "SHORT",
+    "descricao": "BRINCO RAIO 001-TUDO PASSA MATRIZ",
+    "unidade": "UN",
+    "imagem": "avatar.png",
+    "variantes": [
+      {
+        "cor_codigo_nome": "0053-PRATA",
+        "grade": {
+          "PP": 0,
+          "P": 1,
+          "M": 0,
+          "G": 0,
+          "GG": 0,
+          "U": 14
+        },
+        "quantidade_total": 15,
+        "valor_unitario": 15.0,
+        "valor_total": 225.0
+      }
+    ]
+  },
+  {
+    "referencia": "3920011",
+    "categoria": "SHORT",
+    "descricao": "BRINCO NEYMAR 001-TUDO PASSA MATRIZ",
+    "unidade": "UN",
+    "imagem": "avatar.png",
+    "variantes": [
+      {
+        "cor_codigo_nome": "0053-PRATA",
+        "grade": {
+          "PP": 0,
+          "P": 0,
+          "M": 0,
+          "G": 0,
+          "GG": 0,
+          "U": 28
+        },
+        "quantidade_total": 28,
+        "valor_unitario": 15.0,
+        "valor_total": 420.0
+      },
+      {
+        "cor_codigo_nome": "0007-PRETO",
+        "grade": {
+          "PP": 0,
+          "P": 0,
+          "M": 0,
+          "G": 1,
+          "GG": 0,
+          "U": 0
+        },
+        "quantidade_total": 1,
+        "valor_unitario": 85.0,
+        "valor_total": 85.0
+      }
+    ]
+  }
+]
