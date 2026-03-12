@@ -2,9 +2,8 @@ const express = require('express');
 const router = express.Router();
 const axios = require('axios');
 const nodemailer = require('nodemailer');
-require('dotenv').config();
 
-// CONFIGURAÇÃO DO EMAIL (Nodemailer)
+// 1. Configuração do Transporte
 const transporter = nodemailer.createTransport({
     host: process.env.SMTP_MAIL_SERVER,
     port: 465,
@@ -15,7 +14,7 @@ const transporter = nodemailer.createTransport({
     }
 });
 
-// ROTA DO PIX: /produtos/checkout/pix
+// 2. ROTA PIX -> Acessível em: /produtos/checkout/pix
 router.post('/checkout/pix', async (req, res) => {
     try {
         const { nome, email, cpf, valor } = req.body;
@@ -39,56 +38,43 @@ router.post('/checkout/pix', async (req, res) => {
             qrCode: qrCodeResp.data.encodedImage
         });
     } catch (error) {
-        console.error("Erro no Checkout:", error.message);
-        res.status(500).json({ error: "Erro ao processar pagamento" });
+        res.status(500).json({ error: "Erro Pix" });
     }
 });
 
-// ROTA DO EMAIL: /produtos/notificar-pedido
-// Note: O caminho aqui é apenas '/notificar-pedido' pois o prefixo '/produtos' vem do server.js
+// 3. ROTA EMAIL -> Acessível em: /produtos/notificar-pedido
+// ATENÇÃO: Verifique se não há espaços extras no nome da rota
 router.post('/notificar-pedido', async (req, res) => {
+    console.log("Rota de e-mail acionada!");
     try {
         const { cliente, itens, total, frete } = req.body;
 
         const itensHTML = itens.map(item => `
             <tr>
-                <td style="padding: 10px; border-bottom: 1px solid #eee;">
+                <td style="padding:10px; border-bottom:1px solid #eee;">
                     <b>${item.descricao}</b><br>
                     <small>TAM: ${item.chosenSize} | QTD: ${item.chosenQty}</small>
                 </td>
-                <td style="padding: 10px; border-bottom: 1px solid #eee; text-align: right;">
+                <td style="padding:10px; border-bottom:1px solid #eee; text-align:right;">
                     R$ ${item.totalPrice.toFixed(2)}
                 </td>
             </tr>
         `).join('');
 
-        const htmlBody = `
-            <div style="font-family: sans-serif; max-width: 600px; margin: auto; border: 1px solid #eee; border-radius: 20px; overflow: hidden;">
-                <div style="background: #4f46e5; color: white; padding: 20px; text-align: center;">
-                    <h1>Tudo Passa Store</h1>
-                    <p>Pedido Confirmado</p>
-                </div>
-                <div style="padding: 20px;">
-                    <p>Olá <b>${cliente.nome}</b>, recebemos seu pedido!</p>
-                    <table style="width: 100%; border-collapse: collapse;">${itensHTML}</table>
-                    <div style="background: #f1f5f9; padding: 15px; margin-top: 15px; border-radius: 10px;">
-                        <p>Frete: R$ ${frete.toFixed(2)}</p>
-                        <p><b>Total: R$ ${total.toFixed(2)}</b></p>
-                    </div>
-                </div>
-            </div>
-        `;
-
         await transporter.sendMail({
             from: `"Tudo Passa Store" <${process.env.EMAIL_SERVER}>`,
             to: `gpatricio.melo@gmail.com, ${cliente.email}`,
-            subject: `🛍️ Novo Pedido - ${cliente.nome}`,
-            html: htmlBody
+            subject: `🛍️ Pedido Confirmado - ${cliente.nome}`,
+            html: `<div style="font-family:sans-serif; padding:20px;">
+                    <h2>Olá ${cliente.nome}, pedido recebido!</h2>
+                    <table style="width:100%">${itensHTML}</table>
+                    <p><b>Total com Frete: R$ ${total.toFixed(2)}</b></p>
+                  </div>`
         });
 
         res.json({ success: true });
     } catch (error) {
-        console.error("Erro ao enviar email:", error);
+        console.error("Erro e-mail:", error);
         res.status(500).json({ success: false, error: error.message });
     }
 });
