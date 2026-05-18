@@ -5,6 +5,7 @@ const path = require('path');
 const nodemailer = require('nodemailer');
 const produtoRoutes = require('./routes/produtos');
 const checkoutRoutes = require('./routes/checkout');
+const clientesRouter = require('./routes/clientes');
 
 const app = express();
 
@@ -18,7 +19,7 @@ app.use('/uploads', express.static(path.join(__dirname, 'database/produtos/uploa
 const transporter = nodemailer.createTransport({
     host: process.env.SMTP_MAIL_SERVER,
     port: 465,
-    secure: true, 
+    secure: true,
     auth: {
         user: process.env.EMAIL_SERVER,
         pass: process.env.SENHA_EMAIL_SERVER
@@ -77,6 +78,7 @@ app.post('/produtos/notificar-pedido', async (req, res) => {
 // Rotas existentes
 app.use('/produtos', produtoRoutes);
 app.use('/produtos', checkoutRoutes);
+app.use('/clientes', clientesRouter);
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => console.log(`🚀 Backend rodando na porta ${PORT}`));
