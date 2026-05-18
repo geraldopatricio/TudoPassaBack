@@ -1,0 +1,30 @@
+[
+  {
+    "codigo": "101",
+    "nome": "João Silva",
+    "cpf_cnpj": "123.456.789-00",
+    "celular": "(11) 98888-7777",
+    "email": "joao@email.com",
+    "endereco": "Rua das Flores",
+    "numero": "50",
+    "bairro": "Centro",
+    "cidade": "São Paulo",
+    "uf": "SP",
+    "cep": "01001-000",
+    "data_cadastro": "2023-10-27T14:30:00.000Z"
+  },
+  {
+    "codigo": 102,
+    "nome": "Geraldo melo",
+    "cpf_cnpj": 50883968215,
+    "celular": "(85) 9 91994652",
+    "email": "geraldo@gpsoft.com.br",
+    "endereco": "Rua das Flores",
+    "numero": 55,
+    "bairro": "norte",
+    "cidade": "fortaleza",
+    "uf": "CE",
+    "cep": 61700000,
+    "data_cadastro": "2026-05-18T14:35:40.533Z"
+  }
+]
