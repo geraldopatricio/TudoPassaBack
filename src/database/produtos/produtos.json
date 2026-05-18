@@ -1,5 +1,189 @@
 [
   {
+    "referencia": "1715036",
+    "categoria": "CAMISA",
+    "descricao": "Tudo passa iluminado MCMXCIX",
+    "unidade": "UN",
+    "imagem": "1715036.jpeg",
+    "variantes": [
+      {
+        "cor_codigo_nome": "Cinza",
+        "grade": {
+          "PP": 0,
+          "P": 28,
+          "M": 20,
+          "G": 9,
+          "GG": 0,
+          "U": 0
+        },
+        "quantidade_total": 57,
+        "valor_unitario": 40,
+        "valor_total": 2280
+      }
+    ]
+  },
+  {
+    "referencia": "1716026",
+    "categoria": "CAMISA",
+    "descricao": "Messi camisa 10",
+    "unidade": "UN",
+    "imagem": "1716026.jpeg",
+    "variantes": [
+      {
+        "cor_codigo_nome": "Azul",
+        "grade": {
+          "PP": 0,
+          "P": 12,
+          "M": 1,
+          "G": 7,
+          "GG": 0,
+          "U": 0
+        },
+        "quantidade_total": 20,
+        "valor_unitario": 40,
+        "valor_total": 800
+      }
+    ]
+  },
+  {
+    "referencia": "1116064",
+    "categoria": "CAMISA",
+    "descricao": "Jesus o único caminho e salvação",
+    "unidade": "UN",
+    "imagem": "1116064.jpeg",
+    "variantes": [
+      {
+        "cor_codigo_nome": "Preto",
+        "grade": {
+          "PP": 0,
+          "P": 17,
+          "M": 30,
+          "G": 4,
+          "GG": 0,
+          "U": 0
+        },
+        "quantidade_total": 51,
+        "valor_unitario": 40,
+        "valor_total": 2040
+      }
+    ]
+  },
+  {
+    "referencia": "1316005",
+    "categoria": "CAMISA",
+    "descricao": "Faça amor não faça fofoca",
+    "unidade": "UN",
+    "imagem": "1316005.jpeg",
+    "variantes": [
+      {
+        "cor_codigo_nome": "Vermelho",
+        "grade": {
+          "PP": 0,
+          "P": 11,
+          "M": 16,
+          "G": 8,
+          "GG": 0,
+          "U": 0
+        },
+        "quantidade_total": 35,
+        "valor_unitario": 50,
+        "valor_total": 1750
+      }
+    ]
+  },
+  {
+    "referencia": "282001",
+    "categoria": "SHORT",
+    "descricao": "Escudo tp x",
+    "unidade": "UN",
+    "imagem": "avatar.png",
+    "variantes": [
+      {
+        "cor_codigo_nome": "Cinza",
+        "grade": {
+          "PP": 0,
+          "P": 36,
+          "M": 53,
+          "G": 54,
+          "GG": 0,
+          "U": 0
+        },
+        "quantidade_total": 143,
+        "valor_unitario": 40,
+        "valor_total": 5720
+      }
+    ]
+  },
+  {
+    "referencia": "3920011",
+    "categoria": "ACESSORIOS",
+    "descricao": "Brinco Neymar",
+    "unidade": "UN",
+    "imagem": "3920011.jpeg",
+    "variantes": [
+      {
+        "cor_codigo_nome": "Prata",
+        "grade": {
+          "PP": 0,
+          "P": 0,
+          "M": 0,
+          "G": 0,
+          "GG": 0,
+          "U": 130
+        },
+        "quantidade_total": 130,
+        "valor_unitario": 15,
+        "valor_total": 1950
+      }
+    ]
+  },
+  {
+    "referencia": "3916001",
+    "categoria": "ACESSORIOS",
+    "descricao": "Tudo Passa Brasil",
+    "unidade": "UN",
+    "imagem": "3916001.jpeg",
+    "variantes": [
+      {
+        "cor_codigo_nome": "Branco",
+        "grade": {
+          "PP": 0,
+          "P": 0,
+          "M": 0,
+          "G": 0,
+          "GG": 0,
+          "U": 14
+        },
+        "quantidade_total": 14,
+        "valor_unitario": 55,
+        "valor_total": 770
+      }
+    ]
+  },
+  {
+    "referencia": "1158172",
+    "categoria": "ACESSORIOS",
+    "descricao": "Le Male Elixir",
+    "unidade": "UN",
+    "imagem": "1158172.jpeg",
+    "variantes": [
+      {
+        "cor_codigo_nome": "-",
+        "grade": {
+          "PP": 0,
+          "P": 0,
+          "M": 0,
+          "G": 0,
+          "GG": 0,
+          "U": 9
+        },
+        "quantidade_total": 9,
+        "valor_unitario": 25,
+        "valor_total": 225
+      }
+    ]
+  },
+  {
     "referencia": "1113043",
     "categoria": "SHORT",
     "descricao": "LONG TP ENTRE LINHA PEITO",
@@ -17,8 +201,8 @@
           "U": 0
         },
         "quantidade_total": 65,
-        "valor_unitario": 40.0,
-        "valor_total": 2600.0
+        "valor_unitario": 40,
+        "valor_total": 2600
       }
     ]
   },
@@ -40,8 +224,8 @@
           "U": 0
         },
         "quantidade_total": 1,
-        "valor_unitario": 40.0,
-        "valor_total": 40.0
+        "valor_unitario": 40,
+        "valor_total": 40
       }
     ]
   },
@@ -63,8 +247,8 @@
           "U": 0
         },
         "quantidade_total": 66,
-        "valor_unitario": 40.0,
-        "valor_total": 2640.0
+        "valor_unitario": 40,
+        "valor_total": 2640
       }
     ]
   },
@@ -86,8 +270,8 @@
           "U": 0
         },
         "quantidade_total": 7,
-        "valor_unitario": 40.0,
-        "valor_total": 280.0
+        "valor_unitario": 40,
+        "valor_total": 280
       },
       {
         "cor_codigo_nome": "0022-AZUL",
@@ -100,8 +284,8 @@
           "U": 0
         },
         "quantidade_total": 4,
-        "valor_unitario": 40.0,
-        "valor_total": 160.0
+        "valor_unitario": 40,
+        "valor_total": 160
       }
     ]
   },
@@ -123,8 +307,8 @@
           "U": 0
         },
         "quantidade_total": 1,
-        "valor_unitario": 40.0,
-        "valor_total": 40.0
+        "valor_unitario": 40,
+        "valor_total": 40
       }
     ]
   },
@@ -146,8 +330,8 @@
           "U": 0
         },
         "quantidade_total": 66,
-        "valor_unitario": 40.0,
-        "valor_total": 2640.0
+        "valor_unitario": 40,
+        "valor_total": 2640
       }
     ]
   },
@@ -169,8 +353,8 @@
           "U": 0
         },
         "quantidade_total": 18,
-        "valor_unitario": 40.0,
-        "valor_total": 720.0
+        "valor_unitario": 40,
+        "valor_total": 720
       }
     ]
   },
@@ -192,8 +376,8 @@
           "U": 0
         },
         "quantidade_total": 1,
-        "valor_unitario": 40.0,
-        "valor_total": 40.0
+        "valor_unitario": 40,
+        "valor_total": 40
       }
     ]
   },
@@ -215,8 +399,8 @@
           "U": 0
         },
         "quantidade_total": 4,
-        "valor_unitario": 40.0,
-        "valor_total": 160.0
+        "valor_unitario": 40,
+        "valor_total": 160
       }
     ]
   },
@@ -238,8 +422,8 @@
           "U": 0
         },
         "quantidade_total": 1,
-        "valor_unitario": 40.0,
-        "valor_total": 40.0
+        "valor_unitario": 40,
+        "valor_total": 40
       }
     ]
   },
@@ -269,8 +453,8 @@
           "U": 0
         },
         "quantidade_total": 58,
-        "valor_unitario": 40.0,
-        "valor_total": 2320.0
+        "valor_unitario": 40,
+        "valor_total": 2320
       },
       {
         "cor_codigo_nome": "0022-AZUL",
@@ -283,8 +467,8 @@
           "U": 0
         },
         "quantidade_total": 1,
-        "valor_unitario": 40.0,
-        "valor_total": 40.0
+        "valor_unitario": 40,
+        "valor_total": 40
       }
     ]
   },
@@ -306,8 +490,8 @@
           "U": 0
         },
         "quantidade_total": 25,
-        "valor_unitario": 40.0,
-        "valor_total": 1000.0
+        "valor_unitario": 40,
+        "valor_total": 1000
       },
       {
         "cor_codigo_nome": "0009-BRANCO",
@@ -320,8 +504,8 @@
           "U": 0
         },
         "quantidade_total": 17,
-        "valor_unitario": 40.0,
-        "valor_total": 680.0
+        "valor_unitario": 40,
+        "valor_total": 680
       }
     ]
   },
@@ -343,8 +527,8 @@
           "U": 0
         },
         "quantidade_total": 3,
-        "valor_unitario": 40.0,
-        "valor_total": 120.0
+        "valor_unitario": 40,
+        "valor_total": 120
       }
     ]
   },
@@ -366,8 +550,8 @@
           "U": 0
         },
         "quantidade_total": 38,
-        "valor_unitario": 40.0,
-        "valor_total": 1520.0
+        "valor_unitario": 40,
+        "valor_total": 1520
       }
     ]
   },
@@ -376,7 +560,7 @@
     "categoria": "SHORT",
     "descricao": "LONG CRUZ ANJO URSO TP",
     "unidade": "UN",
-    "imagem": "avatar.png",
+    "imagem": "1114087.png",
     "variantes": [
       {
         "cor_codigo_nome": "0007-PRETO",
@@ -389,8 +573,8 @@
           "U": 0
         },
         "quantidade_total": 2,
-        "valor_unitario": 40.0,
-        "valor_total": 80.0
+        "valor_unitario": 40,
+        "valor_total": 80
       }
     ]
   },
@@ -412,8 +596,8 @@
           "U": 0
         },
         "quantidade_total": 1,
-        "valor_unitario": 40.0,
-        "valor_total": 40.0
+        "valor_unitario": 40,
+        "valor_total": 40
       }
     ]
   },
@@ -435,8 +619,8 @@
           "U": 0
         },
         "quantidade_total": 15,
-        "valor_unitario": 40.0,
-        "valor_total": 600.0
+        "valor_unitario": 40,
+        "valor_total": 600
       }
     ]
   },
@@ -458,8 +642,8 @@
           "U": 0
         },
         "quantidade_total": 73,
-        "valor_unitario": 40.0,
-        "valor_total": 2920.0
+        "valor_unitario": 40,
+        "valor_total": 2920
       }
     ]
   },
@@ -481,8 +665,8 @@
           "U": 0
         },
         "quantidade_total": 9,
-        "valor_unitario": 40.0,
-        "valor_total": 360.0
+        "valor_unitario": 40,
+        "valor_total": 360
       }
     ]
   },
@@ -504,8 +688,8 @@
           "U": 0
         },
         "quantidade_total": 70,
-        "valor_unitario": 40.0,
-        "valor_total": 2800.0
+        "valor_unitario": 40,
+        "valor_total": 2800
       }
     ]
   },
@@ -535,8 +719,8 @@
           "U": 0
         },
         "quantidade_total": 87,
-        "valor_unitario": 40.0,
-        "valor_total": 3480.0
+        "valor_unitario": 40,
+        "valor_total": 3480
       }
     ]
   },
@@ -558,8 +742,8 @@
           "U": 0
         },
         "quantidade_total": 63,
-        "valor_unitario": 40.0,
-        "valor_total": 2520.0
+        "valor_unitario": 40,
+        "valor_total": 2520
       }
     ]
   },
@@ -581,8 +765,8 @@
           "U": 0
         },
         "quantidade_total": 4,
-        "valor_unitario": 40.0,
-        "valor_total": 160.0
+        "valor_unitario": 40,
+        "valor_total": 160
       }
     ]
   },
@@ -604,8 +788,8 @@
           "U": 0
         },
         "quantidade_total": 27,
-        "valor_unitario": 40.0,
-        "valor_total": 1080.0
+        "valor_unitario": 40,
+        "valor_total": 1080
       }
     ]
   },
@@ -627,8 +811,8 @@
           "U": 0
         },
         "quantidade_total": 2,
-        "valor_unitario": 40.0,
-        "valor_total": 80.0
+        "valor_unitario": 40,
+        "valor_total": 80
       }
     ]
   },
@@ -650,8 +834,8 @@
           "U": 0
         },
         "quantidade_total": 2,
-        "valor_unitario": 40.0,
-        "valor_total": 80.0
+        "valor_unitario": 40,
+        "valor_total": 80
       }
     ]
   },
@@ -673,8 +857,8 @@
           "U": 0
         },
         "quantidade_total": 4,
-        "valor_unitario": 40.0,
-        "valor_total": 160.0
+        "valor_unitario": 40,
+        "valor_total": 160
       }
     ]
   },
@@ -696,8 +880,8 @@
           "U": 0
         },
         "quantidade_total": 1,
-        "valor_unitario": 40.0,
-        "valor_total": 40.0
+        "valor_unitario": 40,
+        "valor_total": 40
       }
     ]
   },
@@ -719,8 +903,8 @@
           "U": 0
         },
         "quantidade_total": 1,
-        "valor_unitario": 40.0,
-        "valor_total": 40.0
+        "valor_unitario": 40,
+        "valor_total": 40
       },
       {
         "cor_codigo_nome": "0009-BRANCO",
@@ -733,8 +917,8 @@
           "U": 0
         },
         "quantidade_total": 2,
-        "valor_unitario": 40.0,
-        "valor_total": 80.0
+        "valor_unitario": 40,
+        "valor_total": 80
       }
     ]
   },
@@ -756,8 +940,8 @@
           "U": 0
         },
         "quantidade_total": 2,
-        "valor_unitario": 40.0,
-        "valor_total": 80.0
+        "valor_unitario": 40,
+        "valor_total": 80
       }
     ]
   },
@@ -787,8 +971,8 @@
           "U": 0
         },
         "quantidade_total": 11,
-        "valor_unitario": 40.0,
-        "valor_total": 440.0
+        "valor_unitario": 40,
+        "valor_total": 440
       }
     ]
   },
@@ -810,8 +994,8 @@
           "U": 0
         },
         "quantidade_total": 7,
-        "valor_unitario": 40.0,
-        "valor_total": 280.0
+        "valor_unitario": 40,
+        "valor_total": 280
       }
     ]
   },
@@ -833,8 +1017,8 @@
           "U": 0
         },
         "quantidade_total": 2,
-        "valor_unitario": 40.0,
-        "valor_total": 80.0
+        "valor_unitario": 40,
+        "valor_total": 80
       }
     ]
   },
@@ -856,8 +1040,8 @@
           "U": 0
         },
         "quantidade_total": 1,
-        "valor_unitario": 40.0,
-        "valor_total": 40.0
+        "valor_unitario": 40,
+        "valor_total": 40
       }
     ]
   },
@@ -879,8 +1063,8 @@
           "U": 0
         },
         "quantidade_total": 33,
-        "valor_unitario": 40.0,
-        "valor_total": 1320.0
+        "valor_unitario": 40,
+        "valor_total": 1320
       }
     ]
   },
@@ -902,8 +1086,8 @@
           "U": 0
         },
         "quantidade_total": 10,
-        "valor_unitario": 40.0,
-        "valor_total": 400.0
+        "valor_unitario": 40,
+        "valor_total": 400
       }
     ]
   },
@@ -925,8 +1109,8 @@
           "U": 0
         },
         "quantidade_total": 34,
-        "valor_unitario": 40.0,
-        "valor_total": 1360.0
+        "valor_unitario": 40,
+        "valor_total": 1360
       }
     ]
   },
@@ -948,8 +1132,8 @@
           "U": 0
         },
         "quantidade_total": 1,
-        "valor_unitario": 40.0,
-        "valor_total": 40.0
+        "valor_unitario": 40,
+        "valor_total": 40
       }
     ]
   },
@@ -971,8 +1155,8 @@
           "U": 0
         },
         "quantidade_total": 14,
-        "valor_unitario": 40.0,
-        "valor_total": 560.0
+        "valor_unitario": 40,
+        "valor_total": 560
       }
     ]
   },
@@ -994,8 +1178,8 @@
           "U": 0
         },
         "quantidade_total": 40,
-        "valor_unitario": 40.0,
-        "valor_total": 1600.0
+        "valor_unitario": 40,
+        "valor_total": 1600
       }
     ]
   },
@@ -1025,8 +1209,8 @@
           "U": 0
         },
         "quantidade_total": 72,
-        "valor_unitario": 40.0,
-        "valor_total": 2880.0
+        "valor_unitario": 40,
+        "valor_total": 2880
       }
     ]
   },
@@ -1048,8 +1232,8 @@
           "U": 0
         },
         "quantidade_total": 2,
-        "valor_unitario": 40.0,
-        "valor_total": 80.0
+        "valor_unitario": 40,
+        "valor_total": 80
       }
     ]
   },
@@ -1071,8 +1255,8 @@
           "U": 0
         },
         "quantidade_total": 65,
-        "valor_unitario": 40.0,
-        "valor_total": 2600.0
+        "valor_unitario": 40,
+        "valor_total": 2600
       }
     ]
   },
@@ -1094,8 +1278,8 @@
           "U": 0
         },
         "quantidade_total": 57,
-        "valor_unitario": 40.0,
-        "valor_total": 2280.0
+        "valor_unitario": 40,
+        "valor_total": 2280
       }
     ]
   },
@@ -1117,8 +1301,8 @@
           "U": 0
         },
         "quantidade_total": 59,
-        "valor_unitario": 40.0,
-        "valor_total": 2360.0
+        "valor_unitario": 40,
+        "valor_total": 2360
       }
     ]
   },
@@ -1140,8 +1324,8 @@
           "U": 0
         },
         "quantidade_total": 62,
-        "valor_unitario": 40.0,
-        "valor_total": 2480.0
+        "valor_unitario": 40,
+        "valor_total": 2480
       }
     ]
   },
@@ -1163,8 +1347,8 @@
           "U": 0
         },
         "quantidade_total": 66,
-        "valor_unitario": 40.0,
-        "valor_total": 2640.0
+        "valor_unitario": 40,
+        "valor_total": 2640
       },
       {
         "cor_codigo_nome": "0032-OFF",
@@ -1177,8 +1361,8 @@
           "U": 0
         },
         "quantidade_total": 30,
-        "valor_unitario": 40.0,
-        "valor_total": 1200.0
+        "valor_unitario": 40,
+        "valor_total": 1200
       }
     ]
   },
@@ -1200,8 +1384,8 @@
           "U": 0
         },
         "quantidade_total": 64,
-        "valor_unitario": 40.0,
-        "valor_total": 2560.0
+        "valor_unitario": 40,
+        "valor_total": 2560
       }
     ]
   },
@@ -1223,8 +1407,8 @@
           "U": 0
         },
         "quantidade_total": 10,
-        "valor_unitario": 40.0,
-        "valor_total": 400.0
+        "valor_unitario": 40,
+        "valor_total": 400
       }
     ]
   },
@@ -1246,8 +1430,8 @@
           "U": 0
         },
         "quantidade_total": 28,
-        "valor_unitario": 40.0,
-        "valor_total": 1120.0
+        "valor_unitario": 40,
+        "valor_total": 1120
       }
     ]
   },
@@ -1277,8 +1461,8 @@
           "U": 0
         },
         "quantidade_total": 5,
-        "valor_unitario": 40.0,
-        "valor_total": 200.0
+        "valor_unitario": 40,
+        "valor_total": 200
       }
     ]
   },
@@ -1300,8 +1484,8 @@
           "U": 0
         },
         "quantidade_total": 23,
-        "valor_unitario": 40.0,
-        "valor_total": 920.0
+        "valor_unitario": 40,
+        "valor_total": 920
       }
     ]
   },
@@ -1323,8 +1507,8 @@
           "U": 0
         },
         "quantidade_total": 10,
-        "valor_unitario": 40.0,
-        "valor_total": 400.0
+        "valor_unitario": 40,
+        "valor_total": 400
       }
     ]
   },
@@ -1346,8 +1530,8 @@
           "U": 0
         },
         "quantidade_total": 22,
-        "valor_unitario": 40.0,
-        "valor_total": 880.0
+        "valor_unitario": 40,
+        "valor_total": 880
       }
     ]
   },
@@ -1369,8 +1553,8 @@
           "U": 0
         },
         "quantidade_total": 57,
-        "valor_unitario": 40.0,
-        "valor_total": 2280.0
+        "valor_unitario": 40,
+        "valor_total": 2280
       },
       {
         "cor_codigo_nome": "0022-AZUL",
@@ -1383,8 +1567,8 @@
           "U": 0
         },
         "quantidade_total": 49,
-        "valor_unitario": 40.0,
-        "valor_total": 1960.0
+        "valor_unitario": 40,
+        "valor_total": 1960
       }
     ]
   },
@@ -1406,8 +1590,8 @@
           "U": 0
         },
         "quantidade_total": 61,
-        "valor_unitario": 40.0,
-        "valor_total": 2440.0
+        "valor_unitario": 40,
+        "valor_total": 2440
       }
     ]
   },
@@ -1429,8 +1613,8 @@
           "U": 0
         },
         "quantidade_total": 69,
-        "valor_unitario": 40.0,
-        "valor_total": 2760.0
+        "valor_unitario": 40,
+        "valor_total": 2760
       }
     ]
   },
@@ -1452,8 +1636,8 @@
           "U": 0
         },
         "quantidade_total": 60,
-        "valor_unitario": 40.0,
-        "valor_total": 2400.0
+        "valor_unitario": 40,
+        "valor_total": 2400
       }
     ]
   },
@@ -1475,8 +1659,8 @@
           "U": 0
         },
         "quantidade_total": 66,
-        "valor_unitario": 40.0,
-        "valor_total": 2640.0
+        "valor_unitario": 40,
+        "valor_total": 2640
       }
     ]
   },
@@ -1498,8 +1682,8 @@
           "U": 0
         },
         "quantidade_total": 74,
-        "valor_unitario": 40.0,
-        "valor_total": 2960.0
+        "valor_unitario": 40,
+        "valor_total": 2960
       }
     ]
   },
@@ -1529,8 +1713,8 @@
           "U": 0
         },
         "quantidade_total": 76,
-        "valor_unitario": 40.0,
-        "valor_total": 3040.0
+        "valor_unitario": 40,
+        "valor_total": 3040
       }
     ]
   },
@@ -1552,8 +1736,8 @@
           "U": 0
         },
         "quantidade_total": 1,
-        "valor_unitario": 40.0,
-        "valor_total": 40.0
+        "valor_unitario": 40,
+        "valor_total": 40
       }
     ]
   },
@@ -1575,8 +1759,8 @@
           "U": 0
         },
         "quantidade_total": 13,
-        "valor_unitario": 40.0,
-        "valor_total": 520.0
+        "valor_unitario": 40,
+        "valor_total": 520
       }
     ]
   },
@@ -1598,8 +1782,8 @@
           "U": 0
         },
         "quantidade_total": 1,
-        "valor_unitario": 50.0,
-        "valor_total": 50.0
+        "valor_unitario": 50,
+        "valor_total": 50
       }
     ]
   },
@@ -1621,8 +1805,8 @@
           "U": 0
         },
         "quantidade_total": 2,
-        "valor_unitario": 50.0,
-        "valor_total": 100.0
+        "valor_unitario": 50,
+        "valor_total": 100
       }
     ]
   },
@@ -1644,8 +1828,8 @@
           "U": 0
         },
         "quantidade_total": 1,
-        "valor_unitario": 47.0,
-        "valor_total": 47.0
+        "valor_unitario": 47,
+        "valor_total": 47
       }
     ]
   },
@@ -1667,8 +1851,8 @@
           "U": 0
         },
         "quantidade_total": 2,
-        "valor_unitario": 47.0,
-        "valor_total": 94.0
+        "valor_unitario": 47,
+        "valor_total": 94
       }
     ]
   },
@@ -1690,8 +1874,8 @@
           "U": 0
         },
         "quantidade_total": 1,
-        "valor_unitario": 55.0,
-        "valor_total": 55.0
+        "valor_unitario": 55,
+        "valor_total": 55
       },
       {
         "cor_codigo_nome": "0009-BRANCO",
@@ -1704,8 +1888,8 @@
           "U": 0
         },
         "quantidade_total": 1,
-        "valor_unitario": 55.0,
-        "valor_total": 55.0
+        "valor_unitario": 55,
+        "valor_total": 55
       },
       {
         "cor_codigo_nome": "0026-MARROM",
@@ -1718,8 +1902,8 @@
           "U": 0
         },
         "quantidade_total": 12,
-        "valor_unitario": 55.0,
-        "valor_total": 660.0
+        "valor_unitario": 55,
+        "valor_total": 660
       }
     ]
   },
@@ -1741,8 +1925,8 @@
           "U": 0
         },
         "quantidade_total": 1,
-        "valor_unitario": 50.0,
-        "valor_total": 50.0
+        "valor_unitario": 50,
+        "valor_total": 50
       }
     ]
   },
@@ -1764,8 +1948,8 @@
           "U": 0
         },
         "quantidade_total": 23,
-        "valor_unitario": 55.0,
-        "valor_total": 1265.0
+        "valor_unitario": 55,
+        "valor_total": 1265
       }
     ]
   },
@@ -1795,8 +1979,8 @@
           "U": 0
         },
         "quantidade_total": 1,
-        "valor_unitario": 55.0,
-        "valor_total": 55.0
+        "valor_unitario": 55,
+        "valor_total": 55
       }
     ]
   },
@@ -1818,8 +2002,8 @@
           "U": 0
         },
         "quantidade_total": 16,
-        "valor_unitario": 55.0,
-        "valor_total": 880.0
+        "valor_unitario": 55,
+        "valor_total": 880
       }
     ]
   },
@@ -1841,8 +2025,8 @@
           "U": 0
         },
         "quantidade_total": 53,
-        "valor_unitario": 55.0,
-        "valor_total": 2915.0
+        "valor_unitario": 55,
+        "valor_total": 2915
       }
     ]
   },
@@ -1864,8 +2048,8 @@
           "U": 0
         },
         "quantidade_total": 30,
-        "valor_unitario": 40.0,
-        "valor_total": 1200.0
+        "valor_unitario": 40,
+        "valor_total": 1200
       }
     ]
   },
@@ -1887,8 +2071,8 @@
           "U": 0
         },
         "quantidade_total": 51,
-        "valor_unitario": 55.0,
-        "valor_total": 2805.0
+        "valor_unitario": 55,
+        "valor_total": 2805
       }
     ]
   },
@@ -1910,8 +2094,8 @@
           "U": 0
         },
         "quantidade_total": 1,
-        "valor_unitario": 40.0,
-        "valor_total": 40.0
+        "valor_unitario": 40,
+        "valor_total": 40
       }
     ]
   },
@@ -1933,8 +2117,8 @@
           "U": 0
         },
         "quantidade_total": 96,
-        "valor_unitario": 40.0,
-        "valor_total": 3840.0
+        "valor_unitario": 40,
+        "valor_total": 3840
       }
     ]
   },
@@ -1956,8 +2140,8 @@
           "U": 0
         },
         "quantidade_total": 13,
-        "valor_unitario": 40.0,
-        "valor_total": 520.0
+        "valor_unitario": 40,
+        "valor_total": 520
       },
       {
         "cor_codigo_nome": "0036-MACADAMIA",
@@ -1970,8 +2154,8 @@
           "U": 0
         },
         "quantidade_total": 41,
-        "valor_unitario": 40.0,
-        "valor_total": 1640.0
+        "valor_unitario": 40,
+        "valor_total": 1640
       }
     ]
   },
@@ -1993,8 +2177,8 @@
           "U": 0
         },
         "quantidade_total": 3,
-        "valor_unitario": 39.0,
-        "valor_total": 117.0
+        "valor_unitario": 39,
+        "valor_total": 117
       }
     ]
   },
@@ -2016,8 +2200,8 @@
           "U": 0
         },
         "quantidade_total": 1,
-        "valor_unitario": 39.0,
-        "valor_total": 39.0
+        "valor_unitario": 39,
+        "valor_total": 39
       }
     ]
   },
@@ -2047,8 +2231,8 @@
           "U": 0
         },
         "quantidade_total": 4,
-        "valor_unitario": 39.0,
-        "valor_total": 156.0
+        "valor_unitario": 39,
+        "valor_total": 156
       }
     ]
   },
@@ -2070,8 +2254,8 @@
           "U": 0
         },
         "quantidade_total": 1,
-        "valor_unitario": 39.0,
-        "valor_total": 39.0
+        "valor_unitario": 39,
+        "valor_total": 39
       }
     ]
   },
@@ -2093,8 +2277,8 @@
           "U": 0
         },
         "quantidade_total": 13,
-        "valor_unitario": 39.0,
-        "valor_total": 507.0
+        "valor_unitario": 39,
+        "valor_total": 507
       }
     ]
   },
@@ -2116,8 +2300,8 @@
           "U": 0
         },
         "quantidade_total": 1,
-        "valor_unitario": 40.0,
-        "valor_total": 40.0
+        "valor_unitario": 40,
+        "valor_total": 40
       }
     ]
   },
@@ -2139,8 +2323,8 @@
           "U": 0
         },
         "quantidade_total": 2,
-        "valor_unitario": 40.0,
-        "valor_total": 80.0
+        "valor_unitario": 40,
+        "valor_total": 80
       }
     ]
   },
@@ -2162,8 +2346,8 @@
           "U": 0
         },
         "quantidade_total": 1,
-        "valor_unitario": 39.0,
-        "valor_total": 39.0
+        "valor_unitario": 39,
+        "valor_total": 39
       }
     ]
   },
@@ -2185,8 +2369,8 @@
           "U": 0
         },
         "quantidade_total": 1,
-        "valor_unitario": 39.0,
-        "valor_total": 39.0
+        "valor_unitario": 39,
+        "valor_total": 39
       }
     ]
   },
@@ -2208,8 +2392,8 @@
           "U": 0
         },
         "quantidade_total": 1,
-        "valor_unitario": 39.0,
-        "valor_total": 39.0
+        "valor_unitario": 39,
+        "valor_total": 39
       }
     ]
   },
@@ -2231,8 +2415,8 @@
           "U": 0
         },
         "quantidade_total": 29,
-        "valor_unitario": 39.0,
-        "valor_total": 1131.0
+        "valor_unitario": 39,
+        "valor_total": 1131
       }
     ]
   },
@@ -2254,8 +2438,8 @@
           "U": 0
         },
         "quantidade_total": 41,
-        "valor_unitario": 39.0,
-        "valor_total": 1599.0
+        "valor_unitario": 39,
+        "valor_total": 1599
       }
     ]
   },
@@ -2285,8 +2469,8 @@
           "U": 0
         },
         "quantidade_total": 2,
-        "valor_unitario": 39.0,
-        "valor_total": 78.0
+        "valor_unitario": 39,
+        "valor_total": 78
       }
     ]
   },
@@ -2308,8 +2492,8 @@
           "U": 0
         },
         "quantidade_total": 18,
-        "valor_unitario": 39.0,
-        "valor_total": 702.0
+        "valor_unitario": 39,
+        "valor_total": 702
       }
     ]
   },
@@ -2331,8 +2515,8 @@
           "U": 0
         },
         "quantidade_total": 1,
-        "valor_unitario": 37.0,
-        "valor_total": 37.0
+        "valor_unitario": 37,
+        "valor_total": 37
       }
     ]
   },
@@ -2354,8 +2538,8 @@
           "U": 0
         },
         "quantidade_total": 71,
-        "valor_unitario": 40.0,
-        "valor_total": 2840.0
+        "valor_unitario": 40,
+        "valor_total": 2840
       }
     ]
   },
@@ -2377,8 +2561,8 @@
           "U": 0
         },
         "quantidade_total": 73,
-        "valor_unitario": 40.0,
-        "valor_total": 2920.0
+        "valor_unitario": 40,
+        "valor_total": 2920
       }
     ]
   },
@@ -2400,8 +2584,8 @@
           "U": 0
         },
         "quantidade_total": 51,
-        "valor_unitario": 40.0,
-        "valor_total": 2040.0
+        "valor_unitario": 40,
+        "valor_total": 2040
       }
     ]
   },
@@ -2423,8 +2607,8 @@
           "U": 0
         },
         "quantidade_total": 89,
-        "valor_unitario": 40.0,
-        "valor_total": 3560.0
+        "valor_unitario": 40,
+        "valor_total": 3560
       },
       {
         "cor_codigo_nome": "0036-MACADAMIA",
@@ -2437,8 +2621,8 @@
           "U": 0
         },
         "quantidade_total": 72,
-        "valor_unitario": 40.0,
-        "valor_total": 2880.0
+        "valor_unitario": 40,
+        "valor_total": 2880
       }
     ]
   },
@@ -2460,8 +2644,8 @@
           "U": 0
         },
         "quantidade_total": 72,
-        "valor_unitario": 40.0,
-        "valor_total": 2880.0
+        "valor_unitario": 40,
+        "valor_total": 2880
       }
     ]
   },
@@ -2483,8 +2667,8 @@
           "U": 0
         },
         "quantidade_total": 70,
-        "valor_unitario": 40.0,
-        "valor_total": 2800.0
+        "valor_unitario": 40,
+        "valor_total": 2800
       }
     ]
   },
@@ -2506,8 +2690,8 @@
           "U": 0
         },
         "quantidade_total": 41,
-        "valor_unitario": 40.0,
-        "valor_total": 1640.0
+        "valor_unitario": 40,
+        "valor_total": 1640
       },
       {
         "cor_codigo_nome": "0009-BRANCO",
@@ -2520,8 +2704,8 @@
           "U": 0
         },
         "quantidade_total": 78,
-        "valor_unitario": 40.0,
-        "valor_total": 3120.0
+        "valor_unitario": 40,
+        "valor_total": 3120
       }
     ]
   },
@@ -2551,8 +2735,8 @@
           "U": 0
         },
         "quantidade_total": 71,
-        "valor_unitario": 40.0,
-        "valor_total": 2840.0
+        "valor_unitario": 40,
+        "valor_total": 2840
       }
     ]
   },
@@ -2574,8 +2758,8 @@
           "U": 0
         },
         "quantidade_total": 63,
-        "valor_unitario": 40.0,
-        "valor_total": 2520.0
+        "valor_unitario": 40,
+        "valor_total": 2520
       }
     ]
   },
@@ -2597,8 +2781,8 @@
           "U": 0
         },
         "quantidade_total": 70,
-        "valor_unitario": 40.0,
-        "valor_total": 2800.0
+        "valor_unitario": 40,
+        "valor_total": 2800
       }
     ]
   },
@@ -2620,8 +2804,8 @@
           "U": 0
         },
         "quantidade_total": 54,
-        "valor_unitario": 40.0,
-        "valor_total": 2160.0
+        "valor_unitario": 40,
+        "valor_total": 2160
       },
       {
         "cor_codigo_nome": "0009-BRANCO",
@@ -2634,8 +2818,8 @@
           "U": 0
         },
         "quantidade_total": 68,
-        "valor_unitario": 40.0,
-        "valor_total": 2720.0
+        "valor_unitario": 40,
+        "valor_total": 2720
       }
     ]
   },
@@ -2657,8 +2841,8 @@
           "U": 0
         },
         "quantidade_total": 72,
-        "valor_unitario": 40.0,
-        "valor_total": 2880.0
+        "valor_unitario": 40,
+        "valor_total": 2880
       }
     ]
   },
@@ -2680,8 +2864,8 @@
           "U": 0
         },
         "quantidade_total": 66,
-        "valor_unitario": 40.0,
-        "valor_total": 2640.0
+        "valor_unitario": 40,
+        "valor_total": 2640
       }
     ]
   },
@@ -2703,8 +2887,8 @@
           "U": 0
         },
         "quantidade_total": 53,
-        "valor_unitario": 40.0,
-        "valor_total": 2120.0
+        "valor_unitario": 40,
+        "valor_total": 2120
       },
       {
         "cor_codigo_nome": "0030-VERDE",
@@ -2717,8 +2901,8 @@
           "U": 0
         },
         "quantidade_total": 6,
-        "valor_unitario": 40.0,
-        "valor_total": 240.0
+        "valor_unitario": 40,
+        "valor_total": 240
       }
     ]
   },
@@ -2740,8 +2924,8 @@
           "U": 0
         },
         "quantidade_total": 77,
-        "valor_unitario": 40.0,
-        "valor_total": 3080.0
+        "valor_unitario": 40,
+        "valor_total": 3080
       }
     ]
   },
@@ -2763,8 +2947,8 @@
           "U": 0
         },
         "quantidade_total": 31,
-        "valor_unitario": 40.0,
-        "valor_total": 1240.0
+        "valor_unitario": 40,
+        "valor_total": 1240
       }
     ]
   },
@@ -2786,8 +2970,8 @@
           "U": 0
         },
         "quantidade_total": 1,
-        "valor_unitario": 40.0,
-        "valor_total": 40.0
+        "valor_unitario": 40,
+        "valor_total": 40
       }
     ]
   },
@@ -2817,8 +3001,8 @@
           "U": 0
         },
         "quantidade_total": 78,
-        "valor_unitario": 40.0,
-        "valor_total": 3120.0
+        "valor_unitario": 40,
+        "valor_total": 3120
       }
     ]
   },
@@ -2840,8 +3024,8 @@
           "U": 0
         },
         "quantidade_total": 63,
-        "valor_unitario": 40.0,
-        "valor_total": 2520.0
+        "valor_unitario": 40,
+        "valor_total": 2520
       },
       {
         "cor_codigo_nome": "0022-AZUL",
@@ -2854,8 +3038,8 @@
           "U": 0
         },
         "quantidade_total": 72,
-        "valor_unitario": 40.0,
-        "valor_total": 2880.0
+        "valor_unitario": 40,
+        "valor_total": 2880
       }
     ]
   },
@@ -2877,8 +3061,8 @@
           "U": 0
         },
         "quantidade_total": 65,
-        "valor_unitario": 40.0,
-        "valor_total": 2600.0
+        "valor_unitario": 40,
+        "valor_total": 2600
       }
     ]
   },
@@ -2900,8 +3084,8 @@
           "U": 0
         },
         "quantidade_total": 76,
-        "valor_unitario": 40.0,
-        "valor_total": 3040.0
+        "valor_unitario": 40,
+        "valor_total": 3040
       }
     ]
   },
@@ -2923,8 +3107,8 @@
           "U": 0
         },
         "quantidade_total": 83,
-        "valor_unitario": 40.0,
-        "valor_total": 3320.0
+        "valor_unitario": 40,
+        "valor_total": 3320
       }
     ]
   },
@@ -2946,8 +3130,8 @@
           "U": 0
         },
         "quantidade_total": 84,
-        "valor_unitario": 40.0,
-        "valor_total": 3360.0
+        "valor_unitario": 40,
+        "valor_total": 3360
       }
     ]
   },
@@ -2969,8 +3153,8 @@
           "U": 0
         },
         "quantidade_total": 67,
-        "valor_unitario": 40.0,
-        "valor_total": 2680.0
+        "valor_unitario": 40,
+        "valor_total": 2680
       }
     ]
   },
@@ -2992,8 +3176,8 @@
           "U": 0
         },
         "quantidade_total": 2,
-        "valor_unitario": 50.0,
-        "valor_total": 100.0
+        "valor_unitario": 50,
+        "valor_total": 100
       },
       {
         "cor_codigo_nome": "0038-MARINHO",
@@ -3006,8 +3190,8 @@
           "U": 2
         },
         "quantidade_total": 2,
-        "valor_unitario": 50.0,
-        "valor_total": 100.0
+        "valor_unitario": 50,
+        "valor_total": 100
       }
     ]
   },
@@ -3037,8 +3221,8 @@
           "U": 7
         },
         "quantidade_total": 7,
-        "valor_unitario": 39.0,
-        "valor_total": 273.0
+        "valor_unitario": 39,
+        "valor_total": 273
       },
       {
         "cor_codigo_nome": "0007-PRETO",
@@ -3051,8 +3235,8 @@
           "U": 7
         },
         "quantidade_total": 7,
-        "valor_unitario": 39.0,
-        "valor_total": 273.0
+        "valor_unitario": 39,
+        "valor_total": 273
       }
     ]
   },
@@ -3074,8 +3258,8 @@
           "U": 1
         },
         "quantidade_total": 1,
-        "valor_unitario": 39.0,
-        "valor_total": 39.0
+        "valor_unitario": 39,
+        "valor_total": 39
       },
       {
         "cor_codigo_nome": "0032-OFF",
@@ -3088,8 +3272,8 @@
           "U": 3
         },
         "quantidade_total": 3,
-        "valor_unitario": 39.0,
-        "valor_total": 117.0
+        "valor_unitario": 39,
+        "valor_total": 117
       }
     ]
   },
@@ -3119,8 +3303,8 @@
           "U": 7
         },
         "quantidade_total": 7,
-        "valor_unitario": 50.0,
-        "valor_total": 350.0
+        "valor_unitario": 50,
+        "valor_total": 350
       },
       {
         "cor_codigo_nome": "0057-CARAMELO",
@@ -3133,8 +3317,8 @@
           "U": 4
         },
         "quantidade_total": 4,
-        "valor_unitario": 50.0,
-        "valor_total": 200.0
+        "valor_unitario": 50,
+        "valor_total": 200
       },
       {
         "cor_codigo_nome": "0058-TELHA",
@@ -3147,8 +3331,8 @@
           "U": 1
         },
         "quantidade_total": 1,
-        "valor_unitario": 50.0,
-        "valor_total": 50.0
+        "valor_unitario": 50,
+        "valor_total": 50
       }
     ]
   },
@@ -3170,8 +3354,8 @@
           "U": 13
         },
         "quantidade_total": 13,
-        "valor_unitario": 50.0,
-        "valor_total": 650.0
+        "valor_unitario": 50,
+        "valor_total": 650
       },
       {
         "cor_codigo_nome": "0057-CARAMELO",
@@ -3184,8 +3368,8 @@
           "U": 11
         },
         "quantidade_total": 11,
-        "valor_unitario": 50.0,
-        "valor_total": 550.0
+        "valor_unitario": 50,
+        "valor_total": 550
       },
       {
         "cor_codigo_nome": "0059-ARCIA",
@@ -3198,8 +3382,8 @@
           "U": 6
         },
         "quantidade_total": 6,
-        "valor_unitario": 50.0,
-        "valor_total": 300.0
+        "valor_unitario": 50,
+        "valor_total": 300
       }
     ]
   },
@@ -3221,8 +3405,8 @@
           "U": 0
         },
         "quantidade_total": 1,
-        "valor_unitario": 50.0,
-        "valor_total": 50.0
+        "valor_unitario": 50,
+        "valor_total": 50
       }
     ]
   },
@@ -3244,8 +3428,8 @@
           "U": 0
         },
         "quantidade_total": 1,
-        "valor_unitario": 50.0,
-        "valor_total": 50.0
+        "valor_unitario": 50,
+        "valor_total": 50
       },
       {
         "cor_codigo_nome": "0022-AZUL",
@@ -3258,8 +3442,8 @@
           "U": 0
         },
         "quantidade_total": 5,
-        "valor_unitario": 50.0,
-        "valor_total": 250.0
+        "valor_unitario": 50,
+        "valor_total": 250
       }
     ]
   },
@@ -3281,8 +3465,8 @@
           "U": 125
         },
         "quantidade_total": 125,
-        "valor_unitario": 40.0,
-        "valor_total": 5000.0
+        "valor_unitario": 40,
+        "valor_total": 5000
       },
       {
         "cor_codigo_nome": "0009-BRANCO",
@@ -3295,8 +3479,8 @@
           "U": 97
         },
         "quantidade_total": 97,
-        "valor_unitario": 40.0,
-        "valor_total": 3880.0
+        "valor_unitario": 40,
+        "valor_total": 3880
       },
       {
         "cor_codigo_nome": "0015-AMARELO",
@@ -3309,8 +3493,8 @@
           "U": 108
         },
         "quantidade_total": 108,
-        "valor_unitario": 40.0,
-        "valor_total": 4320.0
+        "valor_unitario": 40,
+        "valor_total": 4320
       }
     ]
   },
@@ -3332,8 +3516,8 @@
           "U": 1
         },
         "quantidade_total": 1,
-        "valor_unitario": 40.0,
-        "valor_total": 40.0
+        "valor_unitario": 40,
+        "valor_total": 40
       },
       {
         "cor_codigo_nome": "0027-BEGE",
@@ -3346,8 +3530,8 @@
           "U": 143
         },
         "quantidade_total": 143,
-        "valor_unitario": 40.0,
-        "valor_total": 5720.0
+        "valor_unitario": 40,
+        "valor_total": 5720
       }
     ]
   },
@@ -3377,8 +3561,8 @@
           "U": 29
         },
         "quantidade_total": 123,
-        "valor_unitario": 60.0,
-        "valor_total": 7380.0
+        "valor_unitario": 60,
+        "valor_total": 7380
       },
       {
         "cor_codigo_nome": "0009-BRANCO",
@@ -3391,8 +3575,8 @@
           "U": 1
         },
         "quantidade_total": 1,
-        "valor_unitario": 60.0,
-        "valor_total": 60.0
+        "valor_unitario": 60,
+        "valor_total": 60
       },
       {
         "cor_codigo_nome": "0027-BEGE",
@@ -3405,8 +3589,8 @@
           "U": 0
         },
         "quantidade_total": 117,
-        "valor_unitario": 60.0,
-        "valor_total": 7020.0
+        "valor_unitario": 60,
+        "valor_total": 7020
       }
     ]
   },
@@ -3428,8 +3612,8 @@
           "U": 4
         },
         "quantidade_total": 4,
-        "valor_unitario": 50.0,
-        "valor_total": 200.0
+        "valor_unitario": 50,
+        "valor_total": 200
       }
     ]
   },
@@ -3451,8 +3635,8 @@
           "U": 1
         },
         "quantidade_total": 1,
-        "valor_unitario": 50.0,
-        "valor_total": 50.0
+        "valor_unitario": 50,
+        "valor_total": 50
       },
       {
         "cor_codigo_nome": "0027-BEGE",
@@ -3465,8 +3649,8 @@
           "U": 1
         },
         "quantidade_total": 1,
-        "valor_unitario": 50.0,
-        "valor_total": 50.0
+        "valor_unitario": 50,
+        "valor_total": 50
       }
     ]
   },
@@ -3488,8 +3672,8 @@
           "U": 59
         },
         "quantidade_total": 59,
-        "valor_unitario": 60.0,
-        "valor_total": 3540.0
+        "valor_unitario": 60,
+        "valor_total": 3540
       },
       {
         "cor_codigo_nome": "0027-BEGE",
@@ -3502,8 +3686,8 @@
           "U": 41
         },
         "quantidade_total": 41,
-        "valor_unitario": 60.0,
-        "valor_total": 2460.0
+        "valor_unitario": 60,
+        "valor_total": 2460
       },
       {
         "cor_codigo_nome": "0028-CINZA",
@@ -3516,8 +3700,8 @@
           "U": 64
         },
         "quantidade_total": 64,
-        "valor_unitario": 60.0,
-        "valor_total": 3840.0
+        "valor_unitario": 60,
+        "valor_total": 3840
       },
       {
         "cor_codigo_nome": "0030-VERDE",
@@ -3530,8 +3714,8 @@
           "U": 44
         },
         "quantidade_total": 44,
-        "valor_unitario": 60.0,
-        "valor_total": 2640.0
+        "valor_unitario": 60,
+        "valor_total": 2640
       }
     ]
   },
@@ -3553,8 +3737,8 @@
           "U": 0
         },
         "quantidade_total": 1,
-        "valor_unitario": 60.0,
-        "valor_total": 60.0
+        "valor_unitario": 60,
+        "valor_total": 60
       }
     ]
   },
@@ -3576,8 +3760,8 @@
           "U": 128
         },
         "quantidade_total": 128,
-        "valor_unitario": 60.0,
-        "valor_total": 7680.0
+        "valor_unitario": 60,
+        "valor_total": 7680
       },
       {
         "cor_codigo_nome": "0028-CINZA",
@@ -3590,8 +3774,8 @@
           "U": 136
         },
         "quantidade_total": 136,
-        "valor_unitario": 60.0,
-        "valor_total": 8160.0
+        "valor_unitario": 60,
+        "valor_total": 8160
       }
     ]
   },
@@ -3613,8 +3797,8 @@
           "U": 0
         },
         "quantidade_total": 1,
-        "valor_unitario": 60.0,
-        "valor_total": 60.0
+        "valor_unitario": 60,
+        "valor_total": 60
       }
     ]
   },
@@ -3636,8 +3820,8 @@
           "U": 4
         },
         "quantidade_total": 4,
-        "valor_unitario": 39.0,
-        "valor_total": 156.0
+        "valor_unitario": 39,
+        "valor_total": 156
       },
       {
         "cor_codigo_nome": "0009-BRANCO",
@@ -3650,8 +3834,8 @@
           "U": 1
         },
         "quantidade_total": 1,
-        "valor_unitario": 39.0,
-        "valor_total": 39.0
+        "valor_unitario": 39,
+        "valor_total": 39
       },
       {
         "cor_codigo_nome": "0027-BEGE",
@@ -3664,8 +3848,8 @@
           "U": 14
         },
         "quantidade_total": 14,
-        "valor_unitario": 39.0,
-        "valor_total": 546.0
+        "valor_unitario": 39,
+        "valor_total": 546
       },
       {
         "cor_codigo_nome": "0038-MARINHO",
@@ -3678,8 +3862,8 @@
           "U": 6
         },
         "quantidade_total": 6,
-        "valor_unitario": 39.0,
-        "valor_total": 234.0
+        "valor_unitario": 39,
+        "valor_total": 234
       },
       {
         "cor_codigo_nome": "0057-CARAMELO",
@@ -3692,8 +3876,8 @@
           "U": 9
         },
         "quantidade_total": 21,
-        "valor_unitario": 39.0,
-        "valor_total": 819.0
+        "valor_unitario": 39,
+        "valor_total": 819
       }
     ]
   },
@@ -3723,8 +3907,8 @@
           "U": 41
         },
         "quantidade_total": 42,
-        "valor_unitario": 15.0,
-        "valor_total": 630.0
+        "valor_unitario": 15,
+        "valor_total": 630
       }
     ]
   },
@@ -3746,8 +3930,8 @@
           "U": 0
         },
         "quantidade_total": 1,
-        "valor_unitario": 15.0,
-        "valor_total": 15.0
+        "valor_unitario": 15,
+        "valor_total": 15
       }
     ]
   },
@@ -3769,8 +3953,8 @@
           "U": 0
         },
         "quantidade_total": 2,
-        "valor_unitario": 15.0,
-        "valor_total": 30.0
+        "valor_unitario": 15,
+        "valor_total": 30
       }
     ]
   },
@@ -3792,8 +3976,8 @@
           "U": 0
         },
         "quantidade_total": 36,
-        "valor_unitario": 15.0,
-        "valor_total": 540.0
+        "valor_unitario": 15,
+        "valor_total": 540
       }
     ]
   },
@@ -3815,8 +3999,8 @@
           "U": 14
         },
         "quantidade_total": 15,
-        "valor_unitario": 15.0,
-        "valor_total": 225.0
+        "valor_unitario": 15,
+        "valor_total": 225
       }
     ]
   },
@@ -3838,8 +4022,8 @@
           "U": 28
         },
         "quantidade_total": 28,
-        "valor_unitario": 15.0,
-        "valor_total": 420.0
+        "valor_unitario": 15,
+        "valor_total": 420
       },
       {
         "cor_codigo_nome": "0007-PRETO",
@@ -3852,8 +4036,8 @@
           "U": 0
         },
         "quantidade_total": 1,
-        "valor_unitario": 85.0,
-        "valor_total": 85.0
+        "valor_unitario": 85,
+        "valor_total": 85
       }
     ]
   }
