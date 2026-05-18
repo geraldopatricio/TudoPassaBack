@@ -40,69 +40,40 @@ router.get('/', (req, res) => {
     res.json(readDB());
 });
 
-
-/**
- * @swagger
- * /produtos:
- *   get:
- *     summary: Lista todos os produtos
- *     tags: [Produtos]
- *     responses:
- *       200:
- *         description: Lista de produtos retornada com sucesso
- *   post:
- *     summary: Cadastra um novo produto com imagem
- *     tags: [Produtos]
- *     requestBody:
- *       content:
- *         multipart/form-data:
- *           schema:
- *             type: object
- *             properties:
- *               referencia:
- *                 type: string
- *               descricao:
- *                 type: string
- *               categoria:
- *                 type: string
- *               unidade:
- *                 type: string
- *               imagem:
- *                 type: string
- *                 format: binary
- *               variantes:
- *                 type: string
- *                 description: JSON string contendo o array de variantes
- *     responses:
- *       201:
- *         description: Produto criado com sucesso
- */
-
-// 2. CADASTRAR (Com trava de duplicidade)
 router.post('/', upload.single('imagem'), (req, res) => {
     try {
         const produtos = readDB();
         const { referencia } = req.body;
 
+        // 1. Verifica se a referência já existe
         if (produtos.find(p => p.referencia === referencia)) {
-            return res.status(400).json({ message: "Referência já cadastrada!" });
+            return res.status(400).json({ message: "Essa referência já existe no sistema!" });
+        }
+
+        // 2. Tratamento seguro das variantes
+        let variantesProcessadas = [];
+        if (req.body.variantes) {
+            variantesProcessadas = typeof req.body.variantes === 'string' 
+                ? JSON.parse(req.body.variantes) 
+                : req.body.variantes;
         }
 
         const novoProduto = {
             referencia: req.body.referencia,
-            categoria: req.body.categoria,
-            descricao: req.body.descricao,
-            unidade: req.body.unidade,
-            imagem: req.file ? req.file.filename : (req.body.imagem || 'avatar.png'),
-            // Ajuste esta linha para aceitar tanto string (do FormData) quanto objeto (do Excel/JSON)
-            variantes: typeof req.body.variantes === 'string' ? JSON.parse(req.body.variantes) : req.body.variantes
+            categoria: req.body.categoria || 'CAMISA',
+            descricao: req.body.descricao || '',
+            unidade: req.body.unidade || 'UN',
+            imagem: req.file ? req.file.filename : 'avatar.png',
+            variantes: variantesProcessadas
         };
 
-        produtos.push(novoProduct);
+        produtos.push(novoProduto);
         writeDB(produtos);
+
         res.status(201).json(novoProduto);
     } catch (error) {
-        res.status(400).json({ message: "Erro ao cadastrar", error: error.message });
+        console.error("Erro interno no cadastro:", error);
+        res.status(400).json({ message: "Erro ao processar dados", error: error.message });
     }
 });
 
