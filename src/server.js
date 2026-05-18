@@ -10,6 +10,12 @@ const clientesRouter = require('./routes/clientes');
 const app = express();
 
 app.use(cors());
+const corsOptions = {
+  origin: ['http://localhost:5173', 'http://localhost:5174', 'https://main.di1r7fuo8b0ux.amplifyapp.com'],
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  allowedHeaders: ['Content-Type', 'Authorization']
+};
+
 app.use(express.json());
 
 // Servir as imagens
