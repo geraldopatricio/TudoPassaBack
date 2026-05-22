@@ -7,7 +7,7 @@ const nodemailer = require('nodemailer');
 const transporter = nodemailer.createTransport({
     host: process.env.SMTP_MAIL_SERVER,
     port: 465,
-    secure: true, 
+    secure: true,
     auth: {
         user: process.env.EMAIL_SERVER,
         pass: process.env.SENHA_EMAIL_SERVER
@@ -18,27 +18,43 @@ const transporter = nodemailer.createTransport({
 router.post('/checkout/pix', async (req, res) => {
     try {
         const { nome, email, cpf, valor } = req.body;
-        const customerResp = await axios.post(`${process.env.ASAAS_URL}/customers`, {
-            name: nome, email: email, cpfCnpj: cpf
-        }, { headers: { 'access_token': process.env.ASAAS_API_KEY } });
+        const headers = { 'access_token': process.env.ASAAS_API_KEY };
+        const cpfLimpo = cpf.replace(/\D/g, '');
 
-        const paymentResp = await axios.post(`${process.env.ASAAS_URL}/payments`, {
-            customer: customerResp.data.id,
+        // 1. TENTA BUSCAR O CLIENTE
+        const search = await axios.get(`${process.env.ASAAS_URL}/customers?cpfCnpj=${cpfLimpo}`, { headers });
+
+        let customerId;
+        if (search.data.totalCount > 0) {
+            customerId = search.data.data[0].id; // Usa o existente
+        } else {
+            // 2. CRIA SE NÃO EXISTIR
+            const newCustomer = await axios.post(`${process.env.ASAAS_URL}/customers`, {
+                name: nome, email: email, cpfCnpj: cpfLimpo
+            }, { headers });
+            customerId = newCustomer.data.id;
+        }
+
+        // 3. GERA O PAGAMENTO
+        const payment = await axios.post(`${process.env.ASAAS_URL}/payments`, {
+            customer: customerId,
             billingType: "PIX",
             value: valor,
             dueDate: new Date().toISOString().split('T')[0]
-        }, { headers: { 'access_token': process.env.ASAAS_API_KEY } });
+        }, { headers });
 
-        const qrCodeResp = await axios.get(`${process.env.ASAAS_URL}/payments/${paymentResp.data.id}/pixQrCode`,
-            { headers: { 'access_token': process.env.ASAAS_API_KEY } });
+        // 4. PEGA O QR CODE
+        const qrCode = await axios.get(`${process.env.ASAAS_URL}/payments/${payment.data.id}/pixQrCode`, { headers });
 
         res.json({
             success: true,
-            copyPaste: qrCodeResp.data.payload,
-            qrCode: qrCodeResp.data.encodedImage
+            copyPaste: qrCode.data.payload,
+            qrCode: qrCode.data.encodedImage
         });
+
     } catch (error) {
-        res.status(500).json({ error: "Erro Pix" });
+        console.error("Erro detalhado:", error.response?.data || error.message);
+        res.status(500).json({ success: false, error: "Falha na comunicação com Asaas" });
     }
 });
 
