@@ -1,0 +1,37 @@
+[
+  {
+    "id": "1721000000000",
+    "numero_pedido": 1,
+    "data": "2026-07-13T09:00:00.000Z",
+    "cliente_nome": "João Silva",
+    "cliente_cpf": "12345678900",
+    "cliente_email": "joao@email.com",
+    "cliente_whatsapp": "11999999999",
+    "endereco": "Rua Exemplo, 123 - Bairro - Cidade/UF",
+    "transportadora": "Expresso Trans",
+    "observacoes": "Deixar na portaria",
+    "subtotal": 120,
+    "frete": 15,
+    "total": 135,
+    "status": "Pago",
+    "pix_copia_cola": "..."
+  },
+  {
+    "id": "1783944603752",
+    "numero_pedido": 2,
+    "data": "2026-07-13T12:10:03.752Z",
+    "cliente_nome": "Geraldo melo",
+    "cliente_cpf": "50883968215",
+    "cliente_email": "geraldo@gpsoft.com.br",
+    "cliente_whatsapp": "(85) 9 91994652",
+    "endereco": "Rua das Flores, 55 - norte, fortaleza/CE",
+    "transportadora": "Mario da Silva Sauro",
+    "observacoes": "teste",
+    "subtotal": 240,
+    "frete": 20,
+    "total": 260,
+    "status": "Pago",
+    "pix_qr_code": "iVBORw0KGgoAAAANSUhEUgAAAcIAAAHCAQAAAABUY/ToAAADEklEQVR4Xu2TQZLbMBADddP/f5Rn6eYYDZD2biWl1F4yrsLIljgYNHQgdTx+WL+O78q/Vsm7KnlXJe+q5F2VvKv/Rl4HdWpx8j+folp1Tx3Ps6eNUnIu6RnAGsvnifhQdthfcjD5UtHFxixdUw3WuuRnkN7z9FJyO0UxK/lJ5EPSGgFTaXdmyfHkI+pmTltRcqOPs+Rocu/47RVnyb9eA8hdl/BXhk/CPgE+BqtKjiVl3sgKoD/0hUOrT6ATSk4mac3KTmXlsGSea1VyMom6fAog6loxiGk4ECVnkzbqLiw5anRbWkI1LTmZXEZtvRyHvCakiYmGFVPJuaR9i3aDITnQfgERdCXHkrht1Ze7h3TLn2ClMC05lgy4MgQsOHmgO6vkbFJjuYFOzxOwfIKDK6vkZJK1b3HbiyZJAyJoAEvOJbfDDNjGTb4YXlJyNokveoa6dqjRpNtdcjJJrwEerUCVkdmKQig5m9TMz0DWDsDdq2MlpuRYUr0csjDWSr2hyzpRkoyWnEwK9kEISdxWjKOUHE+qP+TJ5uvnU6DlDkuDUHIwad/aZQxudOPJ5m9FQsnJ5OlDQEHrWh1ezsp6g9CSc0lGsWvlrDiZ2r7+qpJjSVi5ZHy8DoYeZEl7zZxUcjIpeZ0ADVcY0jolpAQsOZq0g4VzUL6DQjWQqeRg0ogmhhylJV7cuZX8BBKnwbeEdSkliQkqOZm81ud7UBqQ9ULs8A+w5GQyWw9l/ETVnS6ijPAlR5M4k6CxCVKQ8BgxXHIweWm8fhk6ymlqczxwyFNyMomaiCO4F8J2nBYBS84lH9vple0EvQmJ9K/kaFIQATar959HUvOGktNJg8iHN3vvfVAG9DKUnE2ugj2h4VFMerWzS04mv+4x/yMBenog05uj5GBSK9+fVmPyOXMdAcXEUHI4+XRku7XV3naKtH0kUPyekh9AWpcTVQZpOJfvzyeh5EQyE9ueCkFp/H1j5llyMBlJcw1iSnNm5qAoJQeTB3Uuo55vTlBOCIiXJeeSP6qSd1XyrkreVcm7KnlXH0b+BgCiuWXNQvKGAAAAAElFTkSuQmCC",
+    "pix_copia_cola": "00020101021226820014br.gov.bcb.pix2560pix-h.asaas.com/qr/cobv/13849439-a679-4ae6-9923-26350a0ff8125204000053039865802BR5925LUCAS NASCIMENTO DE SOUSA6009Fortaleza61086076248562070503***630498A7"
+  }
+]

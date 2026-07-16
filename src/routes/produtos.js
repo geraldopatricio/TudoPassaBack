@@ -45,17 +45,30 @@ router.post('/', upload.single('imagem'), (req, res) => {
         const produtos = readDB();
         const { referencia } = req.body;
 
-        // 1. Verifica se a referência já existe
         if (produtos.find(p => p.referencia === referencia)) {
             return res.status(400).json({ message: "Essa referência já existe no sistema!" });
         }
 
-        // 2. Tratamento seguro das variantes
         let variantesProcessadas = [];
         if (req.body.variantes) {
-            variantesProcessadas = typeof req.body.variantes === 'string' 
+            const variantesRaw = typeof req.body.variantes === 'string' 
                 ? JSON.parse(req.body.variantes) 
                 : req.body.variantes;
+
+            // Mapeia as variantes garantindo que todos os campos de preço existam
+            variantesProcessadas = variantesRaw.map(v => ({
+                ...v,
+                // Originais
+                valor_unitario: Number(v.valor_unitario) || 0,
+                valor_total: Number(v.valor_total) || 0,
+                // Novas Tabelas
+                valor_unitario_tb1: Number(v.valor_unitario_tb1) || 0,
+                valor_total_tb1: Number(v.valor_total_tb1) || 0,
+                valor_unitario_tb2: Number(v.valor_unitario_tb2) || 0,
+                valor_total_tb2: Number(v.valor_total_tb2) || 0,
+                valor_unitario_tb3: Number(v.valor_unitario_tb3) || 0,
+                valor_total_tb3: Number(v.valor_total_tb3) || 0
+            }));
         }
 
         const novoProduto = {
@@ -69,7 +82,6 @@ router.post('/', upload.single('imagem'), (req, res) => {
 
         produtos.push(novoProduto);
         writeDB(produtos);
-
         res.status(201).json(novoProduto);
     } catch (error) {
         console.error("Erro interno no cadastro:", error);
@@ -85,14 +97,30 @@ router.put('/:ref', upload.single('imagem'), (req, res) => {
 
     if (index === -1) return res.status(404).json({ message: "Produto não encontrado" });
 
+    // Processar variantes se elas vierem no corpo da requisição
+    let variantesAtualizadas = produtos[index].variantes;
+    if (req.body.variantes) {
+        const vRaw = typeof req.body.variantes === 'string' ? JSON.parse(req.body.variantes) : req.body.variantes;
+        variantesAtualizadas = vRaw.map(v => ({
+            ...v,
+            valor_unitario: Number(v.valor_unitario) || 0,
+            valor_total: Number(v.valor_total) || 0,
+            valor_unitario_tb1: Number(v.valor_unitario_tb1) || 0,
+            valor_total_tb1: Number(v.valor_total_tb1) || 0,
+            valor_unitario_tb2: Number(v.valor_unitario_tb2) || 0,
+            valor_total_tb2: Number(v.valor_total_tb2) || 0,
+            valor_unitario_tb3: Number(v.valor_unitario_tb3) || 0,
+            valor_total_tb3: Number(v.valor_total_tb3) || 0
+        }));
+    }
+
     const produtoAtualizado = {
         ...produtos[index],
         ...req.body,
-        variantes: req.body.variantes ? (typeof req.body.variantes === 'string' ? JSON.parse(req.body.variantes) : req.body.variantes) : produtos[index].variantes
+        variantes: variantesAtualizadas
     };
 
     if (req.file) {
-        // Se mudou a imagem, o Multer já salvou com o nome referencia.jpeg sobrescrevendo a anterior
         produtoAtualizado.imagem = req.file.filename;
     }
 

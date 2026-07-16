@@ -1,0 +1,38 @@
+[
+  {
+    "id": "FIN1721000000000",
+    "id_pedido": "1721000000000",
+    "numero_pedido": 1,
+    "tipo_movimento": "Venda de Mercadorias",
+    "cliente_nome": "João Silva",
+    "cliente_cpf": "12345678900",
+    "data_emissao": "2026-07-13T09:00:00.000Z",
+    "data_vencimento": "2026-07-13T09:00:00.000Z",
+    "data_pagamento": "2026-07-13T09:10:00.000Z",
+    "valor_original": 135,
+    "valor_liquido": 135,
+    "forma_pagamento": "PIX",
+    "parcela": "1/1",
+    "situacao": "Recebido",
+    "conta_financeira": "Banco Principal",
+    "observacoes": "Venda realizada via E-commerce"
+  },
+  {
+    "id": "FIN1783947621610",
+    "id_pedido": "1783944603752",
+    "numero_pedido": 2,
+    "tipo_movimento": "Venda de Mercadorias",
+    "cliente_nome": "Geraldo melo",
+    "cliente_cpf": "50883968215",
+    "data_emissao": "2026-07-13T13:00:21.610Z",
+    "data_vencimento": "2026-07-13T13:00:21.610Z",
+    "data_pagamento": "2026-07-13T13:00:21.610Z",
+    "valor_original": 260,
+    "valor_liquido": 260,
+    "forma_pagamento": "PIX",
+    "parcela": "1/1",
+    "situacao": "Recebido",
+    "conta_financeira": "Banco Digital",
+    "observacoes": "Venda automática do pedido #2"
+  }
+]

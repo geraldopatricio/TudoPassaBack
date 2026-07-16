@@ -5,12 +5,15 @@ const nodemailer = require('nodemailer');
 
 // 1. Configuração do Transporte
 const transporter = nodemailer.createTransport({
-    host: process.env.SMTP_MAIL_SERVER,
+    host: process.env.SMTP_SERVER, // Certifique-se que está assim
     port: 465,
-    secure: true,
+    secure: true, // true para porta 465
     auth: {
-        user: process.env.EMAIL_SERVER,
-        pass: process.env.SENHA_EMAIL_SERVER
+        user: process.env.SMTP_USER,
+        pass: process.env.SMTP_PASS,
+    },
+    tls: {
+        rejectUnauthorized: false // Adicione isso se o seu servidor de e-mail tiver certificado self-signed
     }
 });
 
@@ -78,7 +81,7 @@ router.post('/notificar-pedido', async (req, res) => {
         `).join('');
 
         await transporter.sendMail({
-            from: `"Tudo Passa Store" <${process.env.EMAIL_SERVER}>`,
+            from: `"Tudo Passa Store" <${process.env.SMTP_USER}>`,
             to: `gpatricio.melo@gmail.com, ${cliente.email}`,
             subject: `🛍️ Pedido Confirmado - ${cliente.nome}`,
             html: `<div style="font-family:sans-serif; padding:20px;">

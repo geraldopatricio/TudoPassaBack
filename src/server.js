@@ -6,29 +6,41 @@ const nodemailer = require('nodemailer');
 const produtoRoutes = require('./routes/produtos');
 const checkoutRoutes = require('./routes/checkout');
 const clientesRouter = require('./routes/clientes');
+const usuariosRouter = require('./routes/usuarios');
+const profissionaisRoutes = require('./routes/profissionais');
+const tabelaPrecosRouter = require('./routes/tabelaPrecos');
+const pedidosRouter = require('./routes/pedidos');
+const financeiroRouter = require('./routes/financeiro');
+const logisticaRouter = require('./routes/logistica');
 
 const app = express();
 
 app.use(cors());
 const corsOptions = {
-  origin: ['http://localhost:5173', 'http://localhost:5174', 'https://main.di1r7fuo8b0ux.amplifyapp.com'],
-  methods: ['GET', 'POST', 'PUT', 'DELETE'],
-  allowedHeaders: ['Content-Type', 'Authorization']
+    origin: ['http://localhost:5173', 'http://localhost:5174', 'https://main.di1r7fuo8b0ux.amplifyapp.com'],
+    methods: ['GET', 'POST', 'PUT', 'DELETE'],
+    allowedHeaders: ['Content-Type', 'Authorization']
 };
 
 app.use(express.json());
 
-// Servir as imagens
-app.use('/uploads', express.static(path.join(__dirname, 'database/produtos/uploads')));
+// Servir as imagens//
+app.use('/uploads/produtos', express.static(path.join(__dirname, 'database/produtos/uploads')));
+app.use('/uploads/usuarios', express.static(path.join(__dirname, 'database/usuarios/uploads')));
+app.use('/uploads/profissionais', express.static(path.join(__dirname, 'database/profissionais/uploads')));
+app.use('/uploads/clientes', express.static(path.join(__dirname, 'database/clientes/uploads')));
 
 // --- CONFIGURAÇÃO DE EMAIL ---
 const transporter = nodemailer.createTransport({
-    host: process.env.SMTP_MAIL_SERVER,
+    host: process.env.SMTP_SERVER, // Certifique-se que está assim
     port: 465,
-    secure: true,
+    secure: true, // true para porta 465
     auth: {
-        user: process.env.EMAIL_SERVER,
-        pass: process.env.SENHA_EMAIL_SERVER
+        user: process.env.SMTP_USER,
+        pass: process.env.SMTP_PASS,
+    },
+    tls: {
+        rejectUnauthorized: false // Adicione isso se o seu servidor de e-mail tiver certificado self-signed
     }
 });
 
@@ -68,7 +80,7 @@ app.post('/produtos/notificar-pedido', async (req, res) => {
             </div>`;
 
         await transporter.sendMail({
-            from: `"Tudo Passa Store" <${process.env.EMAIL_SERVER}>`,
+            from: `"Tudo Passa Store" <${process.env.SMTP_USER}>`,
             to: `gpatricio.melo@gmail.com, ${cliente.email}`,
             subject: `🛍️ Novo Pedido - ${cliente.nome}`,
             html: htmlBody
@@ -85,6 +97,12 @@ app.post('/produtos/notificar-pedido', async (req, res) => {
 app.use('/produtos', produtoRoutes);
 app.use('/produtos', checkoutRoutes);
 app.use('/clientes', clientesRouter);
+app.use('/usuarios', usuariosRouter);
+app.use('/profissionais', profissionaisRoutes);
+app.use('/tabela-precos', tabelaPrecosRouter);
+app.use('/pedidos', pedidosRouter);
+app.use('/financeiro', financeiroRouter);
+app.use('/logistica', logisticaRouter);
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => console.log(`🚀 Backend rodando na porta ${PORT}`));

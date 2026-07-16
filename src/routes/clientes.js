@@ -2,14 +2,35 @@ const express = require('express');
 const router = express.Router();
 const fs = require('fs');
 const path = require('path');
+const multer = require('multer');
 
+// --- CONFIGURAÇÃO DE CAMINHOS ---
 const DB_PATH = path.join(__dirname, '../database/clientes/clientes.json');
+const UPLOAD_PATH = path.join(__dirname, '../database/clientes/uploads/');
 
-// Função auxiliar para ler o JSON
+// Garantir que a pasta de uploads exista
+if (!fs.existsSync(UPLOAD_PATH)) {
+    fs.mkdirSync(UPLOAD_PATH, { recursive: true });
+}
+
+// --- CONFIGURAÇÃO DO MULTER (UPLOAD DE FOTO) ---
+const storage = multer.diskStorage({
+    destination: (req, file, cb) => {
+        cb(null, UPLOAD_PATH);
+    },
+    filename: (req, file, cb) => {
+        // Nome único: timestamp-nomeoriginal
+        const uniqueSuffix = Date.now() + '-' + file.originalname.replace(/\s/g, '_');
+        cb(null, uniqueSuffix);
+    }
+});
+
+const upload = multer({ storage: storage });
+
+// --- FUNÇÕES AUXILIARES DE BANCO DE DADOS ---
 const readDB = () => {
     try {
         if (!fs.existsSync(DB_PATH)) {
-            // Se a pasta não existir, cria
             const dir = path.dirname(DB_PATH);
             if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
             fs.writeFileSync(DB_PATH, '[]');
@@ -18,58 +39,64 @@ const readDB = () => {
         const data = fs.readFileSync(DB_PATH, 'utf-8');
         return JSON.parse(data || '[]');
     } catch (error) {
-        console.error("Erro ao ler banco de dados de clientes:", error);
+        console.error("Erro ao ler banco de clientes:", error);
         return [];
     }
 };
 
-// Função auxiliar para escrever no JSON
 const writeDB = (data) => {
     fs.writeFileSync(DB_PATH, JSON.stringify(data, null, 2));
 };
 
-// --- ROTAS ---
+// Auxiliar para converter dados do FormData (que vêm como string) para Array
+const parseArray = (data) => {
+    if (!data) return [];
+    if (Array.isArray(data)) return data;
+    try {
+        return JSON.parse(data); // Se o frontend enviou JSON.stringify
+    } catch (e) {
+        return data.split(',').map(item => item.trim()); // Se enviou string separada por vírgula
+    }
+};
 
-// 1. LISTAR TODOS OS CLIENTES
+// --- ROTAS CRUD ---
+
+// 1. LISTAR TODOS
 router.get('/', (req, res) => {
     const clientes = readDB();
     res.json(clientes);
 });
 
-// 2. CONSULTAR CLIENTE POR CÓDIGO
+// 2. BUSCAR POR CÓDIGO
 router.get('/:codigo', (req, res) => {
     const clientes = readDB();
-    const cliente = clientes.find(c => c.codigo === req.params.codigo);
+    const cliente = clientes.find(c => c.codigo.toString() === req.params.codigo.toString());
     if (!cliente) return res.status(404).json({ message: "Cliente não encontrado" });
     res.json(cliente);
 });
 
-// 3. CADASTRAR NOVO CLIENTE
-router.post('/', (req, res) => {
+// 3. CADASTRAR (POST)
+router.post('/', upload.single('foto'), (req, res) => {
     try {
         const clientes = readDB();
         const { codigo, cpf_cnpj } = req.body;
 
-        // Validação: Evitar código ou CPF duplicado
-        if (clientes.find(c => c.codigo === codigo)) {
-            return res.status(400).json({ message: "Este código de cliente já está em uso." });
-        }
-        if (clientes.find(c => c.cpf_cnpj === cpf_cnpj)) {
-            return res.status(400).json({ message: "Este CPF/CNPJ já está cadastrado." });
+        // Verifica duplicidade
+        if (clientes.find(c => c.codigo.toString() === codigo.toString())) {
+            return res.status(400).json({ message: "Este código de cliente já existe." });
         }
 
         const novoCliente = {
+            ...req.body,
+            // Tratamento de tipos específicos
             codigo: req.body.codigo,
-            nome: req.body.nome,
-            cpf_cnpj: req.body.cpf_cnpj,
-            celular: req.body.celular,
-            email: req.body.email,
-            endereco: req.body.endereco,
-            numero: req.body.numero,
-            bairro: req.body.bairro,
-            cidade: req.body.cidade,
-            uf: req.body.uf,
-            cep: req.body.cep,
+            credito_limite: parseFloat(req.body.credito_limite || 0),
+            credito_atual: parseFloat(req.body.credito_atual || 0),
+            bloqueado: req.body.bloqueado === 'true' || req.body.bloqueado === true,
+            formas_pagamento: parseArray(req.body.formas_pagamento),
+            cartoes_loja: parseArray(req.body.cartoes_loja),
+            ref_usuarios: parseArray(req.body.ref_usuarios),
+            foto: req.file ? req.file.filename : null,
             data_cadastro: new Date().toISOString()
         };
 
@@ -82,37 +109,56 @@ router.post('/', (req, res) => {
     }
 });
 
-// 4. EDITAR CLIENTE
-router.put('/:codigo', (req, res) => {
+// 4. ATUALIZAR (PUT)
+router.put('/:codigo', upload.single('foto'), (req, res) => {
     const { codigo } = req.params;
     let clientes = readDB();
-    const index = clientes.findIndex(c => c.codigo === codigo);
+    const index = clientes.findIndex(c => c.codigo.toString() === codigo.toString());
 
     if (index === -1) return res.status(404).json({ message: "Cliente não encontrado" });
 
-    // Atualiza os dados mantendo o código original e a data de cadastro
+    // Se enviou uma nova foto, tenta apagar a antiga para economizar espaço
+    if (req.file && clientes[index].foto) {
+        const antigaPath = path.join(UPLOAD_PATH, clientes[index].foto);
+        if (fs.existsSync(antigaPath)) fs.unlinkSync(antigaPath);
+    }
+
+    // Mesclar dados antigos com novos
     clientes[index] = {
         ...clientes[index],
         ...req.body,
-        codigo: clientes[index].codigo, // Impede alteração do código via body
-        data_cadastro: clientes[index].data_cadastro
+        // Garantir tipos corretos
+        credito_limite: parseFloat(req.body.credito_limite || 0),
+        credito_atual: parseFloat(req.body.credito_atual || 0),
+        bloqueado: req.body.bloqueado === 'true' || req.body.bloqueado === true,
+        formas_pagamento: req.body.formas_pagamento ? parseArray(req.body.formas_pagamento) : clientes[index].formas_pagamento,
+        cartoes_loja: req.body.cartoes_loja ? parseArray(req.body.cartoes_loja) : clientes[index].cartoes_loja,
+        ref_usuarios: req.body.ref_usuarios ? parseArray(req.body.ref_usuarios) : clientes[index].ref_usuarios,
+        foto: req.file ? req.file.filename : clientes[index].foto,
+        codigo: clientes[index].codigo, // Protege o ID original
+        data_cadastro: clientes[index].data_cadastro // Protege a data original
     };
 
     writeDB(clientes);
     res.json(clientes[index]);
 });
 
-// 5. EXCLUIR CLIENTE
+// 5. EXCLUIR (DELETE)
 router.delete('/:codigo', (req, res) => {
     const { codigo } = req.params;
     let clientes = readDB();
-    const clienteExiste = clientes.find(c => c.codigo === codigo);
+    const cliente = clientes.find(c => c.codigo.toString() === codigo.toString());
 
-    if (!clienteExiste) return res.status(404).json({ message: "Cliente não encontrado" });
+    if (!cliente) return res.status(404).json({ message: "Cliente não encontrado" });
 
-    const novosClientes = clientes.filter(c => c.codigo !== codigo);
+    // Remove a foto do disco
+    if (cliente.foto) {
+        const fotoPath = path.join(UPLOAD_PATH, cliente.foto);
+        if (fs.existsSync(fotoPath)) fs.unlinkSync(fotoPath);
+    }
+
+    const novosClientes = clientes.filter(c => c.codigo.toString() !== codigo.toString());
     writeDB(novosClientes);
-
     res.json({ message: "Cliente excluído com sucesso" });
 });
 

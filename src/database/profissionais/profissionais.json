@@ -1,0 +1,33 @@
+[
+  {
+    "codigo": "101",
+    "nome": "Mario da Silva Sauro",
+    "cpf_cnpj": "123.456.789-00",
+    "celular": "(11) 98888-7777",
+    "email": "joao@email.com",
+    "endereco": "Rua das Flores",
+    "numero": "50",
+    "bairro": "Centro",
+    "cidade": "São Paulo",
+    "uf": "SP",
+    "cep": "01001-000",
+    "tipo": "Transportadora",
+    "logomarca": "1783102385351-motoqueiro_smart.png",
+    "ref_clientes": [
+      "201",
+      "205",
+      102
+    ],
+    "ref_produtos": [
+      "P-001",
+      "P-002",
+      "1715036",
+      "1716026",
+      "1116064"
+    ],
+    "ref_usuarios": [
+      "patricio"
+    ],
+    "data_cadastro": "2023-10-27T14:30:00.000Z"
+  }
+]

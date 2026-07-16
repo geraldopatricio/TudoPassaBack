@@ -1,0 +1,42 @@
+[
+  {
+    "id": "item_1",
+    "pedido_id": "1721000000000",
+    "referencia": "1715036",
+    "descricao": "Tudo passa iluminado MCMXCIX",
+    "tamanho": "M",
+    "quantidade": 2,
+    "valor_unitario": 40,
+    "valor_total": 80
+  },
+  {
+    "id": "1783944603752_0",
+    "pedido_id": "1783944603752",
+    "referencia": "1716026",
+    "descricao": "Messi camisa 10",
+    "tamanho": "P",
+    "quantidade": 2,
+    "valor_unitario": 40,
+    "valor_total": 80
+  },
+  {
+    "id": "1783944603752_1",
+    "pedido_id": "1783944603752",
+    "referencia": "1716026",
+    "descricao": "Messi camisa 10",
+    "tamanho": "M",
+    "quantidade": 2,
+    "valor_unitario": 40,
+    "valor_total": 80
+  },
+  {
+    "id": "1783944603752_2",
+    "pedido_id": "1783944603752",
+    "referencia": "1716026",
+    "descricao": "Messi camisa 10",
+    "tamanho": "G",
+    "quantidade": 2,
+    "valor_unitario": 40,
+    "valor_total": 80
+  }
+]

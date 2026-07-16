@@ -11,20 +11,133 @@
     "cidade": "São Paulo",
     "uf": "SP",
     "cep": "01001-000",
-    "data_cadastro": "2023-10-27T14:30:00.000Z"
+    "data_cadastro": "2023-10-27T14:30:00.000Z",
+    "formas_pagamento": [
+      "Crediário Loja",
+      "Cartão Crédito"
+    ],
+    "cartoes_loja": [
+      "Visa Tudo Passa",
+      "Black VIP"
+    ],
+    "bloqueado": false,
+    "credito_limite": 4555,
+    "credito_atual": 55,
+    "foto": "1783102889090-motoqueiro_smart_2.png",
+    "ref_usuarios": [
+      "patricio"
+    ]
   },
   {
     "codigo": 102,
     "nome": "Geraldo melo",
-    "cpf_cnpj": 50883968215,
+    "cpf_cnpj": "50883968215",
     "celular": "(85) 9 91994652",
     "email": "geraldo@gpsoft.com.br",
     "endereco": "Rua das Flores",
-    "numero": 55,
+    "numero": "55",
     "bairro": "norte",
     "cidade": "fortaleza",
     "uf": "CE",
-    "cep": 61700000,
-    "data_cadastro": "2026-05-18T14:35:40.533Z"
+    "cep": "61700000",
+    "data_cadastro": "2026-05-18T14:35:40.533Z",
+    "formas_pagamento": [
+      "Pix",
+      "Cartão Crédito"
+    ],
+    "cartoes_loja": [
+      "Visa Tudo Passa",
+      "Black VIP"
+    ],
+    "bloqueado": false,
+    "credito_limite": 1000,
+    "credito_atual": 100,
+    "foto": "1783106385199-avatar.png",
+    "ref_usuarios": [
+      "geraldo"
+    ]
+  },
+  {
+    "codigo": "1783267969030",
+    "nome": "melo silva dada",
+    "cpf_cnpj": "159875366",
+    "email": "melosilva@gmail.com",
+    "celular": "8599455685",
+    "endereco": "teste",
+    "numero": "1",
+    "bairro": "teste",
+    "cidade": "teste",
+    "uf": "tt",
+    "cep": "61444444",
+    "ref_usuarios": [
+      "melosilva"
+    ],
+    "bloqueado": false,
+    "credito_limite": 0,
+    "credito_atual": 0,
+    "formas_pagamento": [],
+    "cartoes_loja": [],
+    "foto": null,
+    "data_cadastro": "2026-07-05T16:12:49.035Z"
+  },
+  {
+    "codigo": "112341234",
+    "nome": "asdf",
+    "cpf_cnpj": "112341234",
+    "celular": "1234523452345",
+    "email": "sadfasdf",
+    "endereco": "asdfasdfasdf",
+    "credito_limite": 0,
+    "credito_atual": 0,
+    "bloqueado": false,
+    "formas_pagamento": [],
+    "cartoes_loja": [],
+    "ref_usuarios": [],
+    "foto": null,
+    "data_cadastro": "2026-07-05T16:14:50.289Z"
+  },
+  {
+    "codigo": "1783268520511",
+    "nome": "melo silva sauro",
+    "cpf_cnpj": "878788787878",
+    "email": "melosilvasauro@gmail.com",
+    "celular": "99999",
+    "endereco": "teste",
+    "numero": "1",
+    "bairro": "teste",
+    "cidade": "teste",
+    "uf": "tt",
+    "cep": "61444444",
+    "ref_usuarios": [
+      "melosilvasauro"
+    ],
+    "bloqueado": false,
+    "credito_limite": 0,
+    "credito_atual": 0,
+    "formas_pagamento": [],
+    "cartoes_loja": [],
+    "foto": null,
+    "data_cadastro": "2026-07-05T16:22:00.515Z"
+  },
+  {
+    "codigo": "1783535898222",
+    "nome": "blabla",
+    "cpf_cnpj": "888",
+    "celular": "888",
+    "email": "",
+    "endereco": "asdfas",
+    "numero": "",
+    "bairro": "",
+    "cidade": "",
+    "uf": "",
+    "cep": "",
+    "credito_limite": 0,
+    "credito_atual": 0,
+    "bloqueado": false,
+    "formas_pagamento": [],
+    "cartoes_loja": [],
+    "ref_usuarios": [],
+    "foto": null,
+    "data_cadastro": "2026-07-08T18:38:18.226Z"
   }
 ]

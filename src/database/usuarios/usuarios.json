@@ -1,0 +1,62 @@
+[
+  {
+    "login": "patricio",
+    "senha": "123456",
+    "cpf": "50883968215",
+    "email": "gpatricio.melo@gmail.com",
+    "whatsapp": "85991994652",
+    "tipo": "Admin",
+    "foto": "1783540657408-avatar.png",
+    "data_criacao": "2026-07-03T13:12:44.731Z"
+  },
+  {
+    "login": "geraldo",
+    "senha": "123",
+    "cpf": "522321456",
+    "email": "geraldo@gpsoft.net.br",
+    "whatsapp": "85991994526",
+    "tipo": "Vendedor",
+    "foto": "1783103487952-motoqueiro_smart_2.png",
+    "data_criacao": "2026-07-03T13:24:58.085Z"
+  },
+  {
+    "login": "rapha",
+    "senha": "123",
+    "cpf": "555",
+    "email": "rapa@gmail.com",
+    "whatsapp": "555",
+    "tipo": "Transportadora",
+    "foto": "1783099202470-564a4a23-31fb-408a-a3b2-3c0b8278bccc.png",
+    "data_criacao": "2026-07-03T13:36:49.552Z"
+  },
+  {
+    "login": "melo",
+    "senha": "123",
+    "cpf": "555555555",
+    "email": "gp@gmail.com",
+    "whatsapp": "8888888888888888",
+    "tipo": "Cliente",
+    "foto": "1783169809671-eu2.png",
+    "data_criacao": "2026-07-04T12:56:49.692Z"
+  },
+  {
+    "login": "melosilva",
+    "senha": "odlareg",
+    "cpf": "159875366",
+    "email": "melosilva@gmail.com",
+    "whatsapp": "8599455685",
+    "tipo": "Cliente",
+    "foto": null,
+    "data_criacao": "2026-07-05T16:12:49.027Z"
+  },
+  {
+    "login": "melosilvasauro",
+    "senha": "123",
+    "cpf": "878788787878",
+    "email": "melosilvasauro@gmail.com",
+    "whatsapp": "99999",
+    "tipo": "Cliente",
+    "foto": "1783954234693-avatar.png",
+    "data_criacao": "2026-07-05T16:22:00.508Z"
+  }
+]
