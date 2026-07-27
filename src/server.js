@@ -29,6 +29,7 @@ app.use('/uploads/produtos', express.static(path.join(__dirname, 'database/produ
 app.use('/uploads/usuarios', express.static(path.join(__dirname, 'database/usuarios/uploads')));
 app.use('/uploads/profissionais', express.static(path.join(__dirname, 'database/profissionais/uploads')));
 app.use('/uploads/clientes', express.static(path.join(__dirname, 'database/clientes/uploads')));
+app.use('/uploads/logistica', express.static(path.join(__dirname, 'database/logistica/uploads')));
 
 // --- CONFIGURAÇÃO DE EMAIL ---
 const transporter = nodemailer.createTransport({

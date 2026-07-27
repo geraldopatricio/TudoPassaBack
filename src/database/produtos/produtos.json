@@ -14,14 +14,14 @@
         "valor_unitario_tb3": 35,
         "grade": {
           "PP": 0,
-          "P": 28,
-          "M": 14,
-          "G": 9,
+          "P": 12,
+          "M": 0,
+          "G": 0,
           "GG": 0,
           "U": 0
         },
-        "quantidade_total": 51,
-        "valor_total": 2040,
+        "quantidade_total": 12,
+        "valor_total": 480,
         "valor_total_tb1": 2280,
         "valor_total_tb2": 2166,
         "valor_total_tb3": 1995
@@ -43,14 +43,14 @@
         "valor_unitario_tb3": 0,
         "grade": {
           "PP": 0,
-          "P": 4,
+          "P": 0,
           "M": 0,
           "G": 0,
           "GG": 0,
           "U": 0
         },
-        "quantidade_total": 4,
-        "valor_total": 160,
+        "quantidade_total": 0,
+        "valor_total": 0,
         "valor_total_tb1": 0,
         "valor_total_tb2": 0,
         "valor_total_tb3": 0
@@ -101,14 +101,14 @@
         "valor_unitario_tb3": 0,
         "grade": {
           "PP": 0,
-          "P": 11,
-          "M": 16,
+          "P": 0,
+          "M": 8,
           "G": 8,
           "GG": 0,
           "U": 0
         },
-        "quantidade_total": 35,
-        "valor_total": 1750,
+        "quantidade_total": 16,
+        "valor_total": 800,
         "valor_total_tb1": 0,
         "valor_total_tb2": 0,
         "valor_total_tb3": 0

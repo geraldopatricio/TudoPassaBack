@@ -2,12 +2,49 @@ const express = require('express');
 const router = express.Router();
 const fs = require('fs');
 const path = require('path');
+const multer = require('multer');
+const crypto = require('crypto');
 
 const ENTREGAS_PATH = path.join(__dirname, '../database/logistica/entregas.json');
 const PROFISSIONAIS_PATH = path.join(__dirname, '../database/profissionais/profissionais.json');
+const USUARIOS_PATH = path.join(__dirname, '../database/usuarios/usuarios.json');
+const EVIDENCIAS_PATH = path.join(__dirname, '../database/logistica/uploads/');
+const AUTH_SECRET = process.env.AUTH_SECRET || 'tudo-passa-local-auth-secret';
 
 const readJSON = (p) => JSON.parse(fs.readFileSync(p, 'utf-8') || '[]');
 const writeJSON = (p, d) => fs.writeFileSync(p, JSON.stringify(d, null, 2));
+
+if (!fs.existsSync(EVIDENCIAS_PATH)) fs.mkdirSync(EVIDENCIAS_PATH, { recursive: true });
+
+const upload = multer({
+    storage: multer.diskStorage({
+        destination: (_req, _file, cb) => cb(null, EVIDENCIAS_PATH),
+        filename: (_req, file, cb) => cb(null, `${Date.now()}-${crypto.randomUUID()}-${file.originalname.replace(/[^a-zA-Z0-9._-]/g, '_')}`)
+    }),
+    limits: { files: 6, fileSize: 8 * 1024 * 1024 },
+    fileFilter: (_req, file, cb) => cb(null, file.mimetype.startsWith('image/'))
+});
+
+const requireAdmin = (req, res, next) => {
+    const token = req.headers.authorization?.replace(/^Bearer\s+/i, '');
+    if (!token) return res.status(401).json({ message: 'Autenticação de administrador obrigatória.' });
+
+    const [payload, signature] = token.split('.');
+    const expected = crypto.createHmac('sha256', AUTH_SECRET).update(payload || '').digest('base64url');
+    if (!payload || !signature || signature.length !== expected.length || !crypto.timingSafeEqual(Buffer.from(signature), Buffer.from(expected))) {
+        return res.status(401).json({ message: 'Sessão inválida.' });
+    }
+
+    try {
+        const session = JSON.parse(Buffer.from(payload, 'base64url').toString('utf8'));
+        const usuario = readJSON(USUARIOS_PATH).find(u => u.login === session.login);
+        if (!usuario || usuario.tipo !== 'Admin') return res.status(403).json({ message: 'Apenas usuários Admin podem alterar rastreios.' });
+        req.admin = usuario;
+        next();
+    } catch (_error) {
+        return res.status(401).json({ message: 'Sessão inválida.' });
+    }
+};
 
 // 1. CRIAR ENTREGA (Chamado pelo Pedido quando status virar PAGO)
 router.post('/gerar', (req, res) => {
@@ -97,7 +134,11 @@ router.get('/disponiveis', (req, res) => {
 router.get('/rastreio/:pedidoId', (req, res) => {
     const entregas = readJSON(ENTREGAS_PATH);
     const entrega = entregas.find(e => e.pedido_id === req.params.pedidoId);
-    res.json(entrega || {});
+    if (entrega) {
+        res.json(entrega);
+    } else {
+        res.status(404).json({ error: 'Rastreamento não encontrado para o pedido.' });
+    }
 });
 
 router.get('/cliente/:documento', (req, res) => {
@@ -110,6 +151,43 @@ router.get('/cliente/:documento', (req, res) => {
 router.get('/admin/monitoramento', (req, res) => {
     const entregas = readJSON(ENTREGAS_PATH);
     res.json(entregas);
+});
+
+// Atualização operacional e evidências: restrita a administradores.
+router.put('/admin/entregas/:entregaId', requireAdmin, upload.fields([
+    { name: 'fotos', maxCount: 5 },
+    { name: 'assinatura', maxCount: 1 }
+]), (req, res) => {
+    const statusPermitidos = ['Aguardando Profissional', 'Aceito - Em Coleta', 'Em Rota', 'Entregue', 'Não Entregue'];
+    const { status, tipo_evidencia, observacao } = req.body;
+    if (!statusPermitidos.includes(status)) return res.status(400).json({ message: 'Status logístico inválido.' });
+
+    const entregas = readJSON(ENTREGAS_PATH);
+    const index = entregas.findIndex(e => e.id === req.params.entregaId);
+    if (index === -1) return res.status(404).json({ message: 'Entrega não encontrada.' });
+
+    const fotos = (req.files?.fotos || []).map(file => file.filename);
+    const assinatura = req.files?.assinatura?.[0]?.filename || null;
+    const possuiEvidencia = fotos.length > 0 || assinatura || observacao?.trim();
+    const entrega = entregas[index];
+    entrega.status = status;
+    entrega.logs = entrega.logs || [];
+    entrega.logs.push({ status, data: new Date().toISOString(), alterado_por: req.admin.login });
+    entrega.evidencias = entrega.evidencias || [];
+    if (possuiEvidencia) {
+        entrega.evidencias.push({
+            id: `EVD${Date.now()}`,
+            tipo: tipo_evidencia === 'nao_entrega' ? 'Não entrega' : 'Entrega',
+            observacao: observacao?.trim() || '',
+            fotos,
+            assinatura,
+            criado_em: new Date().toISOString(),
+            criado_por: req.admin.login
+        });
+    }
+
+    writeJSON(ENTREGAS_PATH, entregas);
+    res.json(entrega);
 });
 
 

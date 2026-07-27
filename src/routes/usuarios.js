@@ -4,10 +4,18 @@ const fs = require('fs');
 const path = require('path');
 const multer = require('multer');
 const nodemailer = require('nodemailer');
+const crypto = require('crypto');
 
 // Caminhos baseados na sua estrutura
 const DB_PATH = path.join(__dirname, '../database/usuarios/usuarios.json');
 const UPLOAD_PATH = path.join(__dirname, '../database/usuarios/uploads/');
+const AUTH_SECRET = process.env.AUTH_SECRET || 'tudo-passa-local-auth-secret';
+
+const createAccessToken = (usuario) => {
+    const payload = Buffer.from(JSON.stringify({ login: usuario.login, tipo: usuario.tipo })).toString('base64url');
+    const signature = crypto.createHmac('sha256', AUTH_SECRET).update(payload).digest('base64url');
+    return `${payload}.${signature}`;
+};
 
 // --- CONFIGURAÇÃO DO MULTER (UPLOAD) ---
 if (!fs.existsSync(UPLOAD_PATH)) {
@@ -172,7 +180,7 @@ router.post('/login', (req, res) => {
     }
 
     const { senha: _, ...dadosPublicos } = usuario;
-    res.json(dadosPublicos);
+    res.json({ ...dadosPublicos, accessToken: createAccessToken(usuario) });
 });
 
 // --- ROTA ESQUECI A SENHA ---

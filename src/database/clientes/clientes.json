@@ -139,5 +139,21 @@
     "ref_usuarios": [],
     "foto": null,
     "data_cadastro": "2026-07-08T18:38:18.226Z"
+  },
+  {
+    "codigo": "",
+    "nome": "Geraldo Patrício Melo",
+    "cpf_cnpj": "",
+    "celular": "",
+    "email": "gpatricio.melo@gmail.com",
+    "endereco": "RUA NEUSA DE FREITAS SÁ, 54",
+    "credito_limite": 0,
+    "credito_atual": 0,
+    "bloqueado": false,
+    "formas_pagamento": [],
+    "cartoes_loja": [],
+    "ref_usuarios": [],
+    "foto": null,
+    "data_cadastro": "2026-07-27T17:13:52.182Z"
   }
 ]

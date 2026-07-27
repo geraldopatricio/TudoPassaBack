@@ -142,7 +142,7 @@ const gerarEntregaLogistica = (pedido) => {
 // 1. CRIAR PEDIDO
 router.post('/', (req, res) => {
     try {
-        const { cliente, itens, frete, subtotal, total, transportadora, observacoes, pixData } = req.body;
+        const { cliente, itens, frete, subtotal, total, transportadora, transportadoraCodigo, excursao, excursaoCodigo, observacoes, pixData } = req.body;
         const pedidos = readJSON(PEDIDOS_PATH);
         const pedidosItens = readJSON(ITENS_PATH);
         const pedidoId = Date.now().toString();
@@ -157,7 +157,13 @@ router.post('/', (req, res) => {
             cliente_email: cliente.email,
             cliente_whatsapp: cliente.whatsapp,
             endereco: cliente.endereco,
-            transportadora,
+            // A excursão é a referência selecionada no checkout para o
+            // profissional cadastrado como Transportadora.
+            excursao: excursao || transportadora,
+            excursao_codigo: excursaoCodigo || transportadoraCodigo,
+            // Compatibilidade com os pedidos gravados antes do campo excursão.
+            transportadora: transportadora || excursao,
+            transportadora_codigo: transportadoraCodigo || excursaoCodigo,
             observacoes,
             subtotal,
             frete,
