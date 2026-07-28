@@ -1,23 +1,35 @@
-name: Deploy Backend Automático
+name: Deploy Automático para o Servidor
 
 on:
   push:
-    branches: [ main ]
+    branches:
+      - main
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout do código
+        uses: actions/checkout@v3
+
       - name: Executar comandos no servidor via SSH
-        uses: appleboy/ssh-action@v0.1.10
+        uses: appleboy/ssh-action@master
         with:
-          host: ${{ secrets.SSH_HOST }}
-          username: ${{ secrets.SSH_USER }}
-          key: ${{ secrets.SSH_KEY }}
+          host: ${{ secrets.REMOTE_HOST }}
+          username: ${{ secrets.REMOTE_USER }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          port: 22
           script: |
+            # 1. Entrar na pasta (Atenção: verifique se é /var/www ou /root)
             cd /var/www/TudoPassa/TudoPassaBack
+            
+            # 2. Configurar segurança para evitar erro de 'dubious ownership'
             git config --global safe.directory '*'
+            
+            # 3. Forçar a atualização total ignorando mudanças locais
             git fetch origin main
             git reset --hard origin/main
-            npm install
-            pm2 restart all || npm start & # Aqui ele reinicia seu backend
+            
+            # 4. Atualizar dependências e reiniciar o processo
+            npm install --production
+            pm2 restart all || npm start &
