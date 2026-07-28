@@ -1,0 +1,23 @@
+name: Deploy Backend Automático
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Executar comandos no servidor via SSH
+        uses: appleboy/ssh-action@v0.1.10
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USER }}
+          key: ${{ secrets.SSH_KEY }}
+          script: |
+            cd /var/www/TudoPassa/TudoPassaBack
+            git config --global safe.directory '*'
+            git fetch origin main
+            git reset --hard origin/main
+            npm install
+            pm2 restart all || npm start & # Aqui ele reinicia seu backend
