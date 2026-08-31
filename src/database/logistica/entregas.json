@@ -8,19 +8,28 @@
       "whatsapp": "",
       "endereco": "RUA NEUSA DE FREITAS SÁ, 54,  - /"
     },
-    "profissional_id": null,
-    "status": "Aguardando Profissional",
+    "profissional_id": "COD_TRANS_01",
+    "status": "Entregue",
     "data_criacao": "2026-07-27T17:36:02.453Z",
     "data_limite_aceite": "2026-07-27T17:41:02.453Z",
     "logs": [
       {
         "status": "Aguardando Profissional",
         "data": "2026-07-27T17:36:02.453Z"
+      },
+      {
+        "status": "Aceito",
+        "profissionalId": "COD_TRANS_01",
+        "data": "2026-08-06T19:20:06.719Z"
+      },
+      {
+        "status": "Entregue",
+        "data": "2026-08-06T19:20:26.082Z"
       }
     ],
     "posicao_atual": {
-      "lat": null,
-      "lng": null
+      "lat": -3.7207646136293753,
+      "lng": -38.51760845756483
     }
   },
   {
@@ -32,19 +41,28 @@
       "whatsapp": "",
       "endereco": "RUA NEUSA DE FREITAS SÁ, 54,  - /"
     },
-    "profissional_id": null,
-    "status": "Aguardando Profissional",
+    "profissional_id": "COD_TRANS_01",
+    "status": "Em Rota",
     "data_criacao": "2026-07-27T17:41:08.567Z",
     "data_limite_aceite": "2026-07-27T17:46:08.567Z",
     "logs": [
       {
         "status": "Aguardando Profissional",
         "data": "2026-07-27T17:41:08.567Z"
+      },
+      {
+        "status": "Aceito",
+        "profissionalId": "COD_TRANS_01",
+        "data": "2026-08-06T19:39:36.558Z"
+      },
+      {
+        "status": "Em Rota",
+        "data": "2026-08-06T19:39:38.526Z"
       }
     ],
     "posicao_atual": {
-      "lat": null,
-      "lng": null
+      "lat": -3.728398790502821,
+      "lng": -38.51348629314288
     }
   },
   {
@@ -177,6 +195,243 @@
         ],
         "assinatura": "1785180976806-08c8bc9f-d579-4cb4-bb06-f245901bbbfd-logo-gpsoft.jpeg",
         "criado_em": "2026-07-27T19:36:16.826Z",
+        "criado_por": "patricio"
+      }
+    ]
+  },
+  {
+    "id": "ENT1786041170417",
+    "pedido_id": "1786041163700",
+    "numero_pedido": 18,
+    "cliente": {
+      "nome": "Geraldo melo",
+      "whatsapp": "(85) 9 91994652",
+      "endereco": "Rua das Flores, 55 - norte, fortaleza/CE"
+    },
+    "profissional_id": "COD_TRANS_01",
+    "status": "Entregue",
+    "data_criacao": "2026-08-06T18:32:50.417Z",
+    "data_limite_aceite": "2026-08-06T18:37:50.417Z",
+    "logs": [
+      {
+        "status": "Aguardando Profissional",
+        "data": "2026-08-06T18:32:50.417Z"
+      },
+      {
+        "status": "Aceito",
+        "profissionalId": "COD_TRANS_01",
+        "data": "2026-08-06T19:43:07.898Z"
+      },
+      {
+        "status": "Entregue",
+        "data": "2026-08-06T19:43:13.708Z"
+      }
+    ],
+    "posicao_atual": {
+      "lat": null,
+      "lng": null
+    }
+  },
+  {
+    "id": "ENT1786043931378",
+    "pedido_id": "1786043920585",
+    "numero_pedido": 19,
+    "cliente": {
+      "nome": "Geraldo melo",
+      "whatsapp": "(85) 9 91994652",
+      "endereco": "Rua das Flores, 55 - norte, fortaleza/CE"
+    },
+    "profissional_id": "COD_TRANS_01",
+    "status": "Em Rota",
+    "data_criacao": "2026-08-06T19:18:51.378Z",
+    "data_limite_aceite": "2026-08-06T19:23:51.378Z",
+    "logs": [
+      {
+        "status": "Aguardando Profissional",
+        "data": "2026-08-06T19:18:51.378Z"
+      },
+      {
+        "status": "Aceito",
+        "profissionalId": "COD_TRANS_01",
+        "data": "2026-08-11T10:31:03.890Z"
+      },
+      {
+        "status": "Em Rota",
+        "data": "2026-08-11T10:31:15.560Z"
+      }
+    ],
+    "posicao_atual": {
+      "lat": -3.728398790502821,
+      "lng": -38.51348629314288
+    }
+  },
+  {
+    "id": "ENT1786045142405",
+    "pedido_id": "1786045138192",
+    "numero_pedido": 20,
+    "cliente": {
+      "nome": "Geraldo melo",
+      "whatsapp": "(85) 9 91994652",
+      "endereco": "Rua das Flores, 55 - norte, fortaleza/CE"
+    },
+    "profissional_id": "COD_TRANS_01",
+    "status": "Entregue",
+    "data_criacao": "2026-08-06T19:39:02.405Z",
+    "data_limite_aceite": "2026-08-06T19:44:02.405Z",
+    "logs": [
+      {
+        "status": "Aguardando Profissional",
+        "data": "2026-08-06T19:39:02.405Z"
+      },
+      {
+        "status": "Aceito",
+        "profissionalId": "COD_TRANS_01",
+        "data": "2026-08-11T10:31:26.724Z"
+      },
+      {
+        "status": "Entregue",
+        "data": "2026-08-11T10:31:28.572Z"
+      }
+    ],
+    "posicao_atual": {
+      "lat": null,
+      "lng": null
+    }
+  },
+  {
+    "id": "ENT1786046530422",
+    "pedido_id": "1784924363365",
+    "numero_pedido": 4,
+    "cliente": {
+      "nome": "Geraldo melo",
+      "whatsapp": "(85) 9 91994652",
+      "endereco": "Rua das Flores, 55 - norte, fortaleza/CE"
+    },
+    "profissional_id": null,
+    "status": "Aguardando Profissional",
+    "data_criacao": "2026-08-06T20:02:10.422Z",
+    "data_limite_aceite": "2026-08-06T20:07:10.422Z",
+    "logs": [
+      {
+        "status": "Aguardando Profissional",
+        "data": "2026-08-06T20:02:10.422Z"
+      }
+    ],
+    "posicao_atual": {
+      "lat": null,
+      "lng": null
+    }
+  },
+  {
+    "id": "ENT1786046532801",
+    "pedido_id": "1784924363365",
+    "numero_pedido": 4,
+    "cliente": {
+      "nome": "Geraldo melo",
+      "whatsapp": "(85) 9 91994652",
+      "endereco": "Rua das Flores, 55 - norte, fortaleza/CE"
+    },
+    "profissional_id": null,
+    "status": "Aguardando Profissional",
+    "data_criacao": "2026-08-06T20:02:12.801Z",
+    "data_limite_aceite": "2026-08-06T20:07:12.801Z",
+    "logs": [
+      {
+        "status": "Aguardando Profissional",
+        "data": "2026-08-06T20:02:12.801Z"
+      }
+    ],
+    "posicao_atual": {
+      "lat": null,
+      "lng": null
+    }
+  },
+  {
+    "id": "ENT1786046534376",
+    "pedido_id": "1784924363365",
+    "numero_pedido": 4,
+    "cliente": {
+      "nome": "Geraldo melo",
+      "whatsapp": "(85) 9 91994652",
+      "endereco": "Rua das Flores, 55 - norte, fortaleza/CE"
+    },
+    "profissional_id": null,
+    "status": "Aguardando Profissional",
+    "data_criacao": "2026-08-06T20:02:14.376Z",
+    "data_limite_aceite": "2026-08-06T20:07:14.376Z",
+    "logs": [
+      {
+        "status": "Aguardando Profissional",
+        "data": "2026-08-06T20:02:14.376Z"
+      }
+    ],
+    "posicao_atual": {
+      "lat": null,
+      "lng": null
+    }
+  },
+  {
+    "id": "ENT1786046535756",
+    "pedido_id": "1784924363365",
+    "numero_pedido": 4,
+    "cliente": {
+      "nome": "Geraldo melo",
+      "whatsapp": "(85) 9 91994652",
+      "endereco": "Rua das Flores, 55 - norte, fortaleza/CE"
+    },
+    "profissional_id": null,
+    "status": "Aguardando Profissional",
+    "data_criacao": "2026-08-06T20:02:15.756Z",
+    "data_limite_aceite": "2026-08-06T20:07:15.756Z",
+    "logs": [
+      {
+        "status": "Aguardando Profissional",
+        "data": "2026-08-06T20:02:15.756Z"
+      }
+    ],
+    "posicao_atual": {
+      "lat": null,
+      "lng": null
+    }
+  },
+  {
+    "id": "ENT1786443288200",
+    "pedido_id": "1721000000000",
+    "numero_pedido": 1,
+    "cliente": {
+      "nome": "João Silva",
+      "whatsapp": "11999999999",
+      "endereco": "Rua Exemplo, 123 - Bairro - Cidade/UF"
+    },
+    "profissional_id": null,
+    "status": "Entregue",
+    "data_criacao": "2026-08-11T10:14:48.200Z",
+    "data_limite_aceite": "2026-08-11T10:19:48.200Z",
+    "logs": [
+      {
+        "status": "Aguardando Profissional",
+        "data": "2026-08-11T10:14:48.200Z"
+      },
+      {
+        "status": "Entregue",
+        "data": "2026-08-11T10:32:12.965Z",
+        "alterado_por": "patricio"
+      }
+    ],
+    "posicao_atual": {
+      "lat": null,
+      "lng": null
+    },
+    "evidencias": [
+      {
+        "id": "EVD1786444332965",
+        "tipo": "Entrega",
+        "observacao": "",
+        "fotos": [
+          "1786444332962-09476ace-f7ae-4ecb-be6f-ad10a8cc0751-1.jpeg"
+        ],
+        "assinatura": null,
+        "criado_em": "2026-08-11T10:32:12.965Z",
         "criado_por": "patricio"
       }
     ]

@@ -54,7 +54,8 @@
     "credito_atual": 100,
     "foto": "1783106385199-avatar.png",
     "ref_usuarios": [
-      "geraldo"
+      "geraldo",
+      "patricio"
     ]
   },
   {
@@ -81,22 +82,6 @@
     "data_cadastro": "2026-07-05T16:12:49.035Z"
   },
   {
-    "codigo": "112341234",
-    "nome": "asdf",
-    "cpf_cnpj": "112341234",
-    "celular": "1234523452345",
-    "email": "sadfasdf",
-    "endereco": "asdfasdfasdf",
-    "credito_limite": 0,
-    "credito_atual": 0,
-    "bloqueado": false,
-    "formas_pagamento": [],
-    "cartoes_loja": [],
-    "ref_usuarios": [],
-    "foto": null,
-    "data_cadastro": "2026-07-05T16:14:50.289Z"
-  },
-  {
     "codigo": "1783268520511",
     "nome": "melo silva sauro",
     "cpf_cnpj": "878788787878",
@@ -118,27 +103,6 @@
     "cartoes_loja": [],
     "foto": null,
     "data_cadastro": "2026-07-05T16:22:00.515Z"
-  },
-  {
-    "codigo": "1783535898222",
-    "nome": "blabla",
-    "cpf_cnpj": "888",
-    "celular": "888",
-    "email": "",
-    "endereco": "asdfas",
-    "numero": "",
-    "bairro": "",
-    "cidade": "",
-    "uf": "",
-    "cep": "",
-    "credito_limite": 0,
-    "credito_atual": 0,
-    "bloqueado": false,
-    "formas_pagamento": [],
-    "cartoes_loja": [],
-    "ref_usuarios": [],
-    "foto": null,
-    "data_cadastro": "2026-07-08T18:38:18.226Z"
   },
   {
     "codigo": "",

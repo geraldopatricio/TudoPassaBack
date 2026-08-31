@@ -1,0 +1,37 @@
+{
+  "provider": "alpha",
+  "enabled": true,
+  "cnpjEnrichment": true,
+  "credentials": {
+    "baseUrl": "",
+    "token": "",
+    "apiKey": "",
+    "clientId": "",
+    "clientSecret": ""
+  },
+  "resources": {
+    "produtos": {
+      "get": "https://api-tudopassaweb.alphasystemas.com.br/v1/produtos",
+      "getOne": "",
+      "post": "",
+      "put": "",
+      "responsePath": ""
+    },
+    "clientes": {
+      "get": "https://api-tudopassaweb.alphasystemas.com.br/v1/clientes?Pagina=1&TamanhoPagina=10000",
+      "getOne": "https://api-tudopassaweb.alphasystemas.com.br/v1/clientes/{id}",
+      "post": "",
+      "put": "",
+      "responsePath": "itens"
+    },
+    "profissionais": {
+      "get": "https://api-tudopassaweb.alphasystemas.com.br/v1/representantes?Ativo=true&Pagina=1&TamanhoPagina=100",
+      "getOne": "",
+      "post": "",
+      "put": "",
+      "responsePath": "itens",
+      "tipo": "representante"
+    }
+  },
+  "resource": "clientes"
+}

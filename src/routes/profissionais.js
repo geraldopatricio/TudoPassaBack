@@ -3,6 +3,7 @@ const router = express.Router();
 const fs = require('fs');
 const path = require('path');
 const multer = require('multer');
+const integration = require('../services/integrationService');
 
 // Caminhos
 const DB_PATH = path.join(__dirname, '../database/profissionais/profissionais.json');
@@ -60,12 +61,20 @@ const parseArray = (data) => {
 // --- ROTAS CRUD ---
 
 // 1. LISTAR TODOS
-router.get('/', (req, res) => {
-    res.json(readDB());
+router.get('/', async (req, res) => {
+    try {
+        const remote = await integration.list('profissionais');
+        if (!remote) return res.json(readDB());
+        const local = readDB();
+        res.json(remote.map(item => ({ ...item, ...(local.find(saved => String(saved.codigo) === String(item.codigo)) || {}), codigo: item.codigo, nome: item.nome, ativo: item.ativo })));
+    }
+    catch (error) { res.status(502).json({ message: 'Erro ao consultar integração de profissionais', error: error.message }); }
 });
 
 // 2. BUSCAR POR CÓDIGO
-router.get('/:codigo', (req, res) => {
+router.get('/:codigo', async (req, res) => {
+    try { const remote = await integration.getOne('profissionais', req.params.codigo); if (remote) return res.json(remote); }
+    catch (error) { return res.status(502).json({ message: error.message }); }
     const profissionais = readDB();
     const prof = profissionais.find(p => p.codigo === req.params.codigo);
     if (!prof) return res.status(404).json({ message: "Profissional não encontrado" });
@@ -75,6 +84,8 @@ router.get('/:codigo', (req, res) => {
 // 3. CADASTRAR
 router.post('/', upload.single('logomarca'), (req, res) => {
     try {
+        const remote = awaitRemote('post', null, req.body);
+        if (remote) return remote.then(data => res.status(201).json(data)).catch(error => res.status(502).json({ message: error.message }));
         const profissionais = readDB();
         const {
             codigo, nome, cpf_cnpj, celular, email, endereco,
@@ -118,10 +129,19 @@ router.post('/', upload.single('logomarca'), (req, res) => {
 // 4. EDITAR
 router.put('/:codigo', upload.single('logomarca'), (req, res) => {
     const { codigo } = req.params;
+    const remote = awaitRemote('put', codigo, req.body);
+    if (remote) return remote.then(data => res.json(data)).catch(error => res.status(502).json({ message: error.message }));
     let profissionais = readDB();
     const index = profissionais.findIndex(p => p.codigo === codigo);
 
-    if (index === -1) return res.status(404).json({ message: "Profissional não encontrado" });
+    if (index === -1) {
+        const config = integration.readConfig();
+        if (config.enabled) {
+            const novo = { ...req.body, codigo, tipo: req.body.tipo || config.resources?.profissionais?.tipo || 'fornecedor', data_cadastro: new Date().toISOString() };
+            profissionais.push(novo); writeDB(profissionais); return res.status(201).json(novo);
+        }
+        return res.status(404).json({ message: "Profissional não encontrado" });
+    }
 
     // Gerenciar troca de logomarca (apagar antiga se houver nova)
     if (req.file && profissionais[index].logomarca) {
@@ -167,3 +187,9 @@ router.delete('/:codigo', (req, res) => {
 });
 
 module.exports = router;
+
+function awaitRemote(method, id, body) {
+    const config = integration.readConfig();
+    if (!config.enabled || !config.resources?.profissionais?.[method]) return null;
+    return integration.writeRemote('profissionais', method, id, body);
+}

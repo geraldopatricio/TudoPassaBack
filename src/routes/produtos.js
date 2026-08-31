@@ -3,6 +3,7 @@ const router = express.Router();
 const fs = require('fs');
 const path = require('path');
 const multer = require('multer');
+const integration = require('../services/integrationService');
 
 const DB_PATH = path.join(__dirname, '../database/produtos/produtos.json');
 const UPLOAD_PATH = path.join(__dirname, '../database/produtos/uploads/');
@@ -36,12 +37,20 @@ const writeDB = (data) => {
 };
 
 // 1. LISTAR TODOS
-router.get('/', (req, res) => {
-    res.json(readDB());
+router.get('/', async (req, res) => {
+    try {
+        const remote = await integration.list('produtos');
+        if (!remote) return res.json(readDB());
+        const local = readDB();
+        res.json(remote.map(item => ({ ...item, ...(local.find(saved => String(saved.referencia) === String(item.referencia)) || {}), referencia: item.referencia })));
+    }
+    catch (error) { res.status(502).json({ message: 'Erro ao consultar integração de produtos', error: error.message }); }
 });
 
 router.post('/', upload.single('imagem'), (req, res) => {
     try {
+        const remote = awaitRemote('produtos', 'post', null, req.body);
+        if (remote) return remote.then(data => res.status(201).json(data)).catch(error => res.status(502).json({ message: error.message }));
         const produtos = readDB();
         const { referencia } = req.body;
 
@@ -92,10 +101,19 @@ router.post('/', upload.single('imagem'), (req, res) => {
 // 3. EDITAR
 router.put('/:ref', upload.single('imagem'), (req, res) => {
     const { ref } = req.params;
+    const remote = awaitRemote('produtos', 'put', ref, req.body);
+    if (remote) return remote.then(data => res.json(data)).catch(error => res.status(502).json({ message: error.message }));
     let produtos = readDB();
     const index = produtos.findIndex(p => p.referencia === ref);
 
-    if (index === -1) return res.status(404).json({ message: "Produto não encontrado" });
+    if (index === -1) {
+        const config = integration.readConfig();
+        if (config.enabled) {
+            const novo = { ...req.body, referencia: ref, variantes: req.body.variantes ? (typeof req.body.variantes === 'string' ? JSON.parse(req.body.variantes) : req.body.variantes) : [] };
+            produtos.push(novo); writeDB(produtos); return res.status(201).json(novo);
+        }
+        return res.status(404).json({ message: "Produto não encontrado" });
+    }
 
     // Processar variantes se elas vierem no corpo da requisição
     let variantesAtualizadas = produtos[index].variantes;
@@ -149,3 +167,9 @@ router.delete('/:ref', (req, res) => {
 });
 
 module.exports = router;
+
+function awaitRemote(resource, method, id, body) {
+    const config = integration.readConfig();
+    if (!config.enabled || !config.resources?.[resource]?.[method]) return null;
+    return integration.writeRemote(resource, method, id, body);
+}

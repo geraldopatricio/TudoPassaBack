@@ -3,6 +3,7 @@ const router = express.Router();
 const fs = require('fs');
 const path = require('path');
 const multer = require('multer');
+const integration = require('../services/integrationService');
 
 // --- CONFIGURAÇÃO DE CAMINHOS ---
 const DB_PATH = path.join(__dirname, '../database/clientes/clientes.json');
@@ -62,13 +63,26 @@ const parseArray = (data) => {
 // --- ROTAS CRUD ---
 
 // 1. LISTAR TODOS
-router.get('/', (req, res) => {
-    const clientes = readDB();
-    res.json(clientes);
+router.get('/', async (req, res) => {
+    try {
+        const remote = await integration.list('clientes');
+        if (!remote) return res.json(readDB());
+        const local = readDB();
+        res.json(remote.map(item => ({ ...item, ...(local.find(saved => String(saved.codigo) === String(item.codigo)) || {}), codigo: item.codigo })));
+    }
+    catch (error) { res.status(502).json({ message: 'Erro ao consultar integração de clientes', error: error.message }); }
 });
 
 // 2. BUSCAR POR CÓDIGO
-router.get('/:codigo', (req, res) => {
+router.get('/:codigo', async (req, res) => {
+    try {
+        const remote = await integration.getOne('clientes', req.params.codigo);
+        if (remote) {
+            const local = readDB().find(saved => String(saved.codigo) === String(req.params.codigo));
+            return res.json({ ...remote, ...(local || {}), codigo: remote.codigo });
+        }
+    }
+    catch (error) { return res.status(502).json({ message: error.message }); }
     const clientes = readDB();
     const cliente = clientes.find(c => c.codigo.toString() === req.params.codigo.toString());
     if (!cliente) return res.status(404).json({ message: "Cliente não encontrado" });
@@ -78,6 +92,8 @@ router.get('/:codigo', (req, res) => {
 // 3. CADASTRAR (POST)
 router.post('/', upload.single('foto'), (req, res) => {
     try {
+        const remote = awaitRemote('post', null, req.body);
+        if (remote) return remote.then(data => res.status(201).json(data)).catch(error => res.status(502).json({ message: error.message }));
         const clientes = readDB();
         const { codigo, cpf_cnpj } = req.body;
 
@@ -112,10 +128,19 @@ router.post('/', upload.single('foto'), (req, res) => {
 // 4. ATUALIZAR (PUT)
 router.put('/:codigo', upload.single('foto'), (req, res) => {
     const { codigo } = req.params;
+    const remote = awaitRemote('put', codigo, req.body);
+    if (remote) return remote.then(data => res.json(data)).catch(error => res.status(502).json({ message: error.message }));
     let clientes = readDB();
     const index = clientes.findIndex(c => c.codigo.toString() === codigo.toString());
 
-    if (index === -1) return res.status(404).json({ message: "Cliente não encontrado" });
+    if (index === -1) {
+        const config = integration.readConfig();
+        if (config.enabled) {
+            const novo = { ...req.body, codigo, data_cadastro: new Date().toISOString() };
+            clientes.push(novo); writeDB(clientes); return res.status(201).json(novo);
+        }
+        return res.status(404).json({ message: "Cliente não encontrado" });
+    }
 
     // Se enviou uma nova foto, tenta apagar a antiga para economizar espaço
     if (req.file && clientes[index].foto) {
@@ -163,3 +188,9 @@ router.delete('/:codigo', (req, res) => {
 });
 
 module.exports = router;
+
+function awaitRemote(method, id, body) {
+    const config = integration.readConfig();
+    if (!config.enabled || !config.resources?.clientes?.[method]) return null;
+    return integration.writeRemote('clientes', method, id, body);
+}

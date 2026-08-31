@@ -3,6 +3,8 @@ const express = require('express');
 const cors = require('cors');
 const path = require('path');
 const nodemailer = require('nodemailer');
+const swaggerUi = require('swagger-ui-express');
+const openapi = require('./docs/openapi');
 const produtoRoutes = require('./routes/produtos');
 const checkoutRoutes = require('./routes/checkout');
 const clientesRouter = require('./routes/clientes');
@@ -12,17 +14,25 @@ const tabelaPrecosRouter = require('./routes/tabelaPrecos');
 const pedidosRouter = require('./routes/pedidos');
 const financeiroRouter = require('./routes/financeiro');
 const logisticaRouter = require('./routes/logistica');
+const integracoesRouter = require('./routes/integracoes');
 
 const app = express();
 
 app.use(cors());
 const corsOptions = {
-    origin: ['http://localhost:5173', 'http://localhost:5174', 'https://main.di1r7fuo8b0ux.amplifyapp.com'],
+    origin: ['http://localhost:5173', 'http://localhost:5174', 'https://tudopassa.lookrapido.com.br'],
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
     allowedHeaders: ['Content-Type', 'Authorization']
 };
 
 app.use(express.json());
+
+// Documentação oficial: JSON OpenAPI e Swagger UI tradicional.
+app.get('/openapi.json', (_req, res) => res.json(openapi));
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(openapi, {
+    customSiteTitle: 'Tudo Passa API',
+    swaggerOptions: { docExpansion: 'none', filter: true, displayRequestDuration: true }
+}));
 
 // Servir as imagens//
 app.use('/uploads/produtos', express.static(path.join(__dirname, 'database/produtos/uploads')));
@@ -104,6 +114,7 @@ app.use('/tabela-precos', tabelaPrecosRouter);
 app.use('/pedidos', pedidosRouter);
 app.use('/financeiro', financeiroRouter);
 app.use('/logistica', logisticaRouter);
+app.use('/integracoes', integracoesRouter);
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => console.log(`🚀 Backend rodando na porta ${PORT}`));

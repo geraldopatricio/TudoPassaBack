@@ -13,7 +13,7 @@
     "subtotal": 120,
     "frete": 15,
     "total": 135,
-    "status": "Pago",
+    "status": "Pendente",
     "pix_copia_cola": "..."
   },
   {
@@ -30,7 +30,7 @@
     "subtotal": 240,
     "frete": 20,
     "total": 260,
-    "status": "Pago",
+    "status": "Enviado",
     "pix_qr_code": "iVBORw0KGgoAAAANSUhEUgAAAcIAAAHCAQAAAABUY/ToAAADEklEQVR4Xu2TQZLbMBADddP/f5Rn6eYYDZD2biWl1F4yrsLIljgYNHQgdTx+WL+O78q/Vsm7KnlXJe+q5F2VvKv/Rl4HdWpx8j+folp1Tx3Ps6eNUnIu6RnAGsvnifhQdthfcjD5UtHFxixdUw3WuuRnkN7z9FJyO0UxK/lJ5EPSGgFTaXdmyfHkI+pmTltRcqOPs+Rocu/47RVnyb9eA8hdl/BXhk/CPgE+BqtKjiVl3sgKoD/0hUOrT6ATSk4mac3KTmXlsGSea1VyMom6fAog6loxiGk4ECVnkzbqLiw5anRbWkI1LTmZXEZtvRyHvCakiYmGFVPJuaR9i3aDITnQfgERdCXHkrht1Ze7h3TLn2ClMC05lgy4MgQsOHmgO6vkbFJjuYFOzxOwfIKDK6vkZJK1b3HbiyZJAyJoAEvOJbfDDNjGTb4YXlJyNokveoa6dqjRpNtdcjJJrwEerUCVkdmKQig5m9TMz0DWDsDdq2MlpuRYUr0csjDWSr2hyzpRkoyWnEwK9kEISdxWjKOUHE+qP+TJ5uvnU6DlDkuDUHIwad/aZQxudOPJ5m9FQsnJ5OlDQEHrWh1ezsp6g9CSc0lGsWvlrDiZ2r7+qpJjSVi5ZHy8DoYeZEl7zZxUcjIpeZ0ADVcY0jolpAQsOZq0g4VzUL6DQjWQqeRg0ogmhhylJV7cuZX8BBKnwbeEdSkliQkqOZm81ud7UBqQ9ULs8A+w5GQyWw9l/ETVnS6ijPAlR5M4k6CxCVKQ8BgxXHIweWm8fhk6ymlqczxwyFNyMomaiCO4F8J2nBYBS84lH9vple0EvQmJ9K/kaFIQATar959HUvOGktNJg8iHN3vvfVAG9DKUnE2ugj2h4VFMerWzS04mv+4x/yMBenog05uj5GBSK9+fVmPyOXMdAcXEUHI4+XRku7XV3naKtH0kUPyekh9AWpcTVQZpOJfvzyeh5EQyE9ueCkFp/H1j5llyMBlJcw1iSnNm5qAoJQeTB3Uuo55vTlBOCIiXJeeSP6qSd1XyrkreVcm7KnlXH0b+BgCiuWXNQvKGAAAAAElFTkSuQmCC",
     "pix_copia_cola": "00020101021226820014br.gov.bcb.pix2560pix-h.asaas.com/qr/cobv/13849439-a679-4ae6-9923-26350a0ff8125204000053039865802BR5925LUCAS NASCIMENTO DE SOUSA6009Fortaleza61086076248562070503***630498A7"
   },
@@ -48,7 +48,7 @@
     "subtotal": 40,
     "frete": 34,
     "total": 74,
-    "status": "Pago",
+    "status": "Cancelado",
     "pix_qr_code": "iVBORw0KGgoAAAANSUhEUgAAAcIAAAHCAQAAAABUY/ToAAADFElEQVR4Xu2TQa7bQAxDs8v9b9RjeZeWj5Sd/qJw8TdVAMqOPaL4mMWMH69v1o/HV+Vfq+RdlbyrkndV8q5K3tV/I48H9ZRwPI/nr4cWNKf+kPzmLLmXvJgQGurhxmHTx19yMRlV2y39YLeRpROUiJMvuZ7U9ZpeSh6KS3TJDyI5CTMCptLKXvIzyJfVcHLbesiWB32cJVeT547fXnGW/Ou1gLxKk+z8U/ut5XkCfAymSq4l2d/nucvG3c+3Tp9AJ5RcS6qkP9h7PSOxzCmYw1DyA8hw9h4+GJhOGIenRkuuJa9tdghhyHLBwxA945J7SfXHTMVKiYRCRqD8T8m1ZFoEp8RNVuixeVpyMWn33PLGatb+kY8ElVxLSnSLl98Ja+nE+Y+Sy0lmeUrWioDLJzh4QkuuJVUAqJhGJES4I2g8LbmWjHSpdvAOeTH+i5KLSZZvh4ChLkbIoKToWXI1qaXEkHqqMWxiOtwll5M4HeGE5ym+94RqpYCSe0kNHyo0j+mBlOcrHtCSe0lpuDOOnwlr4/GUXE+eUBjhVoLSukEouZnE5/fg4n029GbzT0VCyb3ki0MAnY22MRJeAucfhJbcTHJHxXo5ibJ9fqqSa0lZT7dJuHlhUUisKCXXkgwkS5WDHfdSXg18ZS2k5F6SzsOXbmChX0ChtpRcTA7zkBKMszDe5L6Fl1xM2s+26ymDv++5PLjSSi4nWeskyCIY6Q1hlhtzyb0k2z2I9MNuPB7w5BQ4ouRmkhH3M06LmTgxiOGSm0mayBmSojqPCYGkMym5lmSeAJlOHBevs094yc0kE7baRwCXpOt8ZIwAWnIx+TiNJifDL1LldkzJ5eSAWDEEnbNBqnuCS64mp6Rp7tFsO6RXjrC55FpS7tl0TcRz++3NT+QklFxMsrnedU2TlXesxPxxEkquJA8IP9O7ZPM5GA1Xyc8gPQZ/5XzYRznx6UnJ/STX+ERNe8jviLGUXEyOdGSbBxhB2dy0TEvuJfU56yxor5n85gTlA3eqv/WSa8lvVcm7KnlXJe+q5F2VvKsPI38CK8oZFILrUcoAAAAASUVORK5CYII=",
     "pix_copia_cola": "00020101021226820014br.gov.bcb.pix2560pix-h.asaas.com/qr/cobv/1964d7f5-2871-4c87-8798-6ee1c751d6a65204000053039865802BR5925LUCAS NASCIMENTO DE SOUSA6009Fortaleza61086076248562070503***6304768E"
   },
@@ -102,7 +102,7 @@
     "subtotal": 430,
     "frete": 18,
     "total": 448,
-    "status": "Pago",
+    "status": "Pendente",
     "pix_qr_code": "iVBORw0KGgoAAAANSUhEUgAAAcIAAAHCAQAAAABUY/ToAAADC0lEQVR4Xu2TQZLbQAwDddP/f5Rn+eYsGqC0m0pKqVzCrQJla4YgGj7M+Hj/Y/04flX+tko+VcmnKvlUJZ+q5FP9N/J1UOfHRt/jfJ0fIq1Gp4yMaKOU3Et6ZsDw5wgWKPr4Sy4mb9VOo149zeB2llxPasUCkgBjAUp+J1KGT9upmXxxltxMvq3ywOidpDMv+jhLriavE3984iz5x2cBedXL+GT4Jlw3wNdgquRakvM99eYPPaTPnLQvgU4ouZbUIUPIqAGXwP11C+YylPwGpH2Hzvrti5GUC55kNtJKriUl0bHBS5b2XsyId1TJzaQFeTR9y+9eNhQyAuEruZh8SQLDLcg9emjKEXQlN5PxGc9QIWItxWVLyfXkELEZhmJABGElt5PMfewSMfK9fQ4HT2jJvSQgXzw2x6SAc1QaT0uuJZFkOmUAUY5jTN6MzDKVXEsCD+4kaxkkxCnJLLmYlEcYg3uXOLwkkCih5HYSGAuIG2LunlD/TsnNpG22GHcfhf7S/Csl95Ia+YhDMh4F7faU3E+OJwd9eM87KJfCDULJxaQK2lwMOXfWjKNIKLmZfOkOGBHst6V4CbRATMnFpIy8vWFGlzSmQTQquZrEd5/xMCwJuy6BxZKbSU/U2sLR6+8tUaQuA0/2MpbcS8LJGMhr1E+gUA2EllxLqr/Mwu1Hwos7r5L7yQEh0mtnZxLHgFByM/nRgkzI7G6EfT6AJReTJ494YZcbjzpPUBNRcjN5yOGp3Vgc4o1NnpVcTkLpcxkUos4zZyLJR3jJxSTjNwJrboNdLFefacnNJBMOmo3t7Kwg6CY4H7TkYlKUDJp6zZdFcxkSU3I5GfCY+WAIM0x/6FaUXE1OzcxHPceeOO0Sob7kXnIITVGZc+a5FGyzcWbJxSR2azImK+tcAcWQWXI9KT8jRHpXWkZRnF3yG5AfiubDv/W2j3Lib29CyY2k1DFy9s6gmYl/oORq8pbmjUiTzQRFKbmYPKjT/1vaz05QT4Tkv15yLflPVfKpSj5Vyacq+VQln+qbkT8BHEgZFMXoa/oAAAAASUVORK5CYII=",
     "pix_copia_cola": "00020101021226820014br.gov.bcb.pix2560pix-h.asaas.com/qr/cobv/a4406d08-61a3-4214-8ef7-fc1e53863d045204000053039865802BR5925LUCAS NASCIMENTO DE SOUSA6009Fortaleza61086076248562070503***63041C06"
   },
@@ -305,5 +305,59 @@
     "status": "Pendente",
     "pix_qr_code": "iVBORw0KGgoAAAANSUhEUgAAAcIAAAHCAQAAAABUY/ToAAADF0lEQVR4Xu2TQY4bMRAD56b//yjPmpuzLFLa3QDBBHtJG2Db1qjZLPogzfX6Yf26/lT+tUo+VcmnKvlUJZ+q5FP9N/K+qPW6161FXx7X0mjJeHu8nSUnk54tTVgcc6mBIWz38ZccTEY1CHQO3lHy7ljzJceTULuXkmWJcnTJNyKhcNubSqtxyfcgYZY+Hl685fjVs9DHWXI0eU788RNnyb9+BpCnOP0c/9J5a3tugK/BrpJjSc5Xp2yvepE+cxr3CXRCycGkO9xyaOKGjbvsS44nY9QnZvNfYSQ1+29KDibly+ptwuSCZyLeUSVHkx4vnfA59CtHb9EakMwlh5Oe2r0jbL1DU+cPSs4m40M/Q1K23zP+hWnJsSSCPFaVoSzBCQU9WSVnk/ZGjNHC8UkLntCSc0l3+oqIOXISHUHjacmxpLa2XAcx7Ush9TB7VHIsueEvXBYSF4NbJOH2lRxLMo2gFot/K4QdGCSUnEzavxJhQL2ybs4+M5TckZJzSTRZnCErvSH3R1tGS44lbzuwBKBRpD5OXlZKzieP59Z4B6QDpXWDUHI8+WIegxovPDOOIqHkXFITQZ/cybn8TnMXlpMdU3I06Y65n7aRJdCG/VOVnEzayu9zvx+OJJRrAVxyLClZKiJuPDaLzISUgCUHk+otoRp23jdQ6DaVnEvKoxY7s0udeZCd+xlfciy5jRy9WgWY2N6TnaCSg8l7y7ZsfPdG3eYalJxMoodnhl9PyxpoZa694JKDySX4G0aQ02hJJ4m8kpNJOEz6mmZMqsO4CecPSg4mGajjJuC1iAszCWwClpxLyv7hXImIPZKhtUdJLzmavGS0VYt6/3iQKINjSg4nDSJfPuygHL6Hu5eh5Gxy18cYyiOSuAXpNE52ycnk5xkf3+UAnmy4CGycWXIwqV1WcrD53PW42SpmZ5acTeL2ye/elVaDaLkNJd+A1Ooh6kuracqJy5OSb0BGtY232C0TR9zRSg4mI118lxWharw/syglB5MXtTGAL05QXnBP/a6XHEv+qEo+VcmnKvlUJZ+q5FO9GfkbOofYVPd/6NQAAAAASUVORK5CYII=",
     "pix_copia_cola": "00020101021226820014br.gov.bcb.pix2560pix-h.asaas.com/qr/cobv/4a40d7c3-3402-4c34-8984-e6ddca6b913b5204000053039865802BR5925LUCAS NASCIMENTO DE SOUSA6009Fortaleza61086076248562070503***63042F49"
+  },
+  {
+    "id": "1786041163700",
+    "numero_pedido": 18,
+    "data": "2026-08-06T18:32:43.700Z",
+    "cliente_nome": "Geraldo melo",
+    "cliente_cpf": "50883968215",
+    "cliente_email": "geraldo@gpsoft.com.br",
+    "cliente_whatsapp": "(85) 9 91994652",
+    "endereco": "Rua das Flores, 55 - norte, fortaleza/CE",
+    "transportadora": "Mario da Silva Sauro",
+    "observacoes": "",
+    "subtotal": 280,
+    "frete": 26,
+    "total": 306,
+    "status": "Pago",
+    "pix_qr_code": "iVBORw0KGgoAAAANSUhEUgAAAcIAAAHCAQAAAABUY/ToAAADCklEQVR4Xu2TS44jSQxDvfP9bzTHyp3HfKSiqnowyEZvWgYopzP04aMXIT9efxj/PH7t/G6UvIuSd1HyLkreRcm7+Gvk9SCeZM/r+Xo/ar9TjVw81P5SllxM/hQyfr9V42azuI6+5GJyupxm5+LtJ629hi+5nryQp8bDr7H8sQ8l15NKjVibSMm45EeQL3fpw+htvZozOcqSq8lz47efKEv+72cB+S08is6bcDbAazBRci2JnFt+Mr7M0nXhOoZ2KLmaFCAxX01ckbhKXvIjSK47slfS77D2wP5aiJKbSdhBMhcms/BxTaYouZeU+srw4BBPWvYY9+e3TSi5kESDSCeQBZyhCVtQlVxLTs/w19B+0bMgONqo5F7SFfBbmzfwscIiXiWXkwjQc9/C0hide+CalVxOej59g3PGUBIKS0uuJdX229l0OE1+MRiX3E0q3EWPcnIvhUS46F1yNTmwbloPEn9VocUBMzVKribFvatL6jh4HQCntqknJReTESTA4wF09iC+RkuuJT3LZc9e5NLpBadTcj3pOR8zZwuwhGM5jq7kclLEex7NS810OLn802Feci+pOXcvE25ex7TQypuOaKEl15IZkp1j7Gzlib/WlFxM5qY1EDBb4OuHo85vgJZcS14oI3jmrqcpUh0+Z1pyNYmQhoqR/QcUyrzkavL8f49AJTK/TGdecjkJrLABRmbjxFhn3EquJqe8JAdWE5tByPMAltxLSgYWifXRKH+wGghiUXIxiQBWEgpJpDEk5SCGSy4mUU47Q3ZhZpR0ruNUci/JjXPXWYfggnycOuYlN5NMHoz8nJdH5LH0U3I1qUWIgQaqLSf1enwXlNxMGhzp6CX3oeHUtiy5mZxArz6juXZIZ7awuORa8po7ZuRN+LkUpMcXuOReUhl3HZ29ZMPx5aiOz5KbSQPWpXaklDo9b0PJTyCHZpT9ME2Md8lPIf0nPsp4kM0IWcnd5LSUzXdUruWCUTolF5MP4sjIv5TpjWH+6yXXkn8UJe+i5F2UvIuSd1HyLj6M/BfivxkU60YMAQAAAABJRU5ErkJggg==",
+    "pix_copia_cola": "00020101021226820014br.gov.bcb.pix2560pix-h.asaas.com/qr/cobv/bc3c94de-729d-4a5a-8bed-a2c5d58b61e35204000053039865802BR5925LUCAS NASCIMENTO DE SOUSA6009Fortaleza61086076248562070503***6304E591"
+  },
+  {
+    "id": "1786043920585",
+    "numero_pedido": 19,
+    "data": "2026-08-06T19:18:40.585Z",
+    "cliente_nome": "Geraldo melo",
+    "cliente_cpf": "50883968215",
+    "cliente_email": "geraldo@gpsoft.com.br",
+    "cliente_whatsapp": "(85) 9 91994652",
+    "endereco": "Rua das Flores, 55 - norte, fortaleza/CE",
+    "transportadora": "Mario da Silva Sauro",
+    "observacoes": "",
+    "subtotal": 440,
+    "frete": 21,
+    "total": 461,
+    "status": "Pago",
+    "pix_qr_code": "iVBORw0KGgoAAAANSUhEUgAAAcIAAAHCAQAAAABUY/ToAAADIElEQVR4Xu2TwY7bQAxDfZv//6N+lm/p8pHjZAsULvZSGaDieEYSH3OQcrx+GL+OPyv/GiXvouRdlLyLkndR8i7+G3kexHqdi2RxLm7U0ah9KUtOJt37ql9q62yBU4yiLDmbTNWKxWpErLq6ku17yWeQqvgr5AgIdlmXfA4pzGprE0klL/kM8pWqHsOW5s/MizzKkqPJa+K3nyhL/vUzgLxCI1Y7Om/CtQFegx0lx5LM90uyNeZcVTNe29AOJeeSqFy5bgHthZnvJceTXyom/gFJYccNHHtV8hMlx5ICJVtuO4ujy7uWm6LkXNJdNfOSgmAjJKBmu4VtybHkS0VwI7Q+zZCGcrfkYNJNC51GmhL6XT5jVHIuuehRUOPaho+eXdUqOZ1U22ILztxxsA7jdG1aciypilrQqNPW2wUkXhKDJSeTSsVSUyWX7YfGffHqlhxMWsjgd9NXX4LionfJ0ST9IzhGyAyb2BntksPJD/Bk1otawHcuU90kLDmWRHQQDF3SK0duG9eW0ZJjyYwZiR6W4vTQ6QSnUvIB5NZQyxIcynmJy5K8VSXHkkgX50KDVebOyfCvCv2SY0mjjj15T18u1m5XaKEl55JJEOeiDbBy/9+D8HcvOZmkF6WE3D6OeOqiop1KjiU14V3iUUsOEotUhU/uYkoOJjVnTxqaheD4Dgq1e8nJ5AaurhlyF6PY95KjyZMl2Lsgge7WxZQcJYWSo0mpL1SvbzVOp9jSLzmYFKL569l5NGJV94EAtORkMqne4pGoaMhu1hguOZiMUKq1m7rL6t1U37bUS04mKSO0gYs4RbwvNi85mHzREfopdykQ3iGplZxMsgcIESv3l0N9CWJTcjgZULl9sgwe/nZ17l7JyeSOc8+cpvquSMgtFvxEybGk5Bk6nG48Pj18PL0FoCXnkroxa+vjlXOvgHqqeEdKTia/FJ57OpChleKYirQln0GilZLqS2/rCCskKPkQcm1Ch8afRHpbxLfkZHKXzFokVCp11eEhRV9yLql/tHaB1va4lKDvJYl7ybHkj6LkXZS8i5J3UfIuSt7Fw8jfl6oZFPSEq/MAAAAASUVORK5CYII=",
+    "pix_copia_cola": "00020101021226820014br.gov.bcb.pix2560pix-h.asaas.com/qr/cobv/39a8a663-e54d-41be-96a4-361066d85d915204000053039865802BR5925LUCAS NASCIMENTO DE SOUSA6009Fortaleza61086076248562070503***6304B2FD"
+  },
+  {
+    "id": "1786045138192",
+    "numero_pedido": 20,
+    "data": "2026-08-06T19:38:58.192Z",
+    "cliente_nome": "Geraldo melo",
+    "cliente_cpf": "50883968215",
+    "cliente_email": "geraldo@gpsoft.com.br",
+    "cliente_whatsapp": "(85) 9 91994652",
+    "endereco": "Rua das Flores, 55 - norte, fortaleza/CE",
+    "transportadora": "",
+    "observacoes": "",
+    "subtotal": 440,
+    "frete": 28,
+    "total": 468,
+    "status": "Pago",
+    "pix_qr_code": "iVBORw0KGgoAAAANSUhEUgAAAcIAAAHCAQAAAABUY/ToAAADIElEQVR4Xu2TwY7cMAxDc8v//1E/K7c0fJScxRaFi71UA9Cza1sUH+dgzXH/cP06viv/ukLuVsjdCrlbIXcr5G79N/I6WKeE67zOZ9Pl0U+1rB+SvzhDziWbscxFnK4whHVd/pCDyVL13CIIqKgOqojFhxxPSvE/dIFgHR3yg8g1BOC+v6XsIT+DvK2u5qEU+1WzUZcz5Ghyvfj2U86Qf/0MIL8svfrKqLInwGPQK+RYkvcV4XFQLdJvTuG6Ap0QcjipUs99+Qq6BqD8ig05nRRrySKl6wVrDigYiJCTSW7aLo1EeV2TJpkoDA4POZq0R6+9Hp0YDQg5PQgdGnIyyZ3+DVRuWdFA2uIq5GCSPxB1qnl5FN7ISnRQyLmkDG5rYTMMVWlu2RpyMtmSEh5VRvyeBHzWwCs05FgSzAl4aL4nuCP8BXhDjiXlp2HOR5cVu5h2hhxMAmizv05HeiiEkqI95GzyQjw5vcsikyq8JBCHM+Rkcr19Rehe/8qo2qHuhBxOyvG+PQFvfXoOrNWXhJxL0jOvo/1+ft2NVzPkcFKE3Oz15ykgBK5a9Qk5mkTtd8fgJ18dHn8pEkIOJlH89sIbRSqvpwQBf8i5pGWIaqiopYachDUWcjRZEohyxDmowmpQVi/kaFKQH5wReG+PR2T3+y4m5FyybcW37Q9QKP2Qk8miHNBGye2ttO6EnE3qevHskiDeubB3ZVdQyMGkWi51HlwsLkRqKW6HnEyqtM82H5YPYO1Mge6CQ84l6/HJoI1Fj29IbZnqC1ghx5KqbIWs+xum0pMgvnohx5JV6jgdckK45lh1dUMOJm86PPXlQSiKAkjRTIoE0JCDyUesE1h182qh9zeEnE4aRC6DMS2jarh2ZMjJZC+Z1HeTJKbAaY5VhOqQc0m5DSyfIhRAFElvJJkhB5O6eTfiLHk4pNzE2IA95GDycfiVexNZNBqJVuQN+REku2mpt3b7WE6UIeRHkMuD+P6K+W3zw8bMGXIwuSQ/NYoqJO5KIaiUkIPJgyXdJt1fJ+gKrGvIueSPVsjdCrlbIXcr5G6F3K0PI38DUf6ohNFmXVAAAAAASUVORK5CYII=",
+    "pix_copia_cola": "00020101021226820014br.gov.bcb.pix2560pix-h.asaas.com/qr/cobv/6ed38fbc-f85d-4b43-8a3b-e8fd0d23e76f5204000053039865802BR5925LUCAS NASCIMENTO DE SOUSA6009Fortaleza61086076248562070503***63045FF5"
   }
 ]
