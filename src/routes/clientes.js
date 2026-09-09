@@ -128,18 +128,14 @@ router.post('/', upload.single('foto'), (req, res) => {
 // 4. ATUALIZAR (PUT)
 router.put('/:codigo', upload.single('foto'), (req, res) => {
     const { codigo } = req.params;
-    const remote = awaitRemote('put', codigo, req.body);
-    if (remote) return remote.then(data => res.json(data)).catch(error => res.status(502).json({ message: error.message }));
     let clientes = readDB();
-    const index = clientes.findIndex(c => c.codigo.toString() === codigo.toString());
+    let index = clientes.findIndex(c => c.codigo.toString() === codigo.toString());
 
     if (index === -1) {
         const config = integration.readConfig();
-        if (config.enabled) {
-            const novo = { ...req.body, codigo, data_cadastro: new Date().toISOString() };
-            clientes.push(novo); writeDB(clientes); return res.status(201).json(novo);
-        }
-        return res.status(404).json({ message: "Cliente não encontrado" });
+        if (!config.enabled || config.provider === 'local') return res.status(404).json({ message: 'Registro nao encontrado' });
+        clientes.push({ codigo: codigo, data_cadastro: new Date().toISOString() });
+        index = clientes.length - 1;
     }
 
     // Se enviou uma nova foto, tenta apagar a antiga para economizar espaço
@@ -153,13 +149,13 @@ router.put('/:codigo', upload.single('foto'), (req, res) => {
         ...clientes[index],
         ...req.body,
         // Garantir tipos corretos
-        credito_limite: parseFloat(req.body.credito_limite || 0),
-        credito_atual: parseFloat(req.body.credito_atual || 0),
-        bloqueado: req.body.bloqueado === 'true' || req.body.bloqueado === true,
+        credito_limite: parseFloat(req.body.credito_limite ?? clientes[index].credito_limite ?? 0),
+        credito_atual: parseFloat(req.body.credito_atual ?? clientes[index].credito_atual ?? 0),
+        bloqueado: req.body.bloqueado === undefined ? (clientes[index].bloqueado ?? false) : req.body.bloqueado === 'true' || req.body.bloqueado === true,
         formas_pagamento: req.body.formas_pagamento ? parseArray(req.body.formas_pagamento) : clientes[index].formas_pagamento,
         cartoes_loja: req.body.cartoes_loja ? parseArray(req.body.cartoes_loja) : clientes[index].cartoes_loja,
         ref_usuarios: req.body.ref_usuarios ? parseArray(req.body.ref_usuarios) : clientes[index].ref_usuarios,
-        foto: req.file ? req.file.filename : clientes[index].foto,
+        foto: req.file ? req.file.filename : (req.body.foto ?? clientes[index].foto),
         codigo: clientes[index].codigo, // Protege o ID original
         data_cadastro: clientes[index].data_cadastro // Protege a data original
     };

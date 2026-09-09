@@ -18,6 +18,7 @@ const operation = (tag, summary, description, options = {}) => ({
 
 const paths = {};
 const add = (path, method, data) => { paths[path] = paths[path] || {}; paths[path][method] = data; };
+add('/dashboard', 'get', operation('Dashboard', 'Consultar indicadores analíticos', 'Agrupa pedidos por data de criação no horário de Brasília. Vendas e rankings incluem somente pedidos com status Pago. Retorna receita, comparação anterior, séries, rankings e curva ABC. Período máximo de 366 dias.', { parameters: ['start', 'end'].map(name => ({ name, in: 'query', required: true, description: name === 'start' ? 'Data inicial inclusiva' : 'Data final inclusiva', schema: { type: 'string', format: 'date' }, example: name === 'start' ? '2026-09-01' : '2026-09-30' })) }));
 const crud = (base, tag, id, singular, body, options = {}) => {
   add(base, 'get', operation(tag, `Listar ${tag.toLowerCase()}`, `Retorna todos os registros de ${tag.toLowerCase()}. Quando uma integração está ativa, consulta o ERP/CRM e normaliza o resultado.`, { list: true }));
   add(base, 'post', operation(tag, `Cadastrar ${singular}`, `Cria um novo ${singular}. Aceita JSON ou multipart/form-data nas rotas com imagem.`, { body }));

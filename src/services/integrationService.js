@@ -5,7 +5,12 @@ const path = require('path');
 const CONFIG_PATH = path.join(__dirname, '../database/integracoes/integracoes.json');
 const ALLOWED_TYPES = ['representante', 'revendedor', 'fornecedor', 'afiliado', 'vendedor', 'transportadora'];
 
-const readConfig = () => JSON.parse(fs.readFileSync(CONFIG_PATH, 'utf8'));
+const readConfig = () => {
+  const config = JSON.parse(fs.readFileSync(CONFIG_PATH, 'utf8'));
+  config.resources ||= {};
+  config.resources.vendas = { post: config.provider === 'alpha' ? 'https://api-tudopassaweb.alphasystemas.com.br/v1/vendas' : '', defaults: {}, sizePositions: {}, ...config.resources.vendas };
+  return config;
+};
 const writeConfig = (config) => {
   fs.mkdirSync(path.dirname(CONFIG_PATH), { recursive: true });
   fs.writeFileSync(CONFIG_PATH, JSON.stringify(config, null, 2));
@@ -41,12 +46,13 @@ const mergeConfig = (incoming) => {
     ...old, ...preset, ...incoming,
     enabled: incoming.provider !== 'local' && incoming.enabled !== false,
     credentials: { ...old.credentials, ...preset.credentials, ...incoming.credentials },
-    resources: Object.fromEntries(['produtos', 'clientes', 'profissionais'].map(resource => {
+    resources: Object.fromEntries(['produtos', 'clientes', 'profissionais', 'vendas'].map(resource => {
       const blank = { get: '', getOne: '', post: '', put: '', responsePath: '', ...(resource === 'profissionais' ? { tipo: 'representante' } : {}) };
       const supplied = incoming.resources?.[resource] || {};
       const selected = providerChanged && preset.resources?.[resource]
         ? { ...supplied, ...preset.resources[resource] }
         : { ...preset.resources?.[resource], ...supplied };
+      if (resource === 'vendas' && providerChanged) return [resource, { post: incoming.provider === 'alpha' ? 'https://api-tudopassaweb.alphasystemas.com.br/v1/vendas' : supplied.post || '', defaults: supplied.defaults || {}, sizePositions: supplied.sizePositions || {} }];
       return [resource, { ...(providerChanged ? blank : old.resources?.[resource]), ...selected }];
     }))
   };
@@ -186,4 +192,4 @@ const writeRemote = async (resource, method, id, payload) => {
   return data;
 };
 
-module.exports = { readConfig, publicConfig, mergeConfig, list, getOne, writeRemote };
+module.exports = { readConfig, publicConfig, mergeConfig, list, getOne, writeRemote, active, headers, resolveEndpoint };

@@ -66,14 +66,14 @@ router.get('/', async (req, res) => {
         const remote = await integration.list('profissionais');
         if (!remote) return res.json(readDB());
         const local = readDB();
-        res.json(remote.map(item => ({ ...item, ...(local.find(saved => String(saved.codigo) === String(item.codigo)) || {}), codigo: item.codigo, nome: item.nome, ativo: item.ativo })));
+        res.json(remote.map(item => ({ ...item, ...(local.find(saved => String(saved.codigo) === String(item.codigo)) || {}), codigo: item.codigo })));
     }
     catch (error) { res.status(502).json({ message: 'Erro ao consultar integração de profissionais', error: error.message }); }
 });
 
 // 2. BUSCAR POR CÓDIGO
 router.get('/:codigo', async (req, res) => {
-    try { const remote = await integration.getOne('profissionais', req.params.codigo); if (remote) return res.json(remote); }
+    try { const remote = await integration.getOne('profissionais', req.params.codigo); if (remote) return res.json({ ...remote, ...(readDB().find(p => String(p.codigo) === String(req.params.codigo)) || {}), codigo: remote.codigo }); }
     catch (error) { return res.status(502).json({ message: error.message }); }
     const profissionais = readDB();
     const prof = profissionais.find(p => p.codigo === req.params.codigo);
@@ -129,18 +129,14 @@ router.post('/', upload.single('logomarca'), (req, res) => {
 // 4. EDITAR
 router.put('/:codigo', upload.single('logomarca'), (req, res) => {
     const { codigo } = req.params;
-    const remote = awaitRemote('put', codigo, req.body);
-    if (remote) return remote.then(data => res.json(data)).catch(error => res.status(502).json({ message: error.message }));
     let profissionais = readDB();
-    const index = profissionais.findIndex(p => p.codigo === codigo);
+    let index = profissionais.findIndex(p => String(p.codigo) === String(codigo));
 
     if (index === -1) {
         const config = integration.readConfig();
-        if (config.enabled) {
-            const novo = { ...req.body, codigo, tipo: req.body.tipo || config.resources?.profissionais?.tipo || 'fornecedor', data_cadastro: new Date().toISOString() };
-            profissionais.push(novo); writeDB(profissionais); return res.status(201).json(novo);
-        }
-        return res.status(404).json({ message: "Profissional não encontrado" });
+        if (!config.enabled || config.provider === 'local') return res.status(404).json({ message: 'Registro nao encontrado' });
+        profissionais.push({ codigo: codigo, data_cadastro: new Date().toISOString(), tipo: req.body.tipo || config.resources?.profissionais?.tipo || 'fornecedor' });
+        index = profissionais.length - 1;
     }
 
     // Gerenciar troca de logomarca (apagar antiga se houver nova)
@@ -157,7 +153,7 @@ router.put('/:codigo', upload.single('logomarca'), (req, res) => {
         ref_clientes: req.body.ref_clientes ? parseArray(req.body.ref_clientes) : profissionais[index].ref_clientes,
         ref_produtos: req.body.ref_produtos ? parseArray(req.body.ref_produtos) : profissionais[index].ref_produtos,
         ref_usuarios: req.body.ref_usuarios ? parseArray(req.body.ref_usuarios) : profissionais[index].ref_usuarios,
-        logomarca: req.file ? req.file.filename : profissionais[index].logomarca,
+        logomarca: req.file ? req.file.filename : (req.body.logomarca ?? profissionais[index].logomarca),
         codigo: profissionais[index].codigo, // Impede alterar o código ID via PUT
         data_cadastro: profissionais[index].data_cadastro
     };

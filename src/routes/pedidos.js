@@ -2,6 +2,8 @@ const express = require('express');
 const router = express.Router();
 const fs = require('fs');
 const path = require('path');
+const salesIntegration = require('../services/salesIntegrationService');
+const { randomUUID } = require('crypto');
 
 const PEDIDOS_PATH = path.join(__dirname, '../database/pedidos/pedidos.json');
 const ITENS_PATH = path.join(__dirname, '../database/pedidos/pedidos_itens.json');
@@ -23,18 +25,12 @@ const writeJSON = (filePath, data) => {
 
 // --- FUNÇÕES AUXILIARES ---
 
+const readFinanceiro = () => fs.existsSync(FIN_PATH)
+    ? JSON.parse(fs.readFileSync(FIN_PATH, 'utf-8') || '[]') : [];
+
 const cancelarLancamentoFinanceiro = (pedidoId) => {
-    try {
-        let financeiro = readJSON(FIN_PATH);
-        const index = financeiro.findIndex(f => f.id_pedido === pedidoId);
-        if (index !== -1) {
-            financeiro[index].situacao = 'Cancelado';
-            financeiro[index].observacoes += ` | Pedido cancelado em ${new Date().toLocaleString()}`;
-            writeJSON(FIN_PATH, financeiro);
-        }
-    } catch (e) {
-        console.error("Erro ao cancelar financeiro:", e);
-    }
+    const financeiro = readFinanceiro();
+    writeJSON(FIN_PATH, financeiro.filter(f => String(f.id_pedido) !== String(pedidoId)));
 };
 
 const processarBaixaEstoque = (itensPedido) => {
@@ -83,11 +79,10 @@ const processarEstornoEstoque = (itensPedido) => {
 };
 
 const gerarLancamentoFinanceiro = (pedido) => {
-    try {
-        const financeiro = readJSON(FIN_PATH);
-        if (financeiro.some(f => f.id_pedido === pedido.id)) return;
+        const financeiro = readFinanceiro();
+        if (financeiro.some(f => String(f.id_pedido) === String(pedido.id))) return;
         const novoLancamento = {
-            id: `FIN${Date.now()}`,
+            id: `FIN${randomUUID()}`,
             id_pedido: pedido.id,
             numero_pedido: pedido.numero_pedido,
             tipo_movimento: "Venda de Mercadorias",
@@ -106,9 +101,6 @@ const gerarLancamentoFinanceiro = (pedido) => {
         };
         financeiro.push(novoLancamento);
         writeJSON(FIN_PATH, financeiro);
-    } catch (e) {
-        console.error("Erro ao gerar financeiro:", e);
-    }
 };
 
 const gerarEntregaLogistica = (pedido) => {
@@ -140,12 +132,15 @@ const gerarEntregaLogistica = (pedido) => {
 // --- ROTAS ---
 
 // 1. CRIAR PEDIDO
-router.post('/', (req, res) => {
+router.post('/', async (req, res) => {
     try {
         const { cliente, itens, frete, subtotal, total, transportadora, transportadoraCodigo, excursao, excursaoCodigo, observacoes, pixData } = req.body;
+        if (!cliente?.nome || !Array.isArray(itens) || !itens.length || itens.some(i => !i.referencia || !Number.isSafeInteger(Number(i.chosenQty)) || Number(i.chosenQty) <= 0 || !Number.isFinite(Number(i.unitPrice)) || Number(i.unitPrice) < 0) || [frete, subtotal, total].some(v => v == null || !Number.isFinite(Number(v)) || Number(v) < 0)) {
+            return res.status(400).json({ success: false, message: 'Cliente, itens ou valores do pedido inválidos.' });
+        }
         const pedidos = readJSON(PEDIDOS_PATH);
         const pedidosItens = readJSON(ITENS_PATH);
-        const pedidoId = Date.now().toString();
+        const pedidoId = randomUUID();
         const numeroPedido = pedidos.length + 1;
 
         const novoPedido = {
@@ -153,6 +148,10 @@ router.post('/', (req, res) => {
             numero_pedido: numeroPedido,
             data: new Date().toISOString(),
             cliente_nome: cliente.nome,
+            cliente_codigo: cliente.codigo,
+            forma_pagamento: 'PIX',
+            desconto: 0,
+            integracao: { status: 'pendente' },
             cliente_cpf: cliente.cpf,
             cliente_email: cliente.email,
             cliente_whatsapp: cliente.whatsapp,
@@ -179,6 +178,7 @@ router.post('/', (req, res) => {
             referencia: item.referencia,
             descricao: item.descricao,
             tamanho: item.chosenSize,
+            codigo_cor: item.codigoCor,
             quantidade: item.chosenQty,
             valor_unitario: item.unitPrice,
             valor_total: item.totalPrice
@@ -188,6 +188,11 @@ router.post('/', (req, res) => {
         pedidosItens.push(...novosItens);
         writeJSON(PEDIDOS_PATH, pedidos);
         writeJSON(ITENS_PATH, pedidosItens);
+        novoPedido.integracao = await salesIntegration.send(novoPedido, novosItens);
+        // Reload after the network request so concurrent orders/status changes are preserved.
+        const atuais = readJSON(PEDIDOS_PATH);
+        const atual = atuais.find(p => p.id === pedidoId);
+        if (atual) { atual.integracao = novoPedido.integracao; writeJSON(PEDIDOS_PATH, atuais); }
         res.status(201).json({ success: true, pedido: novoPedido });
     } catch (error) {
         res.status(500).json({ success: false, message: error.message });
@@ -195,6 +200,24 @@ router.post('/', (req, res) => {
 });
 
 // 2. LISTAR PEDIDOS
+// Only configuration failures are safe to resend without remote reconciliation.
+router.post('/:id/integracao', async (req, res) => {
+    const pedidos = readJSON(PEDIDOS_PATH);
+    const pedido = pedidos.find(p => p.id === req.params.id);
+    if (!pedido) return res.status(404).json({ message: 'Pedido não encontrado.' });
+    if (pedido.status === 'Cancelado' || pedido.integracao?.status !== 'erro_configuracao') return res.status(409).json({ message: 'Reenvio indisponível: confira o registro na integradora.' });
+    pedido.integracao = { ...pedido.integracao, status: 'pendente' };
+    writeJSON(PEDIDOS_PATH, pedidos);
+    try {
+        const itens = readJSON(ITENS_PATH).filter(i => i.pedido_id === pedido.id);
+        const result = await salesIntegration.send(pedido, itens);
+        const atuais = readJSON(PEDIDOS_PATH);
+        const atual = atuais.find(p => p.id === pedido.id);
+        if (atual) { atual.integracao = result; writeJSON(PEDIDOS_PATH, atuais); }
+        res.json({ ...pedido, integracao: result });
+    } catch (_) { res.status(500).json({ message: 'Não foi possível concluir o envio. Confira a integração antes de reenviar.' }); }
+});
+
 router.get('/', (req, res) => {
     res.json(readJSON(PEDIDOS_PATH));
 });
@@ -213,6 +236,9 @@ router.get('/:id', (req, res) => {
 router.put('/:id/status', (req, res) => {
     const { id } = req.params;
     const { status } = req.body;
+    if (!['Pendente', 'Pago', 'Cancelado'].includes(status)) {
+        return res.status(400).json({ message: 'Status inválido. Use Pendente, Pago ou Cancelado. O envio é controlado na Logística.' });
+    }
 
     let pedidos = readJSON(PEDIDOS_PATH);
     const index = pedidos.findIndex(p => p.id === id);
@@ -222,17 +248,18 @@ router.put('/:id/status', (req, res) => {
         pedidos[index].status = status;
         const itensDoPedido = readJSON(ITENS_PATH).filter(i => i.pedido_id === id);
 
+        if (status === 'Pago') gerarLancamentoFinanceiro(pedidos[index]);
+        if (status === 'Cancelado') cancelarLancamentoFinanceiro(id);
+
         // Se mudou para PAGO
         if (status === 'Pago' && statusAnterior !== 'Pago') {
             processarBaixaEstoque(itensDoPedido);
-            gerarLancamentoFinanceiro(pedidos[index]);
             gerarEntregaLogistica(pedidos[index]);
         }
 
         // Se mudou para CANCELADO (e estava pago antes)
         if (status === 'Cancelado' && statusAnterior === 'Pago') {
             processarEstornoEstoque(itensDoPedido);
-            cancelarLancamentoFinanceiro(id);
         }
 
         writeJSON(PEDIDOS_PATH, pedidos);

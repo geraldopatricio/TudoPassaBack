@@ -115,6 +115,10 @@ app.use('/pedidos', pedidosRouter);
 app.use('/financeiro', financeiroRouter);
 app.use('/logistica', logisticaRouter);
 app.use('/integracoes', integracoesRouter);
+app.use('/dashboard', require('./routes/dashboard'));
 
 const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => console.log(`🚀 Backend rodando na porta ${PORT}`));
+app.listen(PORT, '0.0.0.0', () => {
+    console.log(`🚀 Backend rodando em http://0.0.0.0:${PORT}`);
+    console.log(`Pode ser acessado pelo IP do servidor na porta ${PORT}`);
+});

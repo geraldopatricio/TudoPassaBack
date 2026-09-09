@@ -33,6 +33,7 @@ const readDB = () => {
 };
 
 const writeDB = (data) => {
+    fs.mkdirSync(path.dirname(DB_PATH), { recursive: true });
     fs.writeFileSync(DB_PATH, JSON.stringify(data, null, 2));
 };
 
@@ -101,18 +102,14 @@ router.post('/', upload.single('imagem'), (req, res) => {
 // 3. EDITAR
 router.put('/:ref', upload.single('imagem'), (req, res) => {
     const { ref } = req.params;
-    const remote = awaitRemote('produtos', 'put', ref, req.body);
-    if (remote) return remote.then(data => res.json(data)).catch(error => res.status(502).json({ message: error.message }));
     let produtos = readDB();
-    const index = produtos.findIndex(p => p.referencia === ref);
+    let index = produtos.findIndex(p => String(p.referencia) === String(ref));
 
     if (index === -1) {
         const config = integration.readConfig();
-        if (config.enabled) {
-            const novo = { ...req.body, referencia: ref, variantes: req.body.variantes ? (typeof req.body.variantes === 'string' ? JSON.parse(req.body.variantes) : req.body.variantes) : [] };
-            produtos.push(novo); writeDB(produtos); return res.status(201).json(novo);
-        }
-        return res.status(404).json({ message: "Produto não encontrado" });
+        if (!config.enabled || config.provider === 'local') return res.status(404).json({ message: 'Registro nao encontrado' });
+        produtos.push({ referencia: ref, data_cadastro: new Date().toISOString() });
+        index = produtos.length - 1;
     }
 
     // Processar variantes se elas vierem no corpo da requisição
@@ -135,6 +132,7 @@ router.put('/:ref', upload.single('imagem'), (req, res) => {
     const produtoAtualizado = {
         ...produtos[index],
         ...req.body,
+        referencia: ref,
         variantes: variantesAtualizadas
     };
 
