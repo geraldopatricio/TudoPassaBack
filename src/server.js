@@ -112,6 +112,7 @@ app.use('/usuarios', usuariosRouter);
 app.use('/profissionais', profissionaisRoutes);
 app.use('/tabela-precos', tabelaPrecosRouter);
 app.use('/pedidos', pedidosRouter);
+app.use('/relatorios', require('./routes/relatorios'));
 app.use('/financeiro', financeiroRouter);
 app.use('/logistica', logisticaRouter);
 app.use('/integracoes', integracoesRouter);
