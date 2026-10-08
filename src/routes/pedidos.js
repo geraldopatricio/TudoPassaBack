@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const fs = require('fs');
 const path = require('path');
+const asaas = require('../services/asaasService');
 const salesIntegration = require('../services/salesIntegrationService');
 const { randomUUID } = require('crypto');
 
@@ -39,11 +40,11 @@ const processarBaixaEstoque = (itensPedido) => {
         itensPedido.forEach(item => {
             const pIndex = produtos.findIndex(p => p.referencia === item.referencia);
             if (pIndex !== -1) {
-                const variante = produtos[pIndex].variantes[0];
+                const variante = produtos[pIndex].variantes.find(v => item.codigo_cor != null ? String(v.codigo_cor) === String(item.codigo_cor) : item.cor ? v.cor_codigo_nome === item.cor : produtos[pIndex].variantes.length === 1);
                 const tamanho = item.tamanho;
-                if (variante.grade[tamanho] !== undefined) {
+                if (variante && variante.grade[tamanho] !== undefined) {
                     variante.grade[tamanho] -= Number(item.quantidade);
-                    if (variante.grade[tamanho] < 0) variante.grade[tamanho] = 0;
+                    if (variante && variante.grade[tamanho] < 0) variante.grade[tamanho] = 0;
                     variante.quantidade_total = Object.values(variante.grade).reduce((acc, curr) => acc + Number(curr), 0);
                     variante.valor_total = variante.quantidade_total * variante.valor_unitario;
                 }
@@ -63,9 +64,9 @@ const processarEstornoEstoque = (itensPedido) => {
         itensPedido.forEach(item => {
             const pIndex = produtos.findIndex(p => p.referencia === item.referencia);
             if (pIndex !== -1) {
-                const variante = produtos[pIndex].variantes[0];
+                const variante = produtos[pIndex].variantes.find(v => item.codigo_cor != null ? String(v.codigo_cor) === String(item.codigo_cor) : item.cor ? v.cor_codigo_nome === item.cor : produtos[pIndex].variantes.length === 1);
                 const tamanho = item.tamanho;
-                if (variante.grade[tamanho] !== undefined) {
+                if (variante && variante.grade[tamanho] !== undefined) {
                     variante.grade[tamanho] += Number(item.quantidade);
                     variante.quantidade_total = Object.values(variante.grade).reduce((acc, curr) => acc + Number(curr), 0);
                     variante.valor_total = variante.quantidade_total * variante.valor_unitario;
@@ -138,7 +139,11 @@ router.post('/', async (req, res) => {
         if (!cliente?.nome || !Array.isArray(itens) || !itens.length || itens.some(i => !i.referencia || !Number.isSafeInteger(Number(i.chosenQty)) || Number(i.chosenQty) <= 0 || !Number.isFinite(Number(i.unitPrice)) || Number(i.unitPrice) < 0) || [frete, subtotal, total].some(v => v == null || !Number.isFinite(Number(v)) || Number(v) < 0)) {
             return res.status(400).json({ success: false, message: 'Cliente, itens ou valores do pedido inválidos.' });
         }
+        if (!pixData?.paymentId) return res.status(400).json({ message: 'Cobrança Pix obrigatória.' });
+        const cobranca = await asaas.payment(pixData.paymentId);
+        if (cobranca.billingType !== 'PIX' || Math.round(Number(cobranca.value) * 100) !== Math.round(Number(total) * 100) || cobranca.customer == null || cobranca.deleted) return res.status(400).json({ message: 'Cobrança incompatível com o pedido.' });
         const pedidos = readJSON(PEDIDOS_PATH);
+        if (pedidos.some(p => p.asaas_payment_id === pixData.paymentId)) return res.status(409).json({ message: 'Esta cobrança já pertence a um pedido.' });
         const pedidosItens = readJSON(ITENS_PATH);
         const pedidoId = randomUUID();
         const numeroPedido = pedidos.length + 1;
@@ -168,6 +173,7 @@ router.post('/', async (req, res) => {
             frete,
             total,
             status: 'Pendente',
+            asaas_payment_id: pixData?.paymentId,
             pix_qr_code: pixData?.qrCode,
             pix_copia_cola: pixData?.copyPaste
         };
@@ -179,6 +185,7 @@ router.post('/', async (req, res) => {
             descricao: item.descricao,
             tamanho: item.chosenSize,
             codigo_cor: item.codigoCor,
+            cor: item.chosenColor,
             quantidade: item.chosenQty,
             valor_unitario: item.unitPrice,
             valor_total: item.totalPrice
@@ -233,7 +240,7 @@ router.get('/:id', (req, res) => {
 });
 
 // 4. ATUALIZAR STATUS (ONDE A MÁGICA ACONTECE)
-router.put('/:id/status', (req, res) => {
+router.put('/:id/status', async (req, res) => {
     const { id } = req.params;
     const { status } = req.body;
     if (!['Pendente', 'Pago', 'Cancelado'].includes(status)) {
@@ -244,6 +251,14 @@ router.put('/:id/status', (req, res) => {
     const index = pedidos.findIndex(p => p.id === id);
 
     if (index !== -1) {
+        if (status === 'Pago' && pedidos[index].asaas_payment_id) {
+            try {
+                const data = await asaas.payment(pedidos[index].asaas_payment_id);
+                if (!asaas.received(data, pedidos[index].total)) return res.status(409).json({ message: 'Aguardando recebimento do Pix no Asaas.', paymentStatus: data.status });
+                pedidos = readJSON(PEDIDOS_PATH);
+                if (pedidos[index]?.id !== id || pedidos[index].status === 'Cancelado') return res.status(409).json({ message: 'Pedido cancelado ou alterado.' });
+            } catch (error) { return res.status(502).json({ message: 'Não foi possível consultar o pagamento no Asaas.' }); }
+        }
         const statusAnterior = pedidos[index].status;
         pedidos[index].status = status;
         const itensDoPedido = readJSON(ITENS_PATH).filter(i => i.pedido_id === id);

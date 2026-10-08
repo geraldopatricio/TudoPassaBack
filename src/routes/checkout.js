@@ -1,7 +1,8 @@
 const express = require('express');
 const router = express.Router();
-const axios = require('axios');
+const asaas = require('../services/asaasService');
 const nodemailer = require('nodemailer');
+const { orderEmail } = require('../services/orderEmail');
 
 // 1. Configuração do Transporte
 const transporter = nodemailer.createTransport({
@@ -21,43 +22,49 @@ const transporter = nodemailer.createTransport({
 router.post('/checkout/pix', async (req, res) => {
     try {
         const { nome, email, cpf, valor } = req.body;
-        const headers = { 'access_token': process.env.ASAAS_API_KEY };
-        const cpfLimpo = cpf.replace(/\D/g, '');
+        const api = asaas.client();
+        const headers = {};
+        if (!nome || ![11, 14].includes(String(cpf || '').replace(/\D/g, '').length) || !Number.isFinite(Number(valor)) || Number(valor) <= 0) return res.status(400).json({ success: false, error: 'Informe nome, CPF/CNPJ e valor válidos.' });
+        const cpfLimpo = String(cpf).replace(/\D/g, '');
 
         // 1. TENTA BUSCAR O CLIENTE
-        const search = await axios.get(`${process.env.ASAAS_URL}/customers?cpfCnpj=${cpfLimpo}`, { headers });
+        const search = await api.get(`/customers?cpfCnpj=${cpfLimpo}`, { headers });
 
         let customerId;
         if (search.data.totalCount > 0) {
             customerId = search.data.data[0].id; // Usa o existente
         } else {
             // 2. CRIA SE NÃO EXISTIR
-            const newCustomer = await axios.post(`${process.env.ASAAS_URL}/customers`, {
+            const newCustomer = await api.post(`/customers`, {
                 name: nome, email: email, cpfCnpj: cpfLimpo
             }, { headers });
             customerId = newCustomer.data.id;
         }
 
         // 3. GERA O PAGAMENTO
-        const payment = await axios.post(`${process.env.ASAAS_URL}/payments`, {
+        const payment = await api.post(`/payments`, {
             customer: customerId,
             billingType: "PIX",
             value: valor,
-            dueDate: new Date().toISOString().split('T')[0]
+            dueDate: new Intl.DateTimeFormat('en-CA', { timeZone: 'America/Sao_Paulo', year: 'numeric', month: '2-digit', day: '2-digit' }).format(new Date())
         }, { headers });
 
         // 4. PEGA O QR CODE
-        const qrCode = await axios.get(`${process.env.ASAAS_URL}/payments/${payment.data.id}/pixQrCode`, { headers });
+        const qrCode = await api.get(`/payments/${payment.data.id}/pixQrCode`, { headers });
 
+        if (!qrCode.data.payload) throw new Error('O Asaas não retornou o código Pix copia e cola.');
         res.json({
             success: true,
+            paymentId: payment.data.id,
+            invoiceUrl: payment.data.invoiceUrl,
+            expirationDate: qrCode.data.expirationDate,
             copyPaste: qrCode.data.payload,
-            qrCode: qrCode.data.encodedImage
+            qrCode: asaas.qrImage(qrCode.data.encodedImage)
         });
 
     } catch (error) {
-        console.error("Erro detalhado:", error.response?.data || error.message);
-        res.status(500).json({ success: false, error: "Falha na comunicação com Asaas" });
+        console.error("Falha na geração Pix:", error.response?.status || error.message);
+        res.status(502).json({ success: false, error: error.response?.data?.errors?.map(e => e.description).join('; ') || error.message });
     }
 });
 
@@ -66,29 +73,12 @@ router.post('/checkout/pix', async (req, res) => {
 router.post('/notificar-pedido', async (req, res) => {
     console.log("Rota de e-mail acionada!");
     try {
-        const { cliente, itens, total, frete } = req.body;
-
-        const itensHTML = itens.map(item => `
-            <tr>
-                <td style="padding:10px; border-bottom:1px solid #eee;">
-                    <b>${item.descricao}</b><br>
-                    <small>TAM: ${item.chosenSize} | QTD: ${item.chosenQty}</small>
-                </td>
-                <td style="padding:10px; border-bottom:1px solid #eee; text-align:right;">
-                    R$ ${item.totalPrice.toFixed(2)}
-                </td>
-            </tr>
-        `).join('');
-
+        const { cliente } = req.body;
         await transporter.sendMail({
             from: `"Tudo Passa Store" <${process.env.SMTP_USER}>`,
-            to: `gpatricio.melo@gmail.com, ${cliente.email}`,
-            subject: `🛍️ Pedido Confirmado - ${cliente.nome}`,
-            html: `<div style="font-family:sans-serif; padding:20px;">
-                    <h2>Olá ${cliente.nome}, pedido recebido!</h2>
-                    <table style="width:100%">${itensHTML}</table>
-                    <p><b>Total com Frete: R$ ${total.toFixed(2)}</b></p>
-                  </div>`
+            to: [process.env.ORDER_EMAIL_COPY || 'gpatricio.melo@gmail.com', cliente.email],
+            subject: `Pedido recebido - aguardando Pix - ${cliente.nome}`,
+            ...orderEmail(req.body)
         });
 
         res.json({ success: true });

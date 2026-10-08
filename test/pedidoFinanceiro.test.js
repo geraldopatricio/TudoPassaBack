@@ -5,7 +5,7 @@ const path = require('path');
 const vm = require('vm');
 
 // Run the actual route with an in-memory filesystem, leaving business data untouched.
-function fixture() {
+function fixture(asaas = {}) {
   const files = new Map(Object.entries({
     'pedidos.json': [{ id: '1', numero_pedido: 1, status: 'Pendente', total: 125, cliente_nome: 'Cliente' }],
     'financeiro.json': [{ id: 'manual', valor_liquido: 10 }],
@@ -20,11 +20,12 @@ function fixture() {
     writeFileSync: (file, value) => files.set(path.basename(file), value)
   };
   vm.runInNewContext(fs.readFileSync(filename, 'utf8'), {
-    require: name => name === 'express' ? { Router: () => router } : name === 'fs' ? fakeFs : name.includes('salesIntegrationService') ? {} : require(name),
+    require: name => name === 'express' ? { Router: () => router } : name === 'fs' ? fakeFs : name.includes('salesIntegrationService') ? {} : name.includes('asaasService') ? asaas : require(name),
     __dirname: path.dirname(filename), module: { exports: {} }, console
   });
   return {
     read: name => JSON.parse(files.get(name)),
+    linkPix: () => { const orders = JSON.parse(files.get('pedidos.json')); orders[0].asaas_payment_id = 'pay_test'; files.set('pedidos.json', JSON.stringify(orders)); },
     setStatus: status => { const orders = JSON.parse(files.get('pedidos.json')); orders[0].status = status; files.set('pedidos.json', JSON.stringify(orders)); },
     update: status => routes['put /:id/status']({ params: { id: '1' }, body: { status } }, { json() {}, status() { return this; } })
   };
@@ -36,6 +37,20 @@ test('paying creates one received entry with order link and amount; repeated pay
   assert.equal(entries.length, 1);
   assert.equal(entries[0].situacao, 'Recebido');
   assert.equal(entries[0].valor_liquido, 125);
+});
+
+test('Asaas pending blocks settlement; received payment settles once', async () => {
+  let status = 'PENDING';
+  const f = fixture({ payment: async () => ({ status, value: 125, billingType: 'PIX' }), received: data => data.status === 'RECEIVED' });
+  f.linkPix();
+  await f.update('Pago');
+  assert.equal(f.read('pedidos.json')[0].status, 'Pendente');
+  assert.equal(f.read('financeiro.json').length, 1);
+  status = 'RECEIVED';
+  await f.update('Pago'); await f.update('Pago');
+  assert.equal(f.read('pedidos.json')[0].status, 'Pago');
+  assert.equal(f.read('financeiro.json').filter(i => i.id_pedido === '1').length, 1);
+  assert.equal(f.read('entregas.json').length, 1);
 });
 
 test('cancellation removes financial data even after shipping and preserves unrelated entries', () => {
