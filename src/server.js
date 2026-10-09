@@ -20,7 +20,7 @@ const app = express();
 
 app.use(cors());
 const corsOptions = {
-    origin: ['http://localhost:5173', 'http://localhost:5174', 'https://tudopassa.lookrapido.com.br'],
+    origin: ['http://localhost:5175', 'https://tudopassa.lookrapido.com.br'],
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
     allowedHeaders: ['Content-Type', 'Authorization']
 };
@@ -69,7 +69,9 @@ app.use('/logistica', logisticaRouter);
 app.use('/integracoes', integracoesRouter);
 app.use('/dashboard', require('./routes/dashboard'));
 
-const PORT = process.env.PORT || 3000;
+app.use((req, res) => res.status(404).json({ message: `Rota não encontrada: ${req.method} ${req.path}` }));
+
+const PORT = process.env.PORT || 3002;
 app.listen(PORT, '0.0.0.0', () => {
     console.log(`🚀 Backend rodando em http://0.0.0.0:${PORT}`);
     console.log(`Pode ser acessado pelo IP do servidor na porta ${PORT}`);

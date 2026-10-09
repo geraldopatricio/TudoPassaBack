@@ -268,5 +268,23 @@
     "situacao": "Recebido",
     "conta_financeira": "Banco Digital",
     "observacoes": "Venda automática do pedido #4"
+  },
+  {
+    "id": "FIN229b5b7a-49cc-4956-a85a-4c6229482e3b",
+    "id_pedido": "6a7d0eab-657f-48c7-ac14-ca857a3a72fb",
+    "numero_pedido": 21,
+    "tipo_movimento": "Venda de Mercadorias",
+    "cliente_nome": "Geraldo melo",
+    "cliente_cpf": "50883968215",
+    "data_emissao": "2026-10-09T17:26:44.226Z",
+    "data_vencimento": "2026-10-09T17:26:44.226Z",
+    "data_pagamento": "2026-10-09T17:26:44.226Z",
+    "valor_original": 5,
+    "valor_liquido": 5,
+    "forma_pagamento": "PIX",
+    "parcela": "1/1",
+    "situacao": "Recebido",
+    "conta_financeira": "Banco Digital",
+    "observacoes": "Venda automática do pedido #21"
   }
 ]

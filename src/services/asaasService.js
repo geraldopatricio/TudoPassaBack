@@ -17,4 +17,18 @@ function qrImage(value) {
   if (!raw || !Buffer.from(raw, 'base64').subarray(0, 8).equals(Buffer.from([137,80,78,71,13,10,26,10]))) throw new Error('O Asaas não retornou uma imagem PNG válida para o Pix.');
   return raw;
 }
-module.exports = { client, payment, received, qrImage };
+async function createPix({ nome, email, cpf, valor, reference }) {
+  const document = String(cpf || '').replace(/\D/g, '');
+  if (!nome || ![11, 14].includes(document.length) || !Number.isFinite(Number(valor)) || Number(valor) <= 0) throw new Error('Informe nome, CPF/CNPJ e valor válidos para gerar o Pix.');
+  const api = client();
+  const search = await api.get('/customers', { params: { cpfCnpj: document } });
+  const customer = search.data.data?.[0] || (await api.post('/customers', { name: nome, email, cpfCnpj: document })).data;
+  const data = (await api.post('/payments', { customer: customer.id, billingType: 'PIX', value: Number(valor), externalReference: reference, dueDate: new Intl.DateTimeFormat('en-CA', { timeZone: 'America/Sao_Paulo', year: 'numeric', month: '2-digit', day: '2-digit' }).format(new Date()) })).data;
+  return { paymentId: data.id, ...(await pix(data.id)) };
+}
+async function pix(id) {
+  const data = (await client().get(`/payments/${id}/pixQrCode`)).data;
+  if (!data.payload) throw new Error('Asaas não retornou o código copia e cola.');
+  return { qrCode: qrImage(data.encodedImage), copyPaste: data.payload, expirationDate: data.expirationDate };
+}
+module.exports = { client, payment, received, qrImage, createPix, pix };

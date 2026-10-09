@@ -435,5 +435,29 @@
         "criado_por": "patricio"
       }
     ]
+  },
+  {
+    "id": "ENT1791566804247",
+    "pedido_id": "6a7d0eab-657f-48c7-ac14-ca857a3a72fb",
+    "numero_pedido": 21,
+    "cliente": {
+      "nome": "Geraldo melo",
+      "whatsapp": "(85) 9 91994652",
+      "endereco": "Rua das Flores"
+    },
+    "profissional_id": null,
+    "status": "Aguardando Profissional",
+    "data_criacao": "2026-10-09T17:26:44.247Z",
+    "data_limite_aceite": "2026-10-09T17:31:44.247Z",
+    "logs": [
+      {
+        "status": "Aguardando Profissional",
+        "data": "2026-10-09T17:26:44.247Z"
+      }
+    ],
+    "posicao_atual": {
+      "lat": null,
+      "lng": null
+    }
   }
 ]

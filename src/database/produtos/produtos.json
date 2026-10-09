@@ -245,15 +245,15 @@
         "valor_unitario_tb2": 8,
         "valor_unitario_tb3": 7,
         "grade": {
-          "PP": 2,
+          "PP": 0,
           "P": 3,
           "M": 4,
           "G": 5,
           "GG": 6,
           "U": 0
         },
-        "quantidade_total": 20,
-        "valor_total": 200,
+        "quantidade_total": 18,
+        "valor_total": 180,
         "valor_total_tb1": 180,
         "valor_total_tb2": 160,
         "valor_total_tb3": 140

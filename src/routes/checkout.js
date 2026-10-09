@@ -1,24 +1,8 @@
 const express = require('express');
 const router = express.Router();
 const asaas = require('../services/asaasService');
-const nodemailer = require('nodemailer');
-const { orderEmail } = require('../services/orderEmail');
+const { sendOrderEmail } = require('../services/orderNotification');
 
-// 1. Configuração do Transporte
-const transporter = nodemailer.createTransport({
-    host: process.env.SMTP_SERVER, // Certifique-se que está assim
-    port: 465,
-    secure: true, // true para porta 465
-    auth: {
-        user: process.env.SMTP_USER,
-        pass: process.env.SMTP_PASS,
-    },
-    tls: {
-        rejectUnauthorized: false // Adicione isso se o seu servidor de e-mail tiver certificado self-signed
-    }
-});
-
-// 2. ROTA PIX -> Acessível em: /produtos/checkout/pix
 router.post('/checkout/pix', async (req, res) => {
     try {
         const { nome, email, cpf, valor } = req.body;
@@ -73,13 +57,7 @@ router.post('/checkout/pix', async (req, res) => {
 router.post('/notificar-pedido', async (req, res) => {
     console.log("Rota de e-mail acionada!");
     try {
-        const { cliente } = req.body;
-        await transporter.sendMail({
-            from: `"Tudo Passa Store" <${process.env.SMTP_USER}>`,
-            to: [process.env.ORDER_EMAIL_COPY || 'gpatricio.melo@gmail.com', cliente.email],
-            subject: `Pedido recebido - aguardando Pix - ${cliente.nome}`,
-            ...orderEmail(req.body)
-        });
+        await sendOrderEmail(req.body);
 
         res.json({ success: true });
     } catch (error) {
