@@ -166,7 +166,7 @@ const criarPedido = async (req, res) => {
         if (!isPdv && pedidos.some(p => p.asaas_payment_id === pixData.paymentId)) return res.status(409).json({ message: 'Esta cobrança já pertence a um pedido.' });
         const pedidosItens = readJSON(ITENS_PATH);
         const pedidoId = randomUUID();
-        if (isPdv) pixData = await asaas.createPix({ nome: cliente.nome, email: cliente.email, cpf: cliente.cpf, valor: total, reference: pedidoId });
+        if (isPdv) pixData = await asaas.createPix({ nome: cliente.nome, email: cliente.email, cpf: cliente.cpf, valor: total, reference: `pdv:${req.body.requestId}` });
         const numeroPedido = pedidos.length + 1;
 
         const novoPedido = {
@@ -271,7 +271,7 @@ const gerarPixPedido = async (req, res) => {
         }
         if (!data) {
             if (pedido.status === 'Pago' && req.body.allowPaid !== true) return res.status(409).json({ requiresConfirmation: true, message: 'Este pedido está marcado como recebido. Gerar Pix criará uma nova cobrança do valor total. Deseja continuar?' });
-            data = await asaas.createPix({ nome: pedido.cliente_nome, email: pedido.cliente_email, cpf: pedido.cliente_cpf, valor: pedido.total, reference: pedido.id });
+            data = await asaas.createPix({ nome: pedido.cliente_nome, email: pedido.cliente_email, cpf: pedido.cliente_cpf, valor: pedido.total, reference: req.body.regenerate ? `${pedido.id}:${pedido.asaas_payment_id || 'novo'}` : pedido.id });
         }
         const pedidos = readJSON(PEDIDOS_PATH);
         const atual = pedidos.find(p => p.id === id);
