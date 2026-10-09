@@ -101,7 +101,14 @@ const headers = (config) => {
   return h;
 };
 
-const normalizeProduto = (p) => {
+const normalizeProduto = (p, provider) => {
+  let alphaPrice = 0;
+  if (provider === 'alpha') {
+    for (let index = 1; index <= 15; index++) {
+      const price = Number(p.tabelaPreco?.[`preco${index}`]);
+      if (Number.isFinite(price) && price > 0) { alphaPrice = price; break; }
+    }
+  }
   const byColor = new Map();
   for (const item of (Array.isArray(p.grades) ? p.grades : [])) {
     const colorKey = String(value(item, ['codigoCor', 'descricaoCor'], 'PADRAO'));
@@ -127,7 +134,8 @@ const normalizeProduto = (p) => {
     descricao: value(p, ['descricao', 'nome', 'description', 'name']),
     unidade: String(value(p, ['unidade', 'unit', 'unidadeMedida'], 'UN')).trim(),
     imagem: value(p, ['imagem', 'image', 'urlImagem'], 'avatar.png'),
-    variantes: Array.isArray(p.variantes) && p.variantes.length ? p.variantes : [...byColor.values()]
+    ...(provider === 'alpha' ? { preco_alpha: alphaPrice } : {}),
+    variantes: (Array.isArray(p.variantes) && p.variantes.length ? p.variantes : [...byColor.values()]).map(v => provider === 'alpha' ? { ...v, valor_unitario: alphaPrice, valor_total: alphaPrice * Number(v.quantidade_total || 0) } : v)
   };
 };
 
@@ -173,7 +181,7 @@ const list = async (resource) => {
   const { data } = await axios.get(resolveEndpoint(config, spec.get), { headers: headers(config), timeout: 20000 });
   const raw = extract(data, spec.responsePath);
   if (!Array.isArray(raw)) throw new Error(`A resposta de ${resource} não contém uma lista`);
-  if (resource === 'produtos') return raw.map(normalizeProduto);
+  if (resource === 'produtos') return raw.map(p => normalizeProduto(p, config.provider));
   return raw.map(item => normalizePerson(item, resource === 'profissionais' ? spec.tipo : null));
 };
 
@@ -181,7 +189,7 @@ const getOne = async (resource, id) => {
   const config = active(); const spec = config?.resources?.[resource];
   if (!spec?.getOne) return null;
   const { data } = await axios.get(resolveEndpoint(config, spec.getOne, id), { headers: headers(config), timeout: 20000 });
-  return resource === 'produtos' ? normalizeProduto(data) : enrichCnpj(normalizePerson(data, resource === 'profissionais' ? spec.tipo : null), config.cnpjEnrichment);
+  return resource === 'produtos' ? normalizeProduto(data, config.provider) : enrichCnpj(normalizePerson(data, resource === 'profissionais' ? spec.tipo : null), config.cnpjEnrichment);
 };
 
 const writeRemote = async (resource, method, id, payload) => {
@@ -192,4 +200,4 @@ const writeRemote = async (resource, method, id, payload) => {
   return data;
 };
 
-module.exports = { readConfig, publicConfig, mergeConfig, list, getOne, writeRemote, active, headers, resolveEndpoint };
+module.exports = { readConfig, publicConfig, mergeConfig, list, getOne, writeRemote, active, headers, resolveEndpoint, normalizeProduto };

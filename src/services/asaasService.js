@@ -7,6 +7,14 @@ function client() {
   if (['api.asaas.com', 'api-sandbox.asaas.com'].includes(parsed.hostname) && ['/', ''].includes(parsed.pathname)) parsed.pathname = '/v3';
   const api = axios.create({ baseURL: parsed.toString().replace(/\/$/, ''), timeout: 20000, headers: { access_token: key, 'User-Agent': 'TudoPassa/1.0' } });
   api.interceptors?.response.use(response => response, error => {
+    const status = error.response?.status;
+    const endpoint = error.config?.url || '';
+    const details = error.response?.data?.errors?.map(e => e.description).filter(Boolean).join('; ');
+    if (status && status !== 404) {
+      const stage = endpoint.includes('/pixQrCode') ? 'obter QR Code' : endpoint === '/customers' ? 'consultar/cadastrar cliente' : 'consultar/criar cobrança';
+      console.error('Falha Asaas:', { httpStatus: status, endpoint, codes: error.response?.data?.errors?.map(e => e.code) });
+      error.message = `Asaas (${stage}, HTTP ${status}): ${details || 'Resposta sem descrição. Consulte os logs do Asaas e a configuração da conta.'}`;
+    }
     if (error.response?.status === 404) {
       const path = error.config?.url || '';
       console.error('Asaas HTTP 404:', { host: parsed.hostname, basePath: parsed.pathname, endpoint: path });
@@ -41,7 +49,10 @@ async function createPix({ nome, email, cpf, valor, reference }) {
     const existing = (await api.get('/payments', { params: { externalReference: reference, limit: 100 } })).data;
     data = existing.data?.find(p => !p.deleted && p.customer === customer.id && p.billingType === 'PIX' && Math.round(Number(p.value) * 100) === Math.round(Number(valor) * 100));
   }
-  if (!data) data = (await api.post('/payments', { customer: customer.id, billingType: 'PIX', value: Number(valor), externalReference: reference, dueDate: new Intl.DateTimeFormat('en-CA', { timeZone: 'America/Sao_Paulo', year: 'numeric', month: '2-digit', day: '2-digit' }).format(new Date()) })).data;
+  const parts = new Intl.DateTimeFormat('en', { timeZone: 'America/Sao_Paulo', year: 'numeric', month: '2-digit', day: '2-digit' }).formatToParts(new Date());
+  const date = Object.fromEntries(parts.map(part => [part.type, part.value]));
+  const dueDate = `${date.year}-${date.month}-${date.day}`;
+  if (!data) data = (await api.post('/payments', { customer: customer.id, billingType: 'PIX', value: Number(valor), externalReference: reference, dueDate })).data;
   if (!data.id) throw new Error('Asaas não retornou o identificador da cobrança. Confira ASAAS_URL=https://api.asaas.com/v3.');
   return { paymentId: data.id, ...(await pix(data.id)) };
 }

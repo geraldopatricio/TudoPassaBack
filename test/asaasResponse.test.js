@@ -17,3 +17,13 @@ test('failed QR retrieval reuses existing charge on retry',async()=>{
 test('HTML response produces configuration error instead of missing payload',async()=>{
  await assert.rejects(fixture('<html>').pix('pay_existing'),/ASAAS_URL/);
 });
+test('Asaas 400 exposes provider reason and failed step', async () => {
+ let reject;
+ const module={exports:{}};
+ vm.runInNewContext(fs.readFileSync(path.join(__dirname,'../src/services/asaasService.js'),'utf8'),{
+  module,Buffer,URL,console:{error(){}},process:{env:{ASAAS_API_KEY:'test',ASAAS_URL:'https://api.asaas.com/v3'}},
+  require:()=>({create:()=>({interceptors:{response:{use:(_,handler)=>{reject=handler;}}}})})
+ });
+ module.exports.client();
+ await assert.rejects(reject({response:{status:400,data:{errors:[{code:'invalid_dueDate',description:'Data de vencimento invalida'}]}},config:{url:'/payments'}}), error => error.message.includes('Data de vencimento invalida') && error.message.includes('HTTP 400'));
+});

@@ -11,6 +11,7 @@ for (const resource of ['produtos', 'clientes', 'profissionais']) {
     const routes = {};
     const router = Object.fromEntries(['get', 'post', 'put', 'delete'].map(method => [method, (url, ...handlers) => { routes[`${method} ${url}`] = handlers.at(-1); }]));
     const remote = { [key]: '123', nome: 'Original', descricao: 'Original', ativo: true };
+    if (resource === 'produtos') remote.preco_alpha = 39;
     const integration = {
       readConfig: () => ({ enabled: true, provider: 'alpha', resources: { [resource]: { put: 'https://example.invalid' } } }),
       writeRemote: () => { throw new Error('Editing must persist locally, not invoke remote PUT'); },
@@ -40,6 +41,7 @@ for (const resource of ['produtos', 'clientes', 'profissionais']) {
     await routes['get /']({}, res);
     assert.equal(response[0].nome, 'Editado');
     assert.equal(response[0].ativo, false);
+    if (resource === 'produtos') { assert.equal(response[0].variantes[0].valor_unitario, 39); assert.equal(response[0].imagem, 'nova.png'); }
     if (resource !== 'produtos') {
       await routes['get /:codigo']({ params: { codigo: '123' } }, res);
       assert.equal(response.nome, 'Editado');

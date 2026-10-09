@@ -43,7 +43,14 @@ router.get('/', async (req, res) => {
         const remote = await integration.list('produtos');
         if (!remote) return res.json(readDB());
         const local = readDB();
-        res.json(remote.map(item => ({ ...item, ...(local.find(saved => String(saved.referencia) === String(item.referencia)) || {}), referencia: item.referencia })));
+        res.json(remote.map(item => {
+            const merged = { ...item, ...(local.find(saved => String(saved.referencia) === String(item.referencia)) || {}), referencia: item.referencia };
+            if (item.preco_alpha !== undefined) {
+                merged.preco_alpha = item.preco_alpha;
+                merged.variantes = (merged.variantes || []).map(v => ({ ...v, valor_unitario: item.preco_alpha, valor_total: item.preco_alpha * Number(v.quantidade_total || 0) }));
+            }
+            return merged;
+        }));
     }
     catch (error) { res.status(502).json({ message: 'Erro ao consultar integração de produtos', error: error.message }); }
 });
