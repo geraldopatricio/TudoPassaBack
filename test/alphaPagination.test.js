@@ -24,7 +24,7 @@ test('Alpha loads every page, preserves filters and includes the last partial pa
     assert.equal(query.get('Ativo'), 'true');
     assert.equal(query.get('TamanhoPagina'), '100');
     const page = Number(query.get('Pagina'));
-    return { data: { itens: page <= 3 ? Array.from({ length: page === 3 ? 7 : 100 }, (_, i) => ({ codigo: (page - 1) * 100 + i })) : [] } };
+    return { data: { itens: page <= 3 ? Array.from({ length: page === 3 ? 7 : 100 }, (_, i) => ({ codigo: (page - 1) * 100 + i, estoqueGeral: 1 })) : [] } };
   });
   const products = await api.list('produtos');
   assert.equal(products.length, 207);
@@ -62,7 +62,7 @@ test('3000 products use bounded parallel requests and subsequent screens share t
     await new Promise(resolve => setImmediate(resolve));
     active--;
     const page = Number(new URL(url).searchParams.get('Pagina'));
-    return { data: { itens: page <= 30 ? Array.from({ length: 100 }, (_, i) => ({ codigo: (page - 1) * 100 + i })) : [] } };
+    return { data: { itens: page <= 30 ? Array.from({ length: 100 }, (_, i) => ({ codigo: (page - 1) * 100 + i, estoqueGeral: 1 })) : [] } };
   });
   const [products, pdv, ecommerce] = await Promise.all([api.list('produtos'), api.list('produtos'), api.list('produtos')]);
   assert.equal(products.length, 3000);
@@ -74,4 +74,25 @@ test('3000 products use bounded parallel requests and subsequent screens share t
   assert.equal(calls, 32);
   await api.list('produtos', { forceRefresh: true });
   assert.equal(calls, 64);
+});
+
+test('Alpha includes only positive ERP stock, even after a page entirely without stock', async () => {
+  const api = service(async url => {
+    const page = Number(new URL(url).searchParams.get('Pagina'));
+    const pages = {
+      1: [{ codigo: 'zero', estoqueGeral: 0 }, { codigo: 'negative', estoqueGeral: -3 }],
+      2: [
+        { codigo: 'available', estoqueGeral: 5 },
+        { codigo: 'numeric-string', estoqueGeral: '2.5' },
+        { codigo: 'missing' },
+        { codigo: 'invalid', estoqueGeral: 'invalid' },
+        { codigo: 'null', estoqueGeral: null },
+        { codigo: 'local-only', estoqueGeral: 0, variantes: [{ quantidade_total: 10 }] }
+      ]
+    };
+    return { data: { itens: pages[page] || [] } };
+  });
+  const products = await api.list('produtos');
+  assert.equal(products.map(p => p.referencia).join(','), 'available,numeric-string');
+  assert.equal(products[0].estoqueGeral, 5);
 });

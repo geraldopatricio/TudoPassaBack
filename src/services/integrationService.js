@@ -218,7 +218,8 @@ const list = async (resource, { forceRefresh = false } = {}) => {
     const key = JSON.stringify({ provider: config.provider, endpoint: resolveEndpoint(config, spec.get), spec, headers: headers(config) });
     return loadCatalog(key, async () => {
       const raw = await listAlphaProducts(config, spec);
-      return raw.map(p => normalizeProduto(p, config.provider));
+      return raw.filter(p => Number.isFinite(Number(p.estoqueGeral)) && Number(p.estoqueGeral) > 0)
+        .map(p => normalizeProduto(p, config.provider));
     }, forceRefresh);
   }
   const { data } = await axios.get(resolveEndpoint(config, spec.get), { headers: headers(config), timeout: 20000 });
