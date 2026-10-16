@@ -94,6 +94,12 @@ const headers = (config) => {
   const clientId = env('CLIENT_ID') || c.clientId;
   const clientSecret = env('CLIENT_SECRET') || c.clientSecret;
   const h = { Accept: 'application/json' };
+  // Alpha uses API-key authentication; stale credentials from other providers
+  // must not introduce a second authentication scheme.
+  if (config.provider === 'alpha' && apiKey) {
+    h['X-Api-Key'] = String(apiKey).trim();
+    return h;
+  }
   if (token) h.Authorization = token.toLowerCase().startsWith('bearer ') ? token : `Bearer ${token}`;
   if (apiKey) h['X-Api-Key'] = apiKey;
   if (clientId) h['X-Client-Id'] = clientId;
@@ -174,10 +180,36 @@ const enrichCnpj = async (person, enabled) => {
 };
 
 const active = () => { const c = readConfig(); return c.enabled && c.provider !== 'local' ? c : null; };
+const listAlphaProducts = async (config, spec) => {
+  const url = new URL(resolveEndpoint(config, spec.get));
+  // Use a fixed page size, including for configurations saved before pagination.
+  for (const key of [...url.searchParams.keys()]) {
+    if (['pagina', 'tamanhopagina'].includes(key.toLowerCase())) url.searchParams.delete(key);
+  }
+  url.searchParams.set('TamanhoPagina', '100');
+  const items = [];
+  const seenPages = new Set();
+  for (let page = 1; page <= 10000; page++) {
+    url.searchParams.set('Pagina', String(page));
+    const { data } = await axios.get(url.toString(), { headers: headers(config), timeout: 20000 });
+    const batch = extract(data, spec.responsePath);
+    if (!Array.isArray(batch)) throw new Error('A resposta de produtos não contém uma lista');
+    if (batch.length === 0) return items;
+    const fingerprint = JSON.stringify(batch);
+    if (seenPages.has(fingerprint)) throw new Error('A API Alpha repetiu uma página de produtos. Verifique se o endpoint aceita Pagina e TamanhoPagina.');
+    seenPages.add(fingerprint);
+    items.push(...batch);
+  }
+  throw new Error('A consulta de produtos Alpha excedeu o limite de páginas de segurança.');
+};
 const list = async (resource) => {
   const config = active();
   if (!config || !config.resources?.[resource]?.get) return null;
   const spec = config.resources[resource];
+  if (config.provider === 'alpha' && resource === 'produtos') {
+    const raw = await listAlphaProducts(config, spec);
+    return raw.map(p => normalizeProduto(p, config.provider));
+  }
   const { data } = await axios.get(resolveEndpoint(config, spec.get), { headers: headers(config), timeout: 20000 });
   const raw = extract(data, spec.responsePath);
   if (!Array.isArray(raw)) throw new Error(`A resposta de ${resource} não contém uma lista`);

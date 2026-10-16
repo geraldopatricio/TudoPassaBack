@@ -1,10 +1,10 @@
 {
-  "provider": "local",
-  "enabled": false,
+  "provider": "alpha",
+  "enabled": true,
   "cnpjEnrichment": true,
   "credentials": {
-    "baseUrl": "",
-    "token": "",
+    "baseUrl": "patricio",
+    "token": "123456",
     "apiKey": "",
     "clientId": "",
     "clientSecret": ""
@@ -33,7 +33,7 @@
       "tipo": "representante"
     },
     "vendas": {
-      "post": "",
+      "post": "https://api-tudopassaweb.alphasystemas.com.br/v1/vendas",
       "defaults": {},
       "sizePositions": {}
     }
