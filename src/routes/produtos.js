@@ -73,8 +73,9 @@ router.get('/', async (req, res) => {
         const remote = await integration.list('produtos');
         if (!remote) return res.json(publicProducts(readDB(), req));
         const local = readDB();
+        const localByReference = new Map(local.map(item => [String(item.referencia), item]));
         res.json(publicProducts(remote.map(item => {
-            const merged = { ...item, ...(local.find(saved => String(saved.referencia) === String(item.referencia)) || {}), referencia: item.referencia };
+            const merged = { ...item, ...(localByReference.get(String(item.referencia)) || {}), referencia: item.referencia };
             if (item.preco_alpha !== undefined) {
                 merged.preco_alpha = item.preco_alpha;
                 merged.variantes = (merged.variantes || []).map(v => ({ ...v, valor_unitario: item.preco_alpha, valor_total: item.preco_alpha * Number(v.quantidade_total || 0) }));

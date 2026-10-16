@@ -1,6 +1,7 @@
 const axios = require('axios');
 const fs = require('fs');
 const path = require('path');
+const loadCatalog = require('./catalogCache')();
 
 const CONFIG_PATH = path.join(__dirname, '../database/integracoes/integracoes.json');
 const ALLOWED_TYPES = ['representante', 'revendedor', 'fornecedor', 'afiliado', 'vendedor', 'transportadora'];
@@ -189,26 +190,36 @@ const listAlphaProducts = async (config, spec) => {
   url.searchParams.set('TamanhoPagina', '100');
   const items = [];
   const seenPages = new Set();
-  for (let page = 1; page <= 10000; page++) {
-    url.searchParams.set('Pagina', String(page));
-    const { data } = await axios.get(url.toString(), { headers: headers(config), timeout: 20000 });
+  const fetchPage = async page => {
+    const pageUrl = new URL(url);
+    pageUrl.searchParams.set('Pagina', String(page));
+    const { data } = await axios.get(pageUrl.toString(), { headers: headers(config), timeout: 20000 });
     const batch = extract(data, spec.responsePath);
     if (!Array.isArray(batch)) throw new Error('A resposta de produtos não contém uma lista');
-    if (batch.length === 0) return items;
-    const fingerprint = JSON.stringify(batch);
-    if (seenPages.has(fingerprint)) throw new Error('A API Alpha repetiu uma página de produtos. Verifique se o endpoint aceita Pagina e TamanhoPagina.');
-    seenPages.add(fingerprint);
-    items.push(...batch);
+    return batch;
+  };
+  for (let page = 1; page <= 10000; page += 4) {
+    const batches = await Promise.all(Array.from({ length: Math.min(4, 10001 - page) }, (_, index) => fetchPage(page + index)));
+    for (const batch of batches) {
+      if (batch.length === 0) return items;
+      const fingerprint = JSON.stringify(batch);
+      if (seenPages.has(fingerprint)) throw new Error('A API Alpha repetiu uma página de produtos. Verifique se o endpoint aceita Pagina e TamanhoPagina.');
+      seenPages.add(fingerprint);
+      items.push(...batch);
+    }
   }
   throw new Error('A consulta de produtos Alpha excedeu o limite de páginas de segurança.');
 };
-const list = async (resource) => {
+const list = async (resource, { forceRefresh = false } = {}) => {
   const config = active();
   if (!config || !config.resources?.[resource]?.get) return null;
   const spec = config.resources[resource];
   if (config.provider === 'alpha' && resource === 'produtos') {
-    const raw = await listAlphaProducts(config, spec);
-    return raw.map(p => normalizeProduto(p, config.provider));
+    const key = JSON.stringify({ provider: config.provider, endpoint: resolveEndpoint(config, spec.get), spec, headers: headers(config) });
+    return loadCatalog(key, async () => {
+      const raw = await listAlphaProducts(config, spec);
+      return raw.map(p => normalizeProduto(p, config.provider));
+    }, forceRefresh);
   }
   const { data } = await axios.get(resolveEndpoint(config, spec.get), { headers: headers(config), timeout: 20000 });
   const raw = extract(data, spec.responsePath);

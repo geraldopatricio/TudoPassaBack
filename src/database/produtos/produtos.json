@@ -147,6 +147,10 @@
         "valor_total_tb2": 0,
         "valor_total_tb3": 0
       }
+    ],
+    "venda_externa": true,
+    "imagens": [
+      "2820001.jpeg"
     ]
   },
   {
@@ -234,6 +238,10 @@
         "valor_total_tb2": 0,
         "valor_total_tb3": 0
       }
+    ],
+    "venda_externa": true,
+    "imagens": [
+      "3920011.jpeg"
     ]
   },
   {

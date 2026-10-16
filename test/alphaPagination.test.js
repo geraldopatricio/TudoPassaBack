@@ -11,7 +11,7 @@ function service(get, provider = 'alpha') {
   const module = { exports: {} };
   vm.runInNewContext(fs.readFileSync(path.join(__dirname, '../src/services/integrationService.js'), 'utf8'), {
     module, __dirname, URL, process: { env: {} },
-    require: name => name === 'axios' ? { get } : name === 'fs' ? { readFileSync: () => JSON.stringify(config) } : require(name)
+    require: name => name === './catalogCache' ? require('../src/services/catalogCache') : name === 'axios' ? { get } : name === 'fs' ? { readFileSync: () => JSON.stringify(config) } : require(name)
   });
   return module.exports;
 }
@@ -36,7 +36,7 @@ test('Alpha rejects repeated pages instead of looping or returning a partial cat
   let calls = 0;
   const api = service(async () => { calls++; return { data: { itens: [{ codigo: 1 }] } }; });
   await assert.rejects(api.list('produtos'), /repetiu uma página/);
-  assert.equal(calls, 2);
+  assert.equal(calls, 4);
 });
 
 test('Alpha propagates failure on a later page', async () => {
@@ -53,4 +53,25 @@ test('other providers keep their existing single request', async () => {
   const api = service(async () => { calls++; return { data: { itens: [{ codigo: 1 }] } }; }, 'custom');
   assert.equal((await api.list('produtos')).length, 1);
   assert.equal(calls, 1);
+});
+
+test('3000 products use bounded parallel requests and subsequent screens share the catalog', async () => {
+  let calls = 0, active = 0, peak = 0;
+  const api = service(async url => {
+    calls++; active++; peak = Math.max(peak, active);
+    await new Promise(resolve => setImmediate(resolve));
+    active--;
+    const page = Number(new URL(url).searchParams.get('Pagina'));
+    return { data: { itens: page <= 30 ? Array.from({ length: 100 }, (_, i) => ({ codigo: (page - 1) * 100 + i })) : [] } };
+  });
+  const [products, pdv, ecommerce] = await Promise.all([api.list('produtos'), api.list('produtos'), api.list('produtos')]);
+  assert.equal(products.length, 3000);
+  assert.equal(products, pdv);
+  assert.equal(products, ecommerce);
+  assert.equal(peak, 4);
+  assert.equal(calls, 32);
+  assert.equal(await api.list('produtos'), products);
+  assert.equal(calls, 32);
+  await api.list('produtos', { forceRefresh: true });
+  assert.equal(calls, 64);
 });

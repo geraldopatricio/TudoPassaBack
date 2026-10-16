@@ -11,7 +11,7 @@ router.post('/testar', async (req, res) => {
   try {
     integration.mergeConfig(req.body || {});
     const results = await Promise.all(['clientes', 'produtos', 'profissionais'].map(async resource => {
-      try { const items = await integration.list(resource); return [resource, { total: items?.length || 0, success: true }]; }
+      try { const items = await integration.list(resource, { forceRefresh: true }); return [resource, { total: items?.length || 0, success: true }]; }
       catch (error) { return [resource, { total: 0, success: false, error: error.message }]; }
     }));
     const totals = Object.fromEntries(results);
