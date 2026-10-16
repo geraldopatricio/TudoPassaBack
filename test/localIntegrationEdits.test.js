@@ -24,13 +24,14 @@ for (const resource of ['produtos', 'clientes', 'profissionais']) {
     const multer = Object.assign(() => ({ single: () => () => {} }), { diskStorage: () => ({}) });
     const filename = path.resolve(__dirname, `../src/routes/${resource}.js`);
     vm.runInNewContext(fs.readFileSync(filename, 'utf8'), {
-      require: name => name === 'express' ? { Router: () => router } : name === 'fs' ? fakeFs : name === 'multer' ? multer : name.includes('integrationService') ? integration : require(name),
+      require: name => name === 'express' ? { Router: () => router } : name === 'fs' ? fakeFs : name === 'multer' ? multer : name.includes('integrationService') ? integration : name.includes('productOrder') ? require('../src/services/productOrder') : name.includes('alphaStock') ? require('../src/services/alphaStock') : require(name),
       __dirname: path.dirname(filename), module: { exports: {} }, console
     });
     let response;
     const res = { status() { return this; }, json(value) { response = value; } };
     const body = { nome: 'Editado', descricao: 'Editado', ativo: false, variantes: '[{"valor_unitario":"35.50"}]', ref_usuarios: '["usuario"]', credito_limite: '100', bloqueado: 'false' };
-    routes[`put /:${key === 'referencia' ? 'ref' : 'codigo'}`]({ params: { ref: '123', codigo: '123' }, body, file: { filename: 'nova.png' } }, res);
+    await routes[`put /:${key === 'referencia' ? 'ref' : 'codigo'}`]({ params: { ref: '123', codigo: '123' }, body,
+      ...(resource === 'produtos' ? { files: { imagens: [{ filename: 'nova.png' }] } } : { file: { filename: 'nova.png' } }) }, res);
     const db = path.resolve(path.dirname(filename), `../database/${resource}/${resource}.json`);
     const stored = JSON.parse(files.get(db));
     assert.equal(stored.length, 1);
@@ -38,7 +39,7 @@ for (const resource of ['produtos', 'clientes', 'profissionais']) {
     if (resource === 'produtos') { assert.equal(stored[0].variantes[0].valor_unitario, 35.5); assert.equal(stored[0].imagem, 'nova.png'); }
     else { assert.deepEqual(stored[0].ref_usuarios, ['usuario']); assert.equal(stored[0][resource === 'clientes' ? 'foto' : 'logomarca'], 'nova.png'); }
     if (resource === 'clientes') { assert.equal(stored[0].credito_limite, 100); assert.equal(stored[0].bloqueado, false); }
-    await routes['get /']({}, res);
+    await routes['get /']({ query: {} }, res);
     assert.equal(response[0].nome, 'Editado');
     assert.equal(response[0].ativo, false);
     if (resource === 'produtos') { assert.equal(response[0].variantes[0].valor_unitario, 39); assert.equal(response[0].imagem, 'nova.png'); }
@@ -46,7 +47,7 @@ for (const resource of ['produtos', 'clientes', 'profissionais']) {
       await routes['get /:codigo']({ params: { codigo: '123' } }, res);
       assert.equal(response.nome, 'Editado');
     }
-    routes[`put /:${key === 'referencia' ? 'ref' : 'codigo'}`]({ params: { ref: '123', codigo: '123' }, body: { nome: 'Segunda edição' } }, res);
+    await routes[`put /:${key === 'referencia' ? 'ref' : 'codigo'}`]({ params: { ref: '123', codigo: '123' }, body: { nome: 'Segunda edição' } }, res);
     const updated = JSON.parse(files.get(db));
     assert.equal(updated.length, 1);
     if (resource === 'produtos') assert.equal(updated[0].variantes[0].valor_unitario, 35.5);

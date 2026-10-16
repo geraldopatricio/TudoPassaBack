@@ -2,6 +2,7 @@ const axios = require('axios');
 const fs = require('fs');
 const path = require('path');
 const loadCatalog = require('./catalogCache')();
+const { applyStock } = require('./alphaStock');
 
 const CONFIG_PATH = path.join(__dirname, '../database/integracoes/integracoes.json');
 const ALLOWED_TYPES = ['representante', 'revendedor', 'fornecedor', 'afiliado', 'vendedor', 'transportadora'];
@@ -132,6 +133,11 @@ const normalizeProduto = (p, provider) => {
     const variant = byColor.get(colorKey);
     const size = String(item.tamanho || '').trim().toUpperCase();
     if (size && variant.grade[size] === undefined) variant.grade[size] = 0;
+    if (provider === 'alpha' && size) {
+      const quantity = Number(item.estoque);
+      variant.grade[size] += Number.isFinite(quantity) ? Math.max(0, quantity) : 0;
+      variant.quantidade_total = Object.values(variant.grade).reduce((total, stock) => total + stock, 0);
+    }
     variant.itens_grade.push({ ...item, tamanho: size });
   }
   return {
@@ -142,7 +148,7 @@ const normalizeProduto = (p, provider) => {
     unidade: String(value(p, ['unidade', 'unit', 'unidadeMedida'], 'UN')).trim(),
     imagem: value(p, ['imagem', 'image', 'urlImagem'], 'avatar.png'),
     ...(provider === 'alpha' ? { preco_alpha: alphaPrice } : {}),
-    variantes: (Array.isArray(p.variantes) && p.variantes.length ? p.variantes : [...byColor.values()]).map(v => provider === 'alpha' ? { ...v, valor_unitario: alphaPrice, valor_total: alphaPrice * Number(v.quantidade_total || 0) } : v)
+    variantes: (p.estoque_alpha ? [...byColor.values()] : Array.isArray(p.variantes) && p.variantes.length ? p.variantes : [...byColor.values()]).map(v => provider === 'alpha' ? { ...v, valor_unitario: alphaPrice, valor_total: alphaPrice * Number(v.quantidade_total || 0) } : v)
   };
 };
 
@@ -181,7 +187,7 @@ const enrichCnpj = async (person, enabled) => {
 };
 
 const active = () => { const c = readConfig(); return c.enabled && c.provider !== 'local' ? c : null; };
-const listAlphaProducts = async (config, spec) => {
+const listAlphaPages = async (config, spec) => {
   const url = new URL(resolveEndpoint(config, spec.get));
   // Use a fixed page size, including for configurations saved before pagination.
   for (const key of [...url.searchParams.keys()]) {
@@ -215,10 +221,17 @@ const list = async (resource, { forceRefresh = false } = {}) => {
   if (!config || !config.resources?.[resource]?.get) return null;
   const spec = config.resources[resource];
   if (config.provider === 'alpha' && resource === 'produtos') {
-    const key = JSON.stringify({ provider: config.provider, endpoint: resolveEndpoint(config, spec.get), spec, headers: headers(config) });
+    const stockUrl = new URL(resolveEndpoint(config, spec.get));
+    stockUrl.pathname = `${stockUrl.pathname.replace(/\/$/, '')}/estoques`;
+    stockUrl.search = '';
+    stockUrl.searchParams.set('EmEstoque', 'true');
+    const store = Number(config.resources.vendas?.defaults?.codigoLoja);
+    if (Number.isInteger(store) && store > 0) stockUrl.searchParams.set('Lojas', String(store));
+    const key = JSON.stringify({ provider: config.provider, endpoint: resolveEndpoint(config, spec.get), stockEndpoint: stockUrl.toString(), spec, headers: headers(config) });
     return loadCatalog(key, async () => {
-      const raw = await listAlphaProducts(config, spec);
-      return raw.filter(p => Number.isFinite(Number(p.estoqueGeral)) && Number(p.estoqueGeral) > 0)
+      const raw = await listAlphaPages(config, spec);
+      const stocks = await listAlphaPages(config, { get: stockUrl.toString(), responsePath: '' });
+      return applyStock(raw, stocks).filter(p => p.estoqueGeral > 0)
         .map(p => normalizeProduto(p, config.provider));
     }, forceRefresh);
   }

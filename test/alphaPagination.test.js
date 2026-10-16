@@ -4,14 +4,31 @@ const fs = require('fs');
 const path = require('path');
 const vm = require('vm');
 
-function service(get, provider = 'alpha') {
+function service(get, provider = 'alpha', stockGet, store) {
   const config = { enabled: true, provider, credentials: {}, resources: {
     produtos: { get: 'https://example.invalid/produtos?Ativo=true&Pagina=5&TamanhoPagina=10000', responsePath: 'itens' }
   } };
+  if (store) config.resources.vendas = { defaults: { codigoLoja: store } };
+  const productFixtures = new Map();
+  const transport = async url => {
+    const parsed = new URL(url);
+    if (parsed.pathname.endsWith('/estoques')) {
+      if (stockGet) return stockGet(url);
+      const fixtures = [...productFixtures.values()].filter(p => Number(p.estoqueGeral) > 0).map(p => ({
+        referencia: String(p.referencia ?? p.codigo), loja: 1,
+        grades: [{ sku: `${p.referencia ?? p.codigo}-7-M`, codigoCor: '7', tamanho: 'M', estoque: String(p.estoqueGeral) }]
+      }));
+      const start = (Number(parsed.searchParams.get('Pagina')) - 1) * 100;
+      return { data: { itens: fixtures.slice(start, start + 100) } };
+    }
+    const result = await get(url);
+    for (const product of result.data.itens || []) productFixtures.set(String(product.referencia ?? product.codigo), product);
+    return result;
+  };
   const module = { exports: {} };
   vm.runInNewContext(fs.readFileSync(path.join(__dirname, '../src/services/integrationService.js'), 'utf8'), {
     module, __dirname, URL, process: { env: {} },
-    require: name => name === './catalogCache' ? require('../src/services/catalogCache') : name === 'axios' ? { get } : name === 'fs' ? { readFileSync: () => JSON.stringify(config) } : require(name)
+    require: name => name === './alphaStock' ? require('../src/services/alphaStock') : name === './catalogCache' ? require('../src/services/catalogCache') : name === 'axios' ? { get: transport } : name === 'fs' ? { readFileSync: () => JSON.stringify(config) } : require(name)
   });
   return module.exports;
 }
@@ -95,4 +112,32 @@ test('Alpha includes only positive ERP stock, even after a page entirely without
   const products = await api.list('produtos');
   assert.equal(products.map(p => p.referencia).join(','), 'available,numeric-string');
   assert.equal(products[0].estoqueGeral, 5);
+});
+
+test('bulk stock fills real color/size balances, scopes store and survives cached reads', async () => {
+  let stockCalls = 0;
+  const api = service(async url => ({ data: { itens: Number(new URL(url).searchParams.get('Pagina')) === 1
+    ? [{ referencia: 'A', estoqueGeral: 999, grades: [{ sku: 'A-7-P', codigoCor: '7', tamanho: 'P' }], tabelaPreco: { preco1: 39 } }] : [] } }), 'alpha', async url => {
+    stockCalls++;
+    const params = new URL(url).searchParams;
+    assert.equal(params.get('Lojas'), '2');
+    assert.equal(params.get('EmEstoque'), 'true');
+    return { data: { itens: Number(params.get('Pagina')) === 1 ? [{ referencia: 'A', loja: 2, grades: [
+      { sku: 'A-7-P', codigoCor: '7', descricaoCor: 'PRETO', tamanho: 'P', estoque: '11' },
+      { sku: 'A-7-M', codigoCor: '7', descricaoCor: 'PRETO', tamanho: 'M', estoque: '26' }
+    ] }] : [] } };
+  }, 2);
+  const products = await api.list('produtos');
+  assert.equal(products[0].estoqueGeral, 37);
+  assert.equal(products[0].variantes[0].grade.P, 11);
+  assert.equal(products[0].variantes[0].grade.M, 26);
+  assert.equal(products[0].variantes[0].quantidade_total, 37);
+  assert.equal(products[0].variantes[0].valor_total, 37 * 39);
+  await api.list('produtos');
+  assert.equal(stockCalls, 4);
+});
+
+test('stock endpoint failure rejects catalog instead of publishing invented balances', async () => {
+  const api = service(async () => ({ data: { itens: [] } }), 'alpha', async () => { throw new Error('stock unavailable'); });
+  await assert.rejects(api.list('produtos'), /stock unavailable/);
 });
