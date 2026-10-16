@@ -4,6 +4,7 @@ const fs = require('fs');
 const path = require('path');
 const multer = require('multer');
 const integration = require('../services/integrationService');
+const newestProducts = require('../services/productOrder');
 const { randomUUID } = require('crypto');
 
 const DB_PATH = path.join(__dirname, '../database/produtos/produtos.json');
@@ -71,10 +72,10 @@ const writeDB = (data) => {
 router.get('/', async (req, res) => {
     try {
         const remote = await integration.list('produtos');
-        if (!remote) return res.json(publicProducts(readDB(), req));
+        if (!remote) return res.json(publicProducts(newestProducts(readDB()), req));
         const local = readDB();
         const localByReference = new Map(local.map(item => [String(item.referencia), item]));
-        res.json(publicProducts(remote.map(item => {
+        res.json(publicProducts(newestProducts(remote).map(item => {
             const merged = { ...item, ...(localByReference.get(String(item.referencia)) || {}), referencia: item.referencia };
             if (item.preco_alpha !== undefined) {
                 merged.preco_alpha = item.preco_alpha;
@@ -119,6 +120,7 @@ router.post('/', receivePhotos, async (req, res) => {
         }
 
         const novoProduto = {
+            data_cadastro: new Date().toISOString(),
             referencia: req.body.referencia,
             categoria: req.body.categoria || 'CAMISA',
             descricao: req.body.descricao || '',
@@ -152,7 +154,7 @@ router.put('/:ref', receivePhotos, async (req, res) => {
         const remote = await integration.list('produtos');
         const remoteProduct = remote?.find(item => String(item.referencia) === String(ref));
         if (!remoteProduct) { cleanupUploads(req); return res.status(404).json({ message: 'Produto nao encontrado na integracao.' }); }
-        produtos.push({ ...remoteProduct, referencia: ref, data_cadastro: new Date().toISOString() });
+        produtos.push({ ...remoteProduct, referencia: ref });
         index = produtos.length - 1;
     }
 
