@@ -1,6 +1,6 @@
 {
-  "provider": "alpha",
-  "enabled": true,
+  "provider": "local",
+  "enabled": false,
   "cnpjEnrichment": true,
   "credentials": {
     "baseUrl": "patricio",
@@ -33,7 +33,7 @@
       "tipo": "representante"
     },
     "vendas": {
-      "post": "https://api-tudopassaweb.alphasystemas.com.br/v1/vendas",
+      "post": "",
       "defaults": {},
       "sizePositions": {}
     }

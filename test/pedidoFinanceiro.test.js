@@ -21,7 +21,7 @@ function fixture(asaas = { createPix: async () => ({ paymentId: 'pay_test', qrCo
     writeFileSync: (file, value) => files.set(path.basename(file), value)
   };
   vm.runInNewContext(fs.readFileSync(filename, 'utf8'), {
-    require: name => name === 'express' ? { Router: () => router } : name === 'fs' ? fakeFs : name.includes('salesIntegrationService') ? {} : name.includes('asaasService') ? asaas : name.includes('orderNotification') ? { sendOrderEmail: async data => { notifications.push(data); return { status: 'enviado' }; } } : require(name),
+    require: name => name === 'express' ? { Router: () => router } : name === 'fs' ? fakeFs : name.includes('familyEfficiency') ? { adjustLocal() {} } : name.includes('salesIntegrationService') ? {} : name.includes('asaasService') ? asaas : name.includes('orderNotification') ? { sendOrderEmail: async data => { notifications.push(data); return { status: 'enviado' }; } } : require(name),
     __dirname: path.dirname(filename), module: { exports: {} }, console
   });
   return {
@@ -55,6 +55,14 @@ test('payment confirmation sends paid email to customer once and persists delive
   assert.equal(f.notifications[0].cliente.email, 'cliente@example.com');
   assert.equal(f.notifications[0].status, 'Pago');
   assert.equal(f.read('pedidos.json')[0].email_confirmacao.status, 'enviado');
+});
+test('payment confirmation records a stable timestamp for family cohort attribution', async () => {
+  const f = fixture();
+  await f.update('Pago');
+  const at = f.read('pedidos.json')[0].pago_em;
+  assert.ok(Number.isFinite(Date.parse(at)));
+  await f.update('Pago');
+  assert.equal(f.read('pedidos.json')[0].pago_em, at);
 });
 
 test('legacy paid order requires explicit confirmation to create Pix and preserves financial entry', async () => {

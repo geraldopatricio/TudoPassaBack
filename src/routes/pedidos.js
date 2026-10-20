@@ -6,6 +6,7 @@ const asaas = require('../services/asaasService');
 const { sendOrderEmail } = require('../services/orderNotification');
 const salesIntegration = require('../services/salesIntegrationService');
 const { randomUUID } = require('crypto');
+const familyHistory = require('../services/familyEfficiency');
 
 const PEDIDOS_PATH = path.join(__dirname, '../database/pedidos/pedidos.json');
 const ITENS_PATH = path.join(__dirname, '../database/pedidos/pedidos_itens.json');
@@ -38,20 +39,24 @@ const cancelarLancamentoFinanceiro = (pedidoId) => {
 const processarBaixaEstoque = (itensPedido) => {
     try {
         let produtos = readJSON(PRODUTOS_PATH);
+        const adjusted = [];
         itensPedido.forEach(item => {
             const pIndex = produtos.findIndex(p => p.referencia === item.referencia);
             if (pIndex !== -1) {
                 const variante = produtos[pIndex].variantes.find(v => item.codigo_cor != null ? String(v.codigo_cor) === String(item.codigo_cor) : item.cor ? v.cor_codigo_nome === item.cor : produtos[pIndex].variantes.length === 1);
                 const tamanho = item.tamanho;
                 if (variante && variante.grade[tamanho] !== undefined) {
+                    const previousStock = Number(variante.grade[tamanho]);
                     variante.grade[tamanho] -= Number(item.quantidade);
                     if (variante && variante.grade[tamanho] < 0) variante.grade[tamanho] = 0;
+                    adjusted.push({ referencia: item.referencia, quantidade: previousStock - variante.grade[tamanho] });
                     variante.quantidade_total = Object.values(variante.grade).reduce((acc, curr) => acc + Number(curr), 0);
                     variante.valor_total = variante.quantidade_total * variante.valor_unitario;
                 }
             }
         });
         writeJSON(PRODUTOS_PATH, produtos);
+        familyHistory.adjustLocal(adjusted, -1);
         return true;
     } catch (e) {
         console.error("Erro ao dar baixa no estoque:", e);
@@ -62,6 +67,7 @@ const processarBaixaEstoque = (itensPedido) => {
 const processarEstornoEstoque = (itensPedido) => {
     try {
         let produtos = readJSON(PRODUTOS_PATH);
+        const adjusted = [];
         itensPedido.forEach(item => {
             const pIndex = produtos.findIndex(p => p.referencia === item.referencia);
             if (pIndex !== -1) {
@@ -69,12 +75,14 @@ const processarEstornoEstoque = (itensPedido) => {
                 const tamanho = item.tamanho;
                 if (variante && variante.grade[tamanho] !== undefined) {
                     variante.grade[tamanho] += Number(item.quantidade);
+                    adjusted.push({ referencia: item.referencia, quantidade: Number(item.quantidade) });
                     variante.quantidade_total = Object.values(variante.grade).reduce((acc, curr) => acc + Number(curr), 0);
                     variante.valor_total = variante.quantidade_total * variante.valor_unitario;
                 }
             }
         });
         writeJSON(PRODUTOS_PATH, produtos);
+        familyHistory.adjustLocal(adjusted, 1);
     } catch (e) {
         console.error("Erro ao estornar estoque:", e);
     }
@@ -361,6 +369,7 @@ router.put('/:id/status', async (req, res) => {
         }
         const statusAnterior = pedidos[index].status;
         pedidos[index].status = status;
+        if (status === 'Pago' && statusAnterior !== 'Pago') pedidos[index].pago_em = new Date().toISOString();
         const itensDoPedido = readJSON(ITENS_PATH).filter(i => i.pedido_id === id);
 
         if (status === 'Pago') gerarLancamentoFinanceiro(pedidos[index]);

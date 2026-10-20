@@ -113,6 +113,21 @@ test('Alpha includes only positive ERP stock, even after a page entirely without
   assert.equal(products.map(p => p.referencia).join(','), 'available,numeric-string');
   assert.equal(products[0].estoqueGeral, 5);
 });
+test('history can request sold-out references without changing available-product catalog caching', async () => {
+  let calls = 0;
+  const api = service(async url => {
+    calls++;
+    return { data: { itens: Number(new URL(url).searchParams.get('Pagina')) === 1 ? [{ referencia: 'ZERO', estoqueGeral: 0 }, { referencia: 'LIVE', estoqueGeral: 5 }] : [] } };
+  });
+  const visible = await api.list('produtos');
+  const afterFirstLoad = calls;
+  const complete = await api.list('produtos', { includeOutOfStock: true });
+  assert.equal(visible.length, 1);
+  assert.equal(complete.length, 2);
+  assert.equal(complete.find(p => p.referencia === 'ZERO').estoqueGeral, 0);
+  assert.equal(await api.list('produtos'), visible);
+  assert.equal(calls, afterFirstLoad);
+});
 
 test('bulk stock fills real color/size balances, scopes store and survives cached reads', async () => {
   let stockCalls = 0;

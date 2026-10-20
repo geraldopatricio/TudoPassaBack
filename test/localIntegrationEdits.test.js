@@ -21,10 +21,14 @@ for (const resource of ['produtos', 'clientes', 'profissionais']) {
       existsSync: file => files.has(file), mkdirSync() {}, unlinkSync() {},
       readFileSync: file => files.get(file), writeFileSync: (file, data) => files.set(file, data)
     };
-    const multer = Object.assign(() => ({ single: () => () => {} }), { diskStorage: () => ({}) });
+    const multer = Object.assign(() => ({ single: () => () => {}, fields: () => (_req, _res, next) => next() }), { diskStorage: () => ({}) });
+    const catalog = require('../src/services/productCatalog').createCatalog({ integration, readLocal: () => {
+      const file = path.resolve(__dirname, '../src/database/produtos/produtos.json');
+      return files.has(file) ? JSON.parse(files.get(file)) : [];
+    }, record() {} });
     const filename = path.resolve(__dirname, `../src/routes/${resource}.js`);
     vm.runInNewContext(fs.readFileSync(filename, 'utf8'), {
-      require: name => name === 'express' ? { Router: () => router } : name === 'fs' ? fakeFs : name === 'multer' ? multer : name.includes('integrationService') ? integration : name.includes('productOrder') ? require('../src/services/productOrder') : name.includes('alphaStock') ? require('../src/services/alphaStock') : require(name),
+      require: name => name.includes('productAvailability') ? require('../src/services/productAvailability') : name === 'express' ? { Router: () => router } : name === 'fs' ? fakeFs : name === 'multer' ? multer : name.includes('productCatalog') ? catalog : name.includes('familyEfficiency') ? { record() {} } : name.includes('integrationService') ? integration : name.includes('productOrder') ? require('../src/services/productOrder') : name.includes('alphaStock') ? require('../src/services/alphaStock') : require(name),
       __dirname: path.dirname(filename), module: { exports: {} }, console
     });
     let response;

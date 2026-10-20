@@ -2,6 +2,7 @@ const axios = require('axios');
 const fs = require('fs');
 const path = require('path');
 const loadCatalog = require('./catalogCache')();
+const visibleCatalogs = new WeakMap();
 const { applyStock } = require('./alphaStock');
 
 const CONFIG_PATH = path.join(__dirname, '../database/integracoes/integracoes.json');
@@ -216,7 +217,7 @@ const listAlphaPages = async (config, spec) => {
   }
   throw new Error('A consulta de produtos Alpha excedeu o limite de páginas de segurança.');
 };
-const list = async (resource, { forceRefresh = false } = {}) => {
+const list = async (resource, { forceRefresh = false, includeOutOfStock = false } = {}) => {
   const config = active();
   if (!config || !config.resources?.[resource]?.get) return null;
   const spec = config.resources[resource];
@@ -228,12 +229,15 @@ const list = async (resource, { forceRefresh = false } = {}) => {
     const store = Number(config.resources.vendas?.defaults?.codigoLoja);
     if (Number.isInteger(store) && store > 0) stockUrl.searchParams.set('Lojas', String(store));
     const key = JSON.stringify({ provider: config.provider, endpoint: resolveEndpoint(config, spec.get), stockEndpoint: stockUrl.toString(), spec, headers: headers(config) });
-    return loadCatalog(key, async () => {
+    const products = await loadCatalog(key, async () => {
       const raw = await listAlphaPages(config, spec);
       const stocks = await listAlphaPages(config, { get: stockUrl.toString(), responsePath: '' });
-      return applyStock(raw, stocks).filter(p => p.estoqueGeral > 0)
+      return applyStock(raw, stocks)
         .map(p => normalizeProduto(p, config.provider));
     }, forceRefresh);
+    if (includeOutOfStock) return products;
+    if (!visibleCatalogs.has(products)) visibleCatalogs.set(products, products.filter(p => p.estoqueGeral > 0));
+    return visibleCatalogs.get(products);
   }
   const { data } = await axios.get(resolveEndpoint(config, spec.get), { headers: headers(config), timeout: 20000 });
   const raw = extract(data, spec.responsePath);

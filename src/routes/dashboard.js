@@ -2,7 +2,9 @@ const router = require('express').Router();
 const fs = require('fs');
 const path = require('path');
 const { summarize } = require('../services/dashboardService');
-router.get('/', (req, res) => {
+const familyHistory = require('../services/familyEfficiency');
+const productCatalog = require('../services/productCatalog');
+router.get('/', async (req, res) => {
   const { start, end } = req.query;
   const valid = value => typeof value === 'string' && /^\d{4}-\d{2}-\d{2}$/.test(value) && !Number.isNaN(Date.parse(value)) && new Date(value).toISOString().slice(0, 10) === value;
   const days = (Date.parse(end) - Date.parse(start)) / 86400000 + 1;
@@ -13,7 +15,14 @@ router.get('/', (req, res) => {
     const previousEnd = new Date(Date.parse(start) - 86400000).toISOString().slice(0, 10);
     const previousStart = new Date(Date.parse(start) - days * 86400000).toISOString().slice(0, 10);
     const previous = summarize(orders, items, previousStart, previousEnd);
-    res.json({ ...summarize(orders, items, start, end), start, end, previous: { start: previousStart, end: previousEnd, revenue: previous.revenue, paid: previous.paid }, updatedAt: new Date().toISOString() });
+    let familyEfficiency;
+    try {
+      await productCatalog();
+      familyEfficiency = { ...familyHistory.summarize(familyHistory.read(), orders, items, start, end), available: true };
+    } catch (_) {
+      familyEfficiency = { available: false, message: 'Não foi possível atualizar o estoque e a análise por família. Tente novamente.' };
+    }
+    res.json({ ...summarize(orders, items, start, end), familyEfficiency, start, end, previous: { start: previousStart, end: previousEnd, revenue: previous.revenue, paid: previous.paid }, updatedAt: new Date().toISOString() });
   } catch (_) { res.status(500).json({ message: 'Não foi possível calcular os indicadores de pedidos.' }); }
 });
 module.exports = router;

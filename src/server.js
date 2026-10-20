@@ -76,3 +76,8 @@ app.listen(PORT, '0.0.0.0', () => {
     console.log(`🚀 Backend rodando em http://0.0.0.0:${PORT}`);
     console.log(`Pode ser acessado pelo IP do servidor na porta ${PORT}`);
 });
+
+// Observe ERP publication/stock changes even when the dashboard is closed.
+const refreshFamilyHistory = () => require('./services/productCatalog')({ forceRefresh: true }).catch(error => console.error('Histórico de famílias:', error.message));
+refreshFamilyHistory();
+setInterval(refreshFamilyHistory, 60000).unref();

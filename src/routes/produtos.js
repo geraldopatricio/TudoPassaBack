@@ -6,6 +6,9 @@ const multer = require('multer');
 const integration = require('../services/integrationService');
 const newestProducts = require('../services/productOrder');
 const { mergeStock } = require('../services/alphaStock');
+const productCatalog = require('../services/productCatalog');
+const { saleProducts } = require('../services/productAvailability');
+const familyHistory = require('../services/familyEfficiency');
 const { randomUUID } = require('crypto');
 
 const DB_PATH = path.join(__dirname, '../database/produtos/produtos.json');
@@ -54,7 +57,11 @@ const mediaFields = (req, previous = {}) => {
     if (flag !== undefined && ![true, false, 'true', 'false'].includes(flag)) throw new Error('Opção de venda externa inválida.');
     return { imagens: ordered, imagem: ordered[0] || 'avatar.png', venda_externa: flag === undefined ? previous.venda_externa === true : flag === true || flag === 'true' };
 };
-const publicProducts = (items, req) => req.query.canal === 'ecommerce' ? items.filter(p => p.venda_externa === true) : items;
+const publicProducts = (items, req) => {
+    if (req.query.canal === 'ecommerce') return saleProducts(items.filter(p => p.venda_externa === true));
+    if (req.query.canal === 'pdv') return saleProducts(items);
+    return items;
+};
 
 const readDB = () => {
     try {
@@ -72,18 +79,7 @@ const writeDB = (data) => {
 // 1. LISTAR TODOS
 router.get('/', async (req, res) => {
     try {
-        const remote = await integration.list('produtos');
-        if (!remote) return res.json(publicProducts(newestProducts(readDB()), req));
-        const local = readDB();
-        const localByReference = new Map(local.map(item => [String(item.referencia), item]));
-        res.json(publicProducts(newestProducts(remote).map(item => {
-            const merged = mergeStock(item, localByReference.get(String(item.referencia)) || {});
-            if (item.preco_alpha !== undefined) {
-                merged.preco_alpha = item.preco_alpha;
-                merged.variantes = (merged.variantes || []).map(v => ({ ...v, valor_unitario: item.preco_alpha, valor_total: item.preco_alpha * Number(v.quantidade_total || 0) }));
-            }
-            return merged;
-        }), req));
+        res.json(publicProducts(newestProducts(await productCatalog({ includeOutOfStock: true })), req));
     }
     catch (error) { res.status(502).json({ message: 'Erro ao consultar integração de produtos', error: error.message }); }
 });
@@ -124,6 +120,7 @@ router.post('/', receivePhotos, async (req, res) => {
             data_cadastro: new Date().toISOString(),
             referencia: req.body.referencia,
             categoria: req.body.categoria || 'CAMISA',
+            familia: req.body.familia ?? null,
             descricao: req.body.descricao || '',
             unidade: req.body.unidade || 'UN',
             ...mediaFields(req),
@@ -134,6 +131,7 @@ router.post('/', receivePhotos, async (req, res) => {
         if (remote) await remote;
         produtos.push(novoProduto);
         writeDB(produtos);
+        familyHistory.record([novoProduto], { publication: String(novoProduto.referencia) });
         res.status(201).json(novoProduto);
     } catch (error) {
         cleanupUploads(req);
@@ -184,12 +182,23 @@ router.put('/:ref', receivePhotos, async (req, res) => {
         ...mediaFields(req, produtos[index])
     };
 
+    // The ERP remains authoritative for stock and family when publishing a reference.
+    const config = integration.readConfig();
+    let observedProduct = produtoAtualizado;
+    if (config.enabled && config.provider !== 'local') {
+        const catalog = await integration.list('produtos', { includeOutOfStock: true });
+        const current = catalog?.find(p => String(p.referencia) === String(ref));
+        if (current) observedProduct = mergeStock(current, produtoAtualizado);
+    }
+
     delete produtoAtualizado.imagens_existentes;
     delete produtoAtualizado.ordem_imagens;
 
     const previousPhotos = photoNames(produtos[index]);
+    const wasPublished = produtos[index].venda_externa === true;
     produtos[index] = produtoAtualizado;
     writeDB(produtos);
+    familyHistory.record([observedProduct], { publication: !wasPublished && observedProduct.venda_externa === true ? String(ref) : null });
     for (const name of previousPhotos.filter(name => !produtoAtualizado.imagens.includes(name))) {
         const imgPath = path.join(UPLOAD_PATH, path.basename(name));
         if (fs.existsSync(imgPath)) fs.unlinkSync(imgPath);

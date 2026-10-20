@@ -34,11 +34,17 @@ function applyStock(products, stocks) {
 
 function mergeStock(remote, saved) {
   const merged = { ...remote, ...saved, referencia: remote.referencia };
+  if (Object.hasOwn(remote, 'familia')) merged.familia = remote.familia;
   if (remote.estoque_alpha) {
     merged.estoque_alpha = true;
     merged.estoqueGeral = remote.estoqueGeral;
     merged.grades = remote.grades;
-    merged.variantes = remote.variantes;
+    const { colorKey } = require('./productAvailability');
+    const availability = new Map((saved.variantes || []).map(v => [colorKey(v), v.disponivel]));
+    merged.variantes = (remote.variantes || []).map(v => ({
+      ...v,
+      disponivel: availability.get(colorKey(v)) ?? v.disponivel ?? true
+    }));
   }
   return merged;
 }
