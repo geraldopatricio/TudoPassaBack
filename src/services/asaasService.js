@@ -5,7 +5,7 @@ function client() {
   if (!key || !url) throw new Error('Configure ASAAS_API_KEY e ASAAS_URL no backend.');
   const parsed = new URL(url.trim());
   if (['api.asaas.com', 'api-sandbox.asaas.com'].includes(parsed.hostname) && ['/', ''].includes(parsed.pathname)) parsed.pathname = '/v3';
-  const api = axios.create({ baseURL: parsed.toString().replace(/\/$/, ''), timeout: 20000, headers: { access_token: key, 'User-Agent': 'TudoPassa/1.0' } });
+  const api = axios.create({ baseURL: parsed.toString().replace(/\/$/, ''), timeout: 20000, proxy: process.env.ASAAS_USE_SYSTEM_PROXY === 'true' ? undefined : false, headers: { access_token: key, 'User-Agent': 'TudoPassa/1.0' } });
   api.interceptors?.response.use(response => response, error => {
     const status = error.response?.status;
     const endpoint = error.config?.url || '';

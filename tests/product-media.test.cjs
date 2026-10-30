@@ -83,3 +83,64 @@ test('rejects malformed photo order and invalid publication flag', async () => {
   assert.equal((await app.call('put /:ref', { ordem_imagens: '["a.jpg","a.jpg"]' })).code, 400);
   assert.equal((await app.call('put /:ref', { venda_externa: 'yes' })).code, 400);
 });
+
+
+test('collection survives multipart create, partial update, listing and removal', async () => {
+  const app = fixture();
+  const colecao = { codigo: 10, descricao: 'COLECAO 10', descricao_secundaria: '' };
+  let res = await app.call('post /', { referencia: 'TEST', colecao: JSON.stringify(colecao) });
+  assert.equal(res.code, 201);
+  assert.deepEqual(app.db()[0].colecao, colecao);
+  res = await app.call('put /:ref', { descricao: 'Atualizado' });
+  assert.deepEqual(res.data.colecao, colecao);
+  res = await app.call('get /');
+  assert.deepEqual(res.data[0].colecao, colecao);
+  res = await app.call('put /:ref', { colecao: { codigo: 5, descricao: 'Outra' } });
+  assert.equal(res.data.colecao.codigo, 5);
+  res = await app.call('put /:ref', { colecao: 'null' });
+  assert.equal(res.data.colecao, null);
+  res = await app.call('put /:ref', { colecao: '{"descricao":""}' });
+  assert.equal(res.code, 400);
+  assert.equal(app.db()[0].colecao, null);
+  res = await app.call('delete /:ref');
+  assert.equal(res.code, 200);
+  assert.deepEqual(app.db(), []);
+});
+
+test('local collection selection overrides integrated collection in GET', async () => {
+  const app = fixture([{ referencia: 'TEST', colecao: { codigo: 5, descricao: 'Local' } }], [{ referencia: 'TEST', colecao: { codigo: 10, descricao: 'Alpha' } }]);
+  const res = await app.call('get /');
+  assert.equal(res.data[0].colecao.codigo, 5);
+});
+
+
+test('dashboard checkbox and secondary description persist across JSON and multipart updates', async () => {
+  const app = fixture();
+  const colecao = { codigo: 10, descricao: 'Original', descricao_secundaria: 'Verao 2027' };
+  let res = await app.call('post /', { referencia: 'TEST', colecao: JSON.stringify(colecao), usar_colecao_dashboard: 'true' });
+  assert.equal(res.code, 201);
+  assert.equal(app.db()[0].usar_colecao_dashboard, true);
+  assert.deepEqual(res.data.colecao, colecao);
+  res = await app.call('put /:ref', { descricao: 'Alterado' });
+  assert.equal(res.data.usar_colecao_dashboard, true);
+  assert.equal(res.data.colecao.descricao_secundaria, 'Verao 2027');
+  res = await app.call('get /');
+  assert.equal(res.data[0].usar_colecao_dashboard, true);
+  res = await app.call('put /:ref', { usar_colecao_dashboard: 'false' });
+  assert.equal(res.data.usar_colecao_dashboard, false);
+  res = await app.call('put /:ref', { usar_colecao_dashboard: 'invalid' });
+  assert.equal(res.code, 400);
+  assert.equal(app.db()[0].usar_colecao_dashboard, false);
+  res = await app.call('put /:ref', { colecao: 'null', usar_colecao_dashboard: 'true' });
+  assert.equal(res.code, 200);
+  assert.equal(res.data.colecao, null);
+  assert.equal(res.data.usar_colecao_dashboard, true);
+  res = await app.call('put /:ref', { colecao: { ...colecao, descricao_secundaria: 5 } });
+  assert.equal(res.code, 400);
+});
+
+test('products default to dashboard collection disabled', async () => {
+  const app = fixture();
+  const res = await app.call('post /', { referencia: 'TEST' });
+  assert.equal(res.data.usar_colecao_dashboard, false);
+});

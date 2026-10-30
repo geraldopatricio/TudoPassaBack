@@ -50,4 +50,29 @@ function summarize(orders, items, start, end) {
     excludedDates: orders.filter(p => !dayKey(p.data)).length
   };
 }
-module.exports = { summarize };
+function salesEvolution(orders, items, products, start, end) {
+  const { family } = require('./familyEfficiency');
+  const catalog = new Map(products.map(p => [String(p.referencia), p]));
+  const paid = new Map(orders.filter(o => o.status === 'Pago' && dayKey(o.data) >= start && dayKey(o.data) <= end).map(o => [String(o.id), o]));
+  const dates = summarize([], [], start, end).series.map(p => p.date);
+  const groups = { family: new Map(), category: new Map() };
+  for (const item of items) {
+    const order = paid.get(String(item.pedido_id));
+    const product = catalog.get(String(item.referencia));
+    if (!order || !product) continue;
+    const classification = family(product.familia);
+    if (!classification.key) continue;
+    const category = family(product.categoria);
+    const date = dayKey(order.data);
+    for (const [dimension, group] of [['family', classification], ['category', category]]) {
+      if (!group.key) continue;
+      if (!groups[dimension].has(group.key)) groups[dimension].set(group.key, { key: group.key, name: group.name, points: new Map(dates.map(date => [date, { date, revenue: 0, units: 0 }])) });
+      const point = groups[dimension].get(group.key).points.get(date);
+      point.revenue += cents(item.valor_total ?? num(item.quantidade) * num(item.valor_unitario));
+      point.units += num(item.quantidade);
+    }
+  }
+  const serialize = groups => [...groups.values()].map(g => ({ key: g.key, name: g.name, points: [...g.points.values()].map(p => ({ ...p, revenue: p.revenue / 100 })) })).sort((a, b) => a.name.localeCompare(b.name));
+  return { available: true, family: serialize(groups.family), category: serialize(groups.category) };
+}
+module.exports = { summarize, salesEvolution };

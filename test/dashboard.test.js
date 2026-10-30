@@ -29,3 +29,36 @@ test('empty periods are zero-filled and zero-value products have no invalid ABC 
   const zero = summarize([{ id: 1, data: '2026-09-01T12:00:00Z', status: 'Pago' }], [{ pedido_id: 1, referencia: 'A', quantidade: 1, valor_total: 0 }], '2026-09-01', '2026-09-01');
   assert.equal(zero.abc[0].class, 'C'); assert.equal(zero.abc[0].accumulated, 0);
 });
+
+
+test('sales evolution splits paid item revenue by family and category using Brasilia dates and fills gaps', () => {
+  const { salesEvolution } = require('../src/services/dashboardService');
+  const orders = [
+    { id: 1, data: '2026-10-03T01:00:00Z', status: 'Pago', total: 999 },
+    { id: 2, data: '2026-10-02T12:00:00Z', status: 'Pendente' },
+    { id: 3, data: '2026-10-04T12:00:00Z', status: 'Pago' }
+  ];
+  const products = [
+    { referencia: 'A', familia: { codigo: 1, descricao: 'Camisas' }, categoria: 'CASUAL' },
+    { referencia: 'B', familia: { codigo: 1, descricao: 'Camisas' }, categoria: 'SOCIAL' },
+    { referencia: 'C', familia: 'Vestidos', categoria: 'CASUAL' },
+    { referencia: 'D', familia: null, categoria: 'CASUAL' }
+  ];
+  const items = [
+    { pedido_id: 1, referencia: 'A', quantidade: 2, valor_total: 10.01 },
+    { pedido_id: 1, referencia: 'B', quantidade: 1, valor_unitario: 20 },
+    { pedido_id: 1, referencia: 'C', quantidade: 3, valor_total: 30.02 },
+    { pedido_id: 1, referencia: 'D', quantidade: 100, valor_total: 500 },
+    { pedido_id: 1, referencia: 'UNKNOWN', quantidade: 100, valor_total: 500 },
+    { pedido_id: 2, referencia: 'A', quantidade: 100, valor_total: 500 },
+    { pedido_id: 3, referencia: 'A', quantidade: 100, valor_total: 500 }
+  ];
+  const result = salesEvolution(orders, items, products, '2026-10-01', '2026-10-03');
+  assert.equal(result.family.length, 2);
+  const shirts = result.family.find(g => g.key === '1');
+  assert.deepEqual(shirts.points.map(p => p.revenue), [0, 30.01, 0]);
+  assert.equal(shirts.points[1].units, 3);
+  assert.equal(result.category.find(g => g.name === 'CASUAL').points[1].revenue, 40.03);
+  assert.equal(result.category.find(g => g.name === 'SOCIAL').points[1].revenue, 20);
+  assert.deepEqual(salesEvolution([], [], [], '2026-10-01', '2026-10-03'), { available: true, family: [], category: [] });
+});

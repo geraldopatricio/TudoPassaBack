@@ -31,7 +31,9 @@
     "imagens": [
       "1715036.jpeg",
       "6f43a893-a52c-4510-9d57-04bcb21f25ec.png"
-    ]
+    ],
+    "colecao": null,
+    "usar_colecao_dashboard": false
   },
   {
     "referencia": "1716026",
@@ -60,7 +62,9 @@
         "valor_total_tb2": 0,
         "valor_total_tb3": 0
       }
-    ]
+    ],
+    "colecao": null,
+    "usar_colecao_dashboard": false
   },
   {
     "referencia": "1116064",
@@ -89,7 +93,9 @@
         "valor_total_tb2": 0,
         "valor_total_tb3": 0
       }
-    ]
+    ],
+    "colecao": null,
+    "usar_colecao_dashboard": false
   },
   {
     "referencia": "1316005",
@@ -118,7 +124,9 @@
         "valor_total_tb2": 0,
         "valor_total_tb3": 0
       }
-    ]
+    ],
+    "colecao": null,
+    "usar_colecao_dashboard": false
   },
   {
     "referencia": "2820001",
@@ -151,7 +159,9 @@
     "venda_externa": true,
     "imagens": [
       "2820001.jpeg"
-    ]
+    ],
+    "colecao": null,
+    "usar_colecao_dashboard": false
   },
   {
     "referencia": "3916001",
@@ -180,7 +190,9 @@
         "valor_total_tb2": 0,
         "valor_total_tb3": 0
       }
-    ]
+    ],
+    "colecao": null,
+    "usar_colecao_dashboard": false
   },
   {
     "referencia": "1158172",
@@ -209,7 +221,9 @@
         "valor_total_tb2": 0,
         "valor_total_tb3": 0
       }
-    ]
+    ],
+    "colecao": null,
+    "usar_colecao_dashboard": false
   },
   {
     "referencia": "3920011",
@@ -242,7 +256,9 @@
     "venda_externa": true,
     "imagens": [
       "3920011.jpeg"
-    ]
+    ],
+    "colecao": null,
+    "usar_colecao_dashboard": false
   },
   {
     "referencia": "3920012",
@@ -271,6 +287,8 @@
         "valor_total_tb2": 160,
         "valor_total_tb3": 140
       }
-    ]
+    ],
+    "colecao": null,
+    "usar_colecao_dashboard": false
   }
 ]

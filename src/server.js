@@ -65,6 +65,7 @@ app.use('/tabela-precos', tabelaPrecosRouter);
 app.use('/pedidos', pedidosRouter);
 app.use('/relatorios', require('./routes/relatorios'));
 app.use('/financeiro', financeiroRouter);
+app.use('/asaas', require('./routes/asaas'));
 app.use('/logistica', logisticaRouter);
 app.use('/integracoes', integracoesRouter);
 app.use('/dashboard', require('./routes/dashboard'));

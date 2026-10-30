@@ -11,12 +11,14 @@ function createCatalog({ integration, readLocal, record }) {
     const saved = new Map(local.map(p => [String(p.referencia), p]));
     const products = remote ? remote.map(p => {
       const merged = mergeStock(p, saved.get(String(p.referencia)) || {});
+      if (saved.get(String(p.referencia))?.colecao === null && !saved.get(String(p.referencia))?.colecao_editada) merged.colecao = p.colecao ?? null;
       if (p.preco_alpha !== undefined) {
         merged.preco_alpha = p.preco_alpha;
         merged.variantes = (merged.variantes || []).map(v => ({ ...v, valor_unitario: p.preco_alpha, valor_total: p.preco_alpha * Number(v.quantidade_total || 0) }));
       }
       return merged;
     }) : local;
+    products.forEach(p => { if (p.colecao === undefined) p.colecao = null; p.usar_colecao_dashboard = p.usar_colecao_dashboard === true; });
     record(products);
     return includeOutOfStock ? products : products.filter(p => !p.estoque_alpha || p.estoqueGeral > 0);
   };

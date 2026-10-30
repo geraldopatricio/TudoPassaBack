@@ -2,7 +2,7 @@ const { test } = require('node:test');
 const assert = require('node:assert/strict');
 const { empty, observe, summarize, family, record, read, adjustLocal } = require('../src/services/familyEfficiency');
 const { createCatalog } = require('../src/services/productCatalog');
-const product = (ref, stock, familia = 'Camisas', published = true) => ({ referencia: ref, familia, venda_externa: published, estoque_alpha: true, estoqueGeral: stock });
+const product = (ref, stock, familia = 'Camisas', published = true) => ({ referencia: ref, usar_colecao_dashboard: true, colecao: { codigo: 10, descricao: 'Atual' }, familia, venda_externa: published, estoque_alpha: true, estoqueGeral: stock });
 const observeAt = (state, products, at, extra) => observe(state, products, { now: at, ...extra });
 const sale = (id, at, ref, units, extra = {}) => ({ order: { id, status: 'Pago', origem: 'ecommerce', pago_em: at, ...extra }, item: { pedido_id: id, referencia: ref, quantidade: units } });
 function report(state, sales, now = '2026-10-20T12:00:00Z', start = '2026-10-01', end = '2026-10-20') {
@@ -65,15 +65,15 @@ test('overlapping replenishments use FIFO once, and grouped cohort rates use uni
   assert.equal(result.cohorts.find(c => c.entered === 10).sold, 10);
   assert.equal(result.cohorts.find(c => c.entered === 20).sold, 6);
 });
-test('missing family is explicit, later ERP data fills it, later reassignment does not rewrite known history', () => {
+test('missing families are excluded without retroactive backfill; known history keeps its family', () => {
   const s = empty();
   observeAt(s, [product('A', 10, null)], '2026-10-01T12:00:00Z');
-  assert.equal(report(s, []).families[0].name, 'Sem família');
+  assert.deepEqual(report(s, []).families, []);
   observeAt(s, [product('A', 10, { codigo: 7, descricao: 'Camisas' })], '2026-10-02T12:00:00Z');
-  assert.equal(report(s, []).families[0].key, '7');
+  assert.deepEqual(report(s, []).families, []);
   observeAt(s, [product('A', 12, 'Vestidos')], '2026-10-03T12:00:00Z');
-  assert.deepEqual(report(s, []).families.map(f => f.name).sort(), ['Camisas', 'Vestidos']);
-  assert.deepEqual(family({}), { key: '', name: 'Sem família' });
+  assert.deepEqual(report(s, []).families.map(f => f.name), ['Vestidos']);
+  assert.equal(report(s, []).families[0].entered, 2);
 });
 test('zero stock and empty data never produce NaN, missing catalog references never imply receipts', () => {
   const s = empty();
@@ -128,4 +128,64 @@ test('persistent history survives reload; local payment and cancellation stock c
     if (fs.existsSync(file)) fs.unlinkSync(file);
     fs.rmdirSync(dir);
   }
+});
+
+
+test('collection scope excludes old stock and missing families from both denominators and sales', () => {
+  const s = empty();
+  observeAt(s, [], '2026-10-01T12:00:00Z');
+  observeAt(s, [product('A', 10), { ...product('B', 20), colecao: { codigo: 20, descricao: 'Outra' } }, { ...product('OLD', 100), colecao: null }, product('NOFAMILY', 100, null)], '2026-10-02T12:00:00Z');
+  const sales = ['A', 'B', 'OLD', 'NOFAMILY'].map((ref, i) => sale(String(i), '2026-10-03T12:00:00Z', ref, 4));
+  const all = report(s, sales);
+  assert.equal(all.families[0].entered, 30);
+  assert.equal(all.families[0].sold, 8);
+  assert.equal(all.cohorts.length, 2);
+  assert.equal(all.unmatchedUnits, 0);
+  const scoped = summarize(s, sales.map(s => s.order), sales.map(s => s.item), '2026-10-01', '2026-10-20', Date.parse('2026-10-20T12:00:00Z'), '10');
+  assert.equal(scoped.families[0].entered, 10);
+  assert.equal(scoped.families[0].sold, 4);
+  assert.equal(scoped.cohorts.length, 1);
+  assert.equal(scoped.collections.length, 2);
+  observeAt(s, [product('A', 6, null)], '2026-10-04T12:00:00Z');
+  assert.equal(report(s, sales).families[0].entered, 20);
+});
+
+test('legacy collections use current membership without rewriting receipts or FIFO', () => {
+  const s = empty();
+  observeAt(s, [], '2026-10-01T12:00:00Z');
+  observeAt(s, [product('A', 10)], '2026-10-02T12:00:00Z');
+  delete s.entries[0].collection;
+  observeAt(s, [{ ...product('A', 15), colecao: { codigo: 20, descricao: 'Outra' } }], '2026-10-03T12:00:00Z');
+  const result = report(s, [sale('1', '2026-10-04T12:00:00Z', 'A', 12)]);
+  assert.equal(result.families[0].entered, 15);
+  assert.equal(result.families[0].sold, 12);
+  assert.equal(result.cohorts.find(c => c.entered === 5).sold, 2);
+});
+
+
+test('checkbox controls inclusion without restarting cohorts; sales split by family and collection with display names', () => {
+  const s = empty();
+  const a = { ...product('A', 10), colecao: { codigo: 10, descricao: 'Original', descricao_secundaria: 'Verao 2027' } };
+  const b = { ...product('B', 20), colecao: { codigo: 20, descricao: 'Outra' } };
+  const c = { ...product('C', 30, 'Vestidos'), colecao: a.colecao };
+  const off = { ...product('OFF', 100), usar_colecao_dashboard: false };
+  const missing = { ...product('LEGACY', 100) }; delete missing.usar_colecao_dashboard;
+  observeAt(s, [], '2026-10-01T12:00:00Z');
+  observeAt(s, [a, b, c, off, missing], '2026-10-02T12:00:00Z');
+  const ids = s.entries.map(e => e.id);
+  const sales = ['A', 'B', 'C', 'OFF', 'LEGACY'].map((ref, i) => sale(String(i), '2026-10-03T12:00:00Z', ref, 4));
+  let result = report(s, sales);
+  assert.equal(result.collectionFamilies.length, 3);
+  assert.equal(result.collectionFamilies.reduce((sum, r) => sum + r.sold, 0), 12);
+  assert.equal(result.collections.find(c => c.key === '10').name, 'Verao 2027');
+  assert.equal(result.cohorts.find(c => c.reference === 'A').collection.name, 'Verao 2027');
+  observeAt(s, [{ ...a, usar_colecao_dashboard: false }], '2026-10-04T12:00:00Z');
+  result = report(s, sales);
+  assert.equal(result.collectionFamilies.reduce((sum, r) => sum + r.sold, 0), 8);
+  assert.equal(result.cohorts.some(c => c.reference === 'A'), false);
+  observeAt(s, [{ ...a, colecao: { ...a.colecao, descricao_secundaria: 'Novo nome' } }], '2026-10-05T12:00:00Z');
+  result = report(s, sales);
+  assert.equal(result.collectionFamilies.reduce((sum, r) => sum + r.sold, 0), 12);
+  assert.equal(result.cohorts.find(c => c.reference === 'A').collection.name, 'Novo nome');
+  assert.deepEqual(s.entries.map(e => e.id), ids);
 });

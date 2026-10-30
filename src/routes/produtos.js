@@ -57,6 +57,21 @@ const mediaFields = (req, previous = {}) => {
     if (flag !== undefined && ![true, false, 'true', 'false'].includes(flag)) throw new Error('Opção de venda externa inválida.');
     return { imagens: ordered, imagem: ordered[0] || 'avatar.png', venda_externa: flag === undefined ? previous.venda_externa === true : flag === true || flag === 'true' };
 };
+const collectionField = (value, previous = null) => {
+    if (value === undefined) return previous;
+    if (typeof value === 'string') value = JSON.parse(value);
+    if (value === null) return null;
+    if (!value || typeof value !== 'object' || Array.isArray(value) || typeof value.descricao !== 'string' || !value.descricao.trim()) throw new Error('Coleção inválida: informe codigo e descricao.');
+    const codigo = value.codigo ?? null;
+    if (codigo !== null && !['number', 'string'].includes(typeof codigo)) throw new Error('Código de coleção inválido.');
+    if (value.descricao_secundaria !== undefined && typeof value.descricao_secundaria !== 'string') throw new Error('Descricao secundaria da colecao invalida.');
+    return { codigo, descricao: value.descricao.trim(), descricao_secundaria: (value.descricao_secundaria || '').trim() };
+};
+const dashboardCollectionFlag = (value, previous = false) => {
+    if (value === undefined) return previous === true;
+    if (![true, false, 'true', 'false'].includes(value)) throw new Error('Opcao de colecao no dashboard invalida.');
+    return value === true || value === 'true';
+};
 const publicProducts = (items, req) => {
     if (req.query.canal === 'ecommerce') return saleProducts(items.filter(p => p.venda_externa === true));
     if (req.query.canal === 'pdv') return saleProducts(items);
@@ -121,6 +136,9 @@ router.post('/', receivePhotos, async (req, res) => {
             referencia: req.body.referencia,
             categoria: req.body.categoria || 'CAMISA',
             familia: req.body.familia ?? null,
+            colecao: collectionField(req.body.colecao),
+            colecao_editada: req.body.colecao !== undefined,
+            usar_colecao_dashboard: dashboardCollectionFlag(req.body.usar_colecao_dashboard),
             descricao: req.body.descricao || '',
             unidade: req.body.unidade || 'UN',
             ...mediaFields(req),
@@ -178,6 +196,9 @@ router.put('/:ref', receivePhotos, async (req, res) => {
         ...produtos[index],
         ...req.body,
         referencia: ref,
+        colecao: collectionField(req.body.colecao, produtos[index].colecao ?? null),
+        colecao_editada: req.body.colecao !== undefined || produtos[index].colecao_editada === true,
+        usar_colecao_dashboard: dashboardCollectionFlag(req.body.usar_colecao_dashboard, produtos[index].usar_colecao_dashboard),
         variantes: variantesAtualizadas,
         ...mediaFields(req, produtos[index])
     };

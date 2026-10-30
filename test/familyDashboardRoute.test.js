@@ -7,7 +7,7 @@ const history = require('../src/services/familyEfficiency');
 function fixture(failCatalog = false) {
   let route;
   const state = history.empty();
-  history.observe(state, [{ referencia: 'A', familia: 'Camisas', venda_externa: true, estoque_alpha: true, estoqueGeral: 10 }], { now: '2026-10-01T12:00:00Z', publication: 'A' });
+  history.observe(state, [{ referencia: 'A', familia: 'Camisas', usar_colecao_dashboard: true, colecao: { codigo: 10, descricao: 'Atual' }, venda_externa: true, estoque_alpha: true, estoqueGeral: 10 }], { now: '2026-10-01T12:00:00Z', publication: 'A' });
   const orders = [{ id: 1, data: '2026-10-02T12:00:00Z', pago_em: '2026-10-02T12:00:00Z', status: 'Pago', origem: 'ecommerce', total: 40 }];
   const items = [{ pedido_id: 1, referencia: 'A', quantidade: 4, valor_total: 40 }];
   const file = path.resolve(__dirname, '../src/routes/dashboard.js');
@@ -18,7 +18,7 @@ function fixture(failCatalog = false) {
       fs: { existsSync: () => true, readFileSync: file => JSON.stringify(file.endsWith('pedidos_itens.json') ? items : orders) },
       '../services/dashboardService': require('../src/services/dashboardService'),
       '../services/familyEfficiency': { ...history, read: () => state },
-      '../services/productCatalog': async () => { if (failCatalog) throw Error('ERP indisponível'); }
+      '../services/productCatalog': async () => { if (failCatalog) throw Error('ERP indisponível'); return [{ referencia: 'A', familia: 'Camisas', categoria: 'CAMISA' }]; }
     })[name]
   });
   return async query => {
@@ -46,4 +46,15 @@ test('ERP failure marks family metrics unavailable without reporting invented ze
 test('invalid dashboard dates remain rejected', async () => {
   const res = await fixture()({ start: '2026-02-30', end: '2026-10-03' });
   assert.equal(res.code, 400);
+});
+
+
+test('dashboard applies collection filter on the server while keeping commercial totals', async () => {
+  const res = await fixture()({ start: '2026-10-01', end: '2026-10-03', colecao: '20' });
+  assert.equal(res.code, 200);
+  assert.equal(res.body.revenue, 40);
+  assert.equal(res.body.familyEfficiency.families.length, 0);
+  assert.equal(res.body.familyEfficiency.cohorts.length, 0);
+  assert.equal(res.body.familyEfficiency.collectionKey, '20');
+  assert.equal(res.body.familyEfficiency.collections[0].key, '10');
 });

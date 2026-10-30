@@ -19,6 +19,23 @@ const operation = (tag, summary, description, options = {}) => ({
 const paths = {};
 const add = (path, method, data) => { paths[path] = paths[path] || {}; paths[path][method] = data; };
 add('/dashboard', 'get', operation('Dashboard', 'Consultar indicadores analíticos', 'Agrupa pedidos por data de criação no horário de Brasília. Vendas e rankings incluem somente pedidos com status Pago. Retorna receita, comparação anterior, séries, rankings e familyEfficiency: eficiência global observada por família e coortes de sete dias. Para famílias, considera pagamentos confirmados de pedidos registrados no sistema e usa start/end para selecionar a data de entrada das coortes; o acompanhamento continua até sete dias e o global acumula até a consulta. Saldos iniciais são separados de novas entradas, sem reconstruir movimentações anteriores. abc é mantido por compatibilidade com a página de backup. Período máximo de 366 dias.', { parameters: ['start', 'end'].map(name => ({ name, in: 'query', required: true, description: name === 'start' ? 'Data inicial inclusiva' : 'Data final inclusiva', schema: { type: 'string', format: 'date' }, example: name === 'start' ? '2026-09-01' : '2026-09-30' })) }));
+for (const [endpoint, description] of [['grid', 'Grade unificada de clientes e cobrancas; filtra cadastro do cliente, busca, status, nota e colunas antes da paginacao.'], ['overview', 'Saldo, previsoes por vencimento e fluxo de caixa do mes.'], ['customers', 'Clientes da conta Asaas.'], ['payments', 'Cobrancas com cliente, status, datas e recorrencia.'], ['subscriptions', 'Assinaturas recorrentes.'], ['invoices', 'Notas fiscais de servico.'], ['transactions', 'Extrato financeiro.'], ['services', 'Servicos fiscais municipais.']]) {
+  add('/asaas/' + endpoint, 'get', operation('Asaas', 'Consultar ' + endpoint, description + ' Acesso Admin/Gerente. Paginacao de 10 registros, parametro page nas listagens.', { security: true }));
+}
+for (const resource of ['customers', 'payments', 'subscriptions', 'invoices']) {
+  add('/asaas/' + resource, 'post', operation('Asaas', 'Criar ' + resource, 'Operacao real no Asaas. Exige X-Request-Id unico; a chave permanece no backend.', { security: true, body: {} }));
+}
+for (const resource of ['customers', 'payments', 'subscriptions']) add('/asaas/' + resource + '/{id}', 'put', operation('Asaas', 'Editar ' + resource, 'Edita na conta Asaas. Exige X-Request-Id.', { security: true, parameters: [parameter('id')], body: {} }));
+for (const resource of ['payments', 'subscriptions']) add('/asaas/' + resource + '/{id}', 'delete', operation('Asaas', 'Excluir ' + resource, 'Exclui cobranca ou cancela assinatura no Asaas. Exige X-Request-Id.', { security: true, parameters: [parameter('id')] }));
+for (const action of ['authorize', 'cancel']) add('/asaas/invoices/{id}/' + action, 'post', operation('Asaas', action + ' NFS-e', 'Solicita operacao fiscal; acompanhe o status. Exige X-Request-Id.', { security: true, parameters: [parameter('id')] }));
+add('/asaas/payments/{id}/pix', 'get', operation('Asaas', 'Consultar QR Code Pix', 'Retorna imagem e copia e cola da cobranca.', { security: true, parameters: [parameter('id')] }));
+add('/asaas/invoices/{id}', 'put', operation('Asaas', 'Editar NFS-e', 'Atualiza nota agendada ou com erro. Exige X-Request-Id.', { security: true, parameters: [parameter('id')], body: {} }));
+for (const [path, methods] of Object.entries(paths).filter(([path]) => path.startsWith('/asaas/'))) {
+  for (const [method, entry] of Object.entries(methods)) {
+    if (['post', 'put', 'delete'].includes(method)) entry.parameters = [...(entry.parameters || []), { name: 'X-Request-Id', in: 'header', required: true, schema: { type: 'string', minLength: 16 }, description: 'Identificador unico da operacao. Reutilize ao consultar uma repeticao da mesma solicitacao.' }];
+    if (method === 'get' && !path.includes('{id}') && !path.endsWith('/overview')) entry.parameters = [...(entry.parameters || []), { name: 'page', in: 'query', schema: { type: 'integer', minimum: 1, default: 1 }, description: 'Pagina com 10 registros.' }];
+  }
+}
 const crud = (base, tag, id, singular, body, options = {}) => {
   add(base, 'get', operation(tag, `Listar ${tag.toLowerCase()}`, `Retorna todos os registros de ${tag.toLowerCase()}. Quando uma integração está ativa, consulta o ERP/CRM e normaliza o resultado.`, { list: true }));
   add(base, 'post', operation(tag, `Cadastrar ${singular}`, `Cria um novo ${singular}. Aceita JSON ou multipart/form-data nas rotas com imagem.`, { body }));
@@ -27,7 +44,7 @@ const crud = (base, tag, id, singular, body, options = {}) => {
   add(`${base}/{${id}}`, 'delete', operation(tag, `Excluir ${singular}`, `Remove o registro e seus arquivos associados quando aplicável.`, { parameters: [parameter(id)] }));
 };
 
-crud('/produtos', 'Produtos', 'ref', 'produto', { referencia: '0720014', descricao: 'Camiseta', categoria: 'CAMISAS', unidade: 'UN', variantes: [] }, { detail: false });
+crud('/produtos', 'Produtos', 'ref', 'produto', { referencia: '0720014', descricao: 'Camiseta', categoria: 'CAMISAS', colecao: { codigo: 10, descricao: 'COLECAO 10', descricao_secundaria: 'Verao 2027' }, usar_colecao_dashboard: false, unidade: 'UN', variantes: [] }, { detail: false });
 crud('/clientes', 'Clientes', 'codigo', 'cliente', { codigo: '101', nome: 'Empresa Exemplo', cpf_cnpj: '19131243000197', email: 'contato@empresa.com.br' });
 crud('/profissionais', 'Profissionais', 'codigo', 'profissional', { codigo: '1', nome: 'Representante', cpf_cnpj: '19131243000197', tipo: 'representante' });
 crud('/usuarios', 'Usuários', 'login', 'usuário', { login: 'usuario', senha: 'senha-segura', email: 'usuario@exemplo.com', tipo: 'Admin' });

@@ -16,6 +16,7 @@ function family(value) {
   const name = String(value).trim();
   return { key: name, name: name || 'Sem família' };
 }
+const collectionInfo = value => ({ ...family(value), name: value?.descricao_secundaria?.trim() || family(value).name });
 const empty = () => ({ startedAt: null, products: {}, entries: [] });
 function read(file = FILE) {
   return fs.existsSync(file) ? JSON.parse(fs.readFileSync(file, 'utf8')) : empty();
@@ -40,21 +41,18 @@ function observe(state, products, { now = new Date().toISOString(), publication 
     const published = product.venda_externa === true;
     const stock = quantity(product);
     const group = family(product.familia);
-    // Once the ERP fills a missing family, backfill the unclassified entries only.
-    if (group.key) for (const entry of entriesByReference.get(ref) || []) {
-      if (!entry.family.key) entry.family = group;
-    }
+    const collection = collectionInfo(product.colecao);
     const firstPublication = published && (!previous || !previous.published);
     const increase = published && previous?.published ? Math.max(0, stock - previous.stock) : 0;
     // Republish does not count the same inventory twice or restart its weekly window.
     const hasEntries = entriesByReference.has(ref);
     const units = firstPublication && !hasEntries ? stock : increase;
     if (!adjustment && units > 0) state.entries.push({
-      id: randomUUID(), reference: ref, family: group, at: now, units,
+      id: randomUUID(), reference: ref, family: group, collection, at: now, units,
       baseline: baseline && publication !== ref,
       source: firstPublication ? 'publication' : 'observed-increase'
     });
-    Object.defineProperty(state.products, ref, { value: { stock, published, family: group, source: product.estoque_alpha ? 'alpha' : 'local' }, enumerable: true, writable: true, configurable: true });
+    Object.defineProperty(state.products, ref, { value: { stock, published, family: group, collection, useCollection: product.usar_colecao_dashboard === true, source: product.estoque_alpha ? 'alpha' : 'local' }, enumerable: true, writable: true, configurable: true });
   }
   return state;
 }
@@ -75,7 +73,7 @@ function adjustLocal(items, direction, file = FILE) {
   save(state, file);
 }
 const day = date => new Intl.DateTimeFormat('en-CA', { timeZone: 'America/Sao_Paulo', year: 'numeric', month: '2-digit', day: '2-digit' }).format(new Date(date));
-function summarize(state, orders, items, start, end, now = Date.now()) {
+function summarize(state, orders, items, start, end, now = Date.now(), collectionKey = null) {
   // The date filter selects cohorts by entry; their full seven-day follow-up continues afterwards.
   const cutoff = now;
   const lots = state.entries.filter(e => Date.parse(e.at) <= cutoff).map(e => ({ ...e, sold: 0, weeklySold: 0, remaining: e.units }));
@@ -97,27 +95,45 @@ function summarize(state, orders, items, start, end, now = Date.now()) {
       if (!lot.baseline && date < Date.parse(lot.at) + WEEK) lot.weeklySold += used;
       if (!units) break;
     }
-    unmatchedUnits += units;
+    const product = state.products[String(item.referencia)];
+    if (product?.useCollection === true && product?.family?.key && product?.collection?.key && (!collectionKey || product.collection.key === collectionKey)) unmatchedUnits += units;
   }
-  const groups = new Map();
-  for (const lot of lots) {
-    const key = lot.family.key;
-    if (!groups.has(key)) groups.set(key, { key, name: lot.family.name, entered: 0, sold: 0, baseline: 0, cohortEntered: 0, cohortSold: 0, active: 0, completed: 0 });
-    const group = groups.get(key);
-    group.entered += lot.units; group.sold += lot.sold;
-    if (lot.baseline) group.baseline += lot.units;
-    if (!lot.baseline && day(lot.at) >= start && day(lot.at) <= end) {
-      group.cohortEntered += lot.units; group.cohortSold += lot.weeklySold;
-      group[Date.parse(lot.at) + WEEK <= cutoff ? 'completed' : 'active']++;
+  // Allocate FIFO before applying scope so excluded lots cannot donate sales to eligible lots.
+  const currentFamily = lot => state.products[lot.reference]?.family;
+  const collectionOf = lot => {
+    const current = state.products[lot.reference]?.collection;
+    const original = lot.collection === undefined ? current : lot.collection;
+    return current?.key === original?.key ? current : original;
+  };
+  const eligible = lot => state.products[lot.reference]?.useCollection === true && !!lot.family?.key && !!currentFamily(lot)?.key && !!collectionOf(lot)?.key && (!collectionKey || collectionOf(lot).key === collectionKey);
+  const scopedLots = lots.filter(eligible);
+  const collections = [...new Map(Object.values(state.products).filter(p => p.useCollection === true && p.family?.key).map(p => p.collection).filter(c => c?.key).map(c => [c.key, c])).values()].sort((a, b) => a.name.localeCompare(b.name));
+  const familyGroups = new Map();
+  const collectionGroups = new Map();
+  for (const lot of scopedLots) {
+    const collection = collectionOf(lot);
+    for (const [groups, key, details] of [
+      [familyGroups, lot.family.key, {}],
+      [collectionGroups, JSON.stringify([lot.family.key, collection.key]), { familyKey: lot.family.key, family: lot.family.name, collectionKey: collection.key, collection: collection.name }]
+    ]) {
+      if (!groups.has(key)) groups.set(key, { key, name: lot.family.name, ...details, entered: 0, sold: 0, baseline: 0, cohortEntered: 0, cohortSold: 0, active: 0, completed: 0 });
+      const group = groups.get(key);
+      group.entered += lot.units; group.sold += lot.sold;
+      if (lot.baseline) group.baseline += lot.units;
+      if (!lot.baseline && day(lot.at) >= start && day(lot.at) <= end) {
+        group.cohortEntered += lot.units; group.cohortSold += lot.weeklySold;
+        group[Date.parse(lot.at) + WEEK <= cutoff ? 'completed' : 'active']++;
+      }
     }
   }
   const ratio = (sold, entered) => entered > 0 ? sold / entered * 100 : null;
-  const families = [...groups.values()].map(g => ({ ...g, efficiency: ratio(g.sold, g.entered), cohortEfficiency: ratio(g.cohortSold, g.cohortEntered), difference: g.cohortEntered ? ratio(g.cohortSold, g.cohortEntered) - ratio(g.sold, g.entered) : null })).sort((a, b) => b.entered - a.entered || a.name.localeCompare(b.name));
+  const families = [...familyGroups.values()].map(g => ({ ...g, efficiency: ratio(g.sold, g.entered), cohortEfficiency: ratio(g.cohortSold, g.cohortEntered), difference: g.cohortEntered ? ratio(g.cohortSold, g.cohortEntered) - ratio(g.sold, g.entered) : null })).sort((a, b) => b.entered - a.entered || a.name.localeCompare(b.name));
+  const collectionFamilies = [...collectionGroups.values()].map(g => ({ ...g, efficiency: ratio(g.sold, g.entered), cohortEfficiency: ratio(g.cohortSold, g.cohortEntered) })).sort((a, b) => b.sold - a.sold || a.family.localeCompare(b.family));
   return {
-    startedAt: state.startedAt, asOf: new Date(cutoff).toISOString(), families, unmatchedUnits,
+    startedAt: state.startedAt, asOf: new Date(cutoff).toISOString(), families, collectionFamilies, collections, collectionKey, unmatchedUnits,
     legacyPaidOrders: orders.filter(o => o.status === 'Pago' && !o.pago_em).length,
-    cohorts: lots.filter(l => !l.baseline && day(l.at) >= start && day(l.at) <= end).map(l => ({
-      id: l.id, reference: l.reference, familyKey: l.family.key, family: l.family.name, at: l.at,
+    cohorts: scopedLots.filter(l => !l.baseline && day(l.at) >= start && day(l.at) <= end).map(l => ({
+      id: l.id, reference: l.reference, familyKey: l.family.key, family: l.family.name, collection: collectionOf(l), at: l.at,
       endsAt: new Date(Date.parse(l.at) + WEEK).toISOString(), entered: l.units, sold: l.weeklySold,
       efficiency: ratio(l.weeklySold, l.units), completed: Date.parse(l.at) + WEEK <= cutoff, source: l.source
     })).sort((a, b) => Date.parse(b.at) - Date.parse(a.at))
