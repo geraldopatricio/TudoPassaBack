@@ -15,6 +15,7 @@ const pedidosRouter = require('./routes/pedidos');
 const financeiroRouter = require('./routes/financeiro');
 const logisticaRouter = require('./routes/logistica');
 const integracoesRouter = require('./routes/integracoes');
+const configuracoesRouter = require('./routes/configuracoes').router;
 
 const app = express();
 
@@ -68,6 +69,7 @@ app.use('/financeiro', financeiroRouter);
 app.use('/asaas', require('./routes/asaas'));
 app.use('/logistica', logisticaRouter);
 app.use('/integracoes', integracoesRouter);
+app.use('/configuracoes', configuracoesRouter);
 app.use('/dashboard', require('./routes/dashboard'));
 
 app.use((req, res) => res.status(404).json({ message: `Rota não encontrada: ${req.method} ${req.path}` }));

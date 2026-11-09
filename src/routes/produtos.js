@@ -5,6 +5,7 @@ const path = require('path');
 const multer = require('multer');
 const integration = require('../services/integrationService');
 const newestProducts = require('../services/productOrder');
+const { readConfig: readEcommerceConfig } = require('./configuracoes');
 const { mergeStock } = require('../services/alphaStock');
 const productCatalog = require('../services/productCatalog');
 const { saleProducts } = require('../services/productAvailability');
@@ -78,6 +79,18 @@ const publicProducts = (items, req) => {
     return items;
 };
 
+const ecommerceOrder = items => {
+    const order = readEcommerceConfig().ordem;
+    if (order === 'categoria') {
+        return [...items].sort((a, b) => String(a.categoria || '').localeCompare(String(b.categoria || ''), 'pt-BR', { sensitivity: 'base' }));
+    }
+    if (order === 'preco') {
+        const price = product => Math.min(...(product.variantes || []).map(variant => Number(variant.valor_unitario) || 0), Infinity);
+        return [...items].sort((a, b) => price(a) - price(b));
+    }
+    return newestProducts(items);
+};
+
 const readDB = () => {
     try {
         if (!fs.existsSync(DB_PATH)) return [];
@@ -94,7 +107,9 @@ const writeDB = (data) => {
 // 1. LISTAR TODOS
 router.get('/', async (req, res) => {
     try {
-        res.json(publicProducts(newestProducts(await productCatalog({ includeOutOfStock: true })), req));
+        const products = await productCatalog({ includeOutOfStock: true });
+        const ordered = req.query.canal === 'ecommerce' ? ecommerceOrder(products) : newestProducts(products);
+        res.json(publicProducts(ordered, req));
     }
     catch (error) { res.status(502).json({ message: 'Erro ao consultar integração de produtos', error: error.message }); }
 });
